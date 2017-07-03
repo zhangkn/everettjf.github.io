@@ -1,0 +1,16 @@
+name: everettjf
+description: security beginner
+meta_description: "blogs written by everettjf"
+
+markdown: rouge
+highlighter: pygments
+logo: false
+paginate: 15
+baseurl: /
+domain_name: 'http://everettjf.com'
+
+url:            'http://everettjf.com'
+author:         'everettjf'
+gems: [jekyll-paginate]
+
+permalink: :year/:month/:day/:title.md
