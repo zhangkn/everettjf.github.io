@@ -13,4 +13,4 @@ url:            'http://everettjf.com'
 author:         'everettjf'
 gems: [jekyll-paginate]
 
-permalink: :year/:month/:day/:title.md
+permalink: :year/:month/:day/:title
