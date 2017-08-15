@@ -2,9 +2,11 @@
 title: 简单的iOS TabPageScrollView开发笔记
 excerpt: "开发了个小小小Tab页面的小组件，供iOS初学者学习"
 categories: Skill
+comments: true
 ---
 
 
+{% include toc %}
 
 
 

@@ -1,12 +1,12 @@
 ---
-
 title: "选择"
 excerpt: "我，意志不坚定，优柔寡断，选择太多，迷失方向"
-
 categories: Essay
+comments: true
 ---
 
 
+{% include toc %}
 
 
 

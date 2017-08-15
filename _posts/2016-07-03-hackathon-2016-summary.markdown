@@ -1,11 +1,12 @@
 ---
 title: Summary for segmentfault hackathon 2016
-
 excerpt: "魔方还原App"
 categories: Essay
+comments: true
 ---
 
 
+{% include toc %}
 
 # 背景
 

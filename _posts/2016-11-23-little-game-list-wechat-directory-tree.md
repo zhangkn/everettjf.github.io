@@ -1,12 +1,12 @@
 ---
-
 title: List Wechat source files directory tree
 excerpt: "看看微信怎么组织文件的"
-
 categories: Skill
+comments: true
 ---
 
 
+{% include toc %}
 
 ---
 

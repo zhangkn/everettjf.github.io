@@ -1,11 +1,12 @@
 ---
 title: Plan for the next half year (2016) on iOS 
-
 excerpt: "计划"
 categories: Essay
+comments: true
 ---
 
 
+{% include toc %}
 
 # Time Range
 

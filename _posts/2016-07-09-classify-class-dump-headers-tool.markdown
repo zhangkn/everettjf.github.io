@@ -1,10 +1,11 @@
 ---
 title: supotato - Tool for classify class-dump headers
-
 excerpt: "对class-dump出的头文件分类，并猜测出第三方库"
 categories: Essay
+comments: true
 ---
 
+{% include toc %}
 
 class-dump 出的头文件这么多，supotato 可以根据头文件的`前2个字符`形成个简单的分类报告。同时可以猜测出使用了哪些第三方库（CocoaPods）。
 

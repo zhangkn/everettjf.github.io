@@ -1,12 +1,13 @@
 ---
-
 title: "如何编写简易病毒扫描程序"
 excerpt: "用Ruby + LibSVM训练一个区分病毒和正常PE文件的小程序"
 tags: Security
 categories: Skill
+comments: true
 ---
 
 
+{% include toc %}
 
 
 

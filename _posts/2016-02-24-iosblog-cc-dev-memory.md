@@ -1,18 +1,15 @@
 ---
-
 title: iOS博客精选 来源、使命及反思
 excerpt: "或许这才是那个看似伟大的想法的归宿。做自己擅长的想法。这个想法暂且到此为止。"
-
 categories: Essay
+comments: true
 ---
+
+{% include toc %}
 
 2016年5月19日补充：《iOS博客精选》App已经完成，并重命名为 [番茄阅读](https://everettjf.github.io/2016/05/13/how-to-write-a-simple-feed-reader)。(AppStore中App命名不能包含Apple公司的产品商标，因此不能包含iOS)
 
 
-
-
-
----
 # 近况
 
 Warning:本篇博客较为啰嗦，但或许能提供些什么。

@@ -1,12 +1,12 @@
 ---
-
 title: Simple antidebugging and antiantidebugging
 excerpt: "反调试，反反调试"
-
 categories: Skill
+comments: true
 ---
 
 
+{% include toc %}
 
 
 最近学习完了《iOS应用逆向工程》第二版，抓紧实战几个App。结果遇到少数App有反调试的代码，总结两个简单的反调试方法及去掉方法。

@@ -1,11 +1,12 @@
 ---
-
 title: Spacemacs tutorial
 categories: Skill
 excerpt: "强大的编辑器"
+comments: true
 ---
 
 
+{% include toc %}
 
 # 背景
 

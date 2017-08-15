@@ -1,12 +1,12 @@
 ---
-
 title: First step towards LLVM clang plugin
 excerpt: "The first keng"
-
 categories: Skill
+comments: true
 ---
 
 
+{% include toc %}
 
 ---
 

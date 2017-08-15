@@ -1,12 +1,12 @@
 ---
-
 title: "理想的工作环境"
 excerpt: "自己不在这样的公司，就总是妄想，甚至妄想自己创办……自己太简单"
-
 categories: Essay
+comments: true
 ---
 
 
+{% include toc %}
 
 
 

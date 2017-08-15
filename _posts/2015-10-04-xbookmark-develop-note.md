@@ -1,12 +1,12 @@
 ---
-
 title: Xcode书签插件XBookmark开发笔记
 excerpt: "Xcode竟然没办法添加书签，自己来开发一个啦"
-
 categories: Skill
+comments: true
 ---
 
 
+{% include toc %}
 
 
 
