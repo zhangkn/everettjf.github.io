@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: Anti ptrace
 excerpt: "hook ptrace"
-date: 2015-12-20
+
 categories: Skill
 ---
 

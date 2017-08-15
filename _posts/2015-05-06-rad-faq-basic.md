@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: "技术团队软硬件配置随想"
 excerpt: "最近在一个小小的创业公司，一些小想法"
-date: 2015-05-06
+
 categories: Essay
 ---
 

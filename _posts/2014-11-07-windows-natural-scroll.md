@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: "windows下实现鼠标滚轮的”自然方向滚动”"
 excerpt: "小程序"
-date: 2014-11-07 
+ 
 categories: Skill
 ---
 

@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: First step towards LLVM clang plugin
 excerpt: "The first keng"
-date: 2017-03-18
+
 categories: Skill
 ---
 

@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: symbolicatecrash deadloop bug
 excerpt: "Why Apple have not fix it "
-date: 2016-05-10
+
 categories: Skill
 ---
 

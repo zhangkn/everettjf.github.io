@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: Summary for C++ transfer to iOS develop for the past 5 months
 excerpt: "iOS入门的同学可参考此文"
-date: 2015-11-18
+
 categories: Skill
 ---
 

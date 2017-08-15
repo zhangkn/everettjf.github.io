@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: "计划"
 excerpt: "我的那堆计划计划计划，不在计划，在Action"
-date: 2015-04-13
+
 categories: Essay
 ---
 

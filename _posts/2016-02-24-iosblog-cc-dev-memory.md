@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: iOS博客精选 来源、使命及反思
 excerpt: "或许这才是那个看似伟大的想法的归宿。做自己擅长的想法。这个想法暂且到此为止。"
-date: 2016-02-24
+
 categories: Essay
 ---
 

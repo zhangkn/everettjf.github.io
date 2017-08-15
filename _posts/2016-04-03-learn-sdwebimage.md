@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: SDWebImage note
 excerpt: 浏览SDWebImage源码笔记
-date: 2016-04-03
+
 categories: Skill
 ---
 

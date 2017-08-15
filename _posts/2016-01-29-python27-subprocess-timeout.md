@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: Python2.7 subprocess调用perl脚本增加timeout
 excerpt: "Python2.x没有tmeout参数，其次要配合exec命令"
-date: 2016-01-29
+
 categories: Skill
 ---
 

@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: Apple Developer 登录错误，400电话解决
 excerpt: "可以解决，但原因不告诉我"
-date: 2016-04-20
+
 categories: Skill
 ---
 

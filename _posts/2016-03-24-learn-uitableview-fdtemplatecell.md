@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: UITableView-FDTemplateLayoutCell note
 excerpt: "动态高度，每个iOS程序员必须迈过的坎"
-date: 2016-03-24
+
 categories: Skill
 ---
 

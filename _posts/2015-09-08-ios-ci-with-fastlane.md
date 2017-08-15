@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: 使用fastlane实现iOS持续集成
 excerpt: "iOS App的持续集成，当时折腾了好几天，现在看来豁然开朗。fastlane好啊。"
-date: 2015-09-08
+
 categories: Skill
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Summary for segmentfault hackathon 2016
-layout: post
+
 excerpt: "魔方还原App"
 categories: Essay
 ---

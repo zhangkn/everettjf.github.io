@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: TabBar位置的二级页面touchesBegan被延迟调用
 excerpt: "手势"
-date: 2016-04-09
+
 categories: Skill
 ---
 

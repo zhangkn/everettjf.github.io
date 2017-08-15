@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: List Wechat source files directory tree
 excerpt: "看看微信怎么组织文件的"
-date: 2016-11-23
+
 categories: Skill
 ---
 

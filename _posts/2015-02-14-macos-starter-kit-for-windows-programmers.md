@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: "Windows程序猿的OSX入门笔记"
 excerpt: "简单记录下最近折腾Mac的一些小资料"
-date: 2015-02-14
+
 categories: Skill
 ---
 

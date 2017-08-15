@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: UITableViewCell自动高度计算优化小总结
 excerpt: "当聊天室内大量消息到来时，如何减少Cell高度的计算次数"
-date: 2015-11-11
+
 categories: Skill
 ---
 

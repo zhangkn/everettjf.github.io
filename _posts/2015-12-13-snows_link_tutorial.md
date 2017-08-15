@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: SnowBookmarks readme
 excerpt: "第二次内测，改名为snows.link"
-date: 2015-12-13
+
 categories: Essay
 ---
 

@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: YYWebImage note
 excerpt: 功能很全的新兴webimage
-date: 2016-04-05
+
 categories: Skill
 ---
 

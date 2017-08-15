@@ -1,14 +1,11 @@
 ---
-layout: post
 title: iOS10 jailbreak develop environment setup reference
 excerpt: "For me, maybe for you"
-date: 2017-05-08
 categories: Skill
 ---
 
 
-
----
+{% include toc %}
 
 
 # Devices

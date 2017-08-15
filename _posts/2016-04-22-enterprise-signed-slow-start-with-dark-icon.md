@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: 企业证书签名的App启动慢（停在暗色图标N秒）
 excerpt: "低版本（7.1）Xcode在低版本系统上打包高版本（7.3）Xcode的工程"
-date: 2016-04-22
+
 categories: Skill
 ---
 

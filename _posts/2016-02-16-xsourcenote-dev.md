@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: XSourceNote第一版完成（Xcode源码笔记插件）
 excerpt: "说好的源码学习呢"
-date: 2016-02-16
+
 categories: Skill
 ---
 

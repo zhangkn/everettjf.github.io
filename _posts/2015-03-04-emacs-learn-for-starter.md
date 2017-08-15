@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: "emacs新手遇到的坑，以及笔记"
 excerpt: "学了学emacs，坑不少，最后还是放弃了"
-date: 2015-03-04
+
 categories: Skill
 ---
 

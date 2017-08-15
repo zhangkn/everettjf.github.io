@@ -1,3 +1,1 @@
-# everettjf.github.io
-my blog
-base on https://github.com/rosario/kasper
+https://github.com/mmistakes/minimal-mistakes

@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: Explore Facebook iOS Client - Section FBInjectable
 excerpt: "配置选择器"
-date: 2016-08-20
+
 categories: Skill
 ---
  

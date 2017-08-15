@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: "Windows平台C++5年来使用到的工具汇总"
 excerpt: "做了5年Windows平台的客户端开发，总结下用过的工具和开发库"
-date: 2015-03-06
+
 categories: Skill
 ---
 

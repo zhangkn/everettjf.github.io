@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: Simple antidebugging and antiantidebugging
 excerpt: "反调试，反反调试"
-date: 2015-12-28
+
 categories: Skill
 ---
 

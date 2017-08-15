@@ -1,5 +1,5 @@
 ---
-layout: post
+
 title: Spacemacs tutorial
 categories: Skill
 excerpt: "强大的编辑器"

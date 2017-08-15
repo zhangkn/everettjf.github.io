@@ -1,8 +1,7 @@
 ---
-layout: post
+
 title: iOS崩溃收集与分析，使用PLCrashReporter
 excerpt: "如何收集崩溃，并通过符号文件分析崩溃日志"
-date: 2015-09-09 10:10:10
 categories: Skill
 ---
 

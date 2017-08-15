@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: Little animation bug in chat UI when keyboard hide
 excerpt: "little chat ui bug resolve"
-date: 2016-06-18
+
 categories: Skill
 ---
 

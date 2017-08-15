@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: YYCache note
 excerpt: 使用XSourceNote做的笔记
-date: 2016-03-17
+
 categories: Skill
 ---
 

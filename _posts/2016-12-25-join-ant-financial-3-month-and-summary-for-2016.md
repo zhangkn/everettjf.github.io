@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: Summary for 2016 and 3 months in Ant Financial
 excerpt: "The will to meaning"
-date: 2016-12-25
+
 categories: Essay
 ---
 

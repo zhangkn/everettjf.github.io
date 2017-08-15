@@ -1,8 +1,8 @@
 ---
-layout: post
+
 title: iOS Debug Cheatsheet
 excerpt: "Cheatsheet"
-date: 2016-05-25
+
 categories: Skill
 ---
 
