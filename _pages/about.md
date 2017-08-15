@@ -1,7 +1,8 @@
 ---
-title: About me 
+permalink: /about/
+title: "About"
+excerpt: "about everettjf"
 ---
-
 
 ``` c
 const string name = "everettjf";
