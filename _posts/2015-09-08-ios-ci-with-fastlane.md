@@ -36,7 +36,7 @@ PS: 2015年11月24日补充，fir.im 不会重新签名ipa。
 
 
 # 源代码
-[https://github.com/everettjf/Yolo/FastlaneBasicDemo4iOS](https://github.com/everettjf/Yolo/FastlaneBasicDemo4iOS)
+[https://github.com/everettjf/Yolo/tree/master/FastlaneBasicDemo4iOS](https://github.com/everettjf/Yolo/tree/master/FastlaneBasicDemo4iOS)
 
 
 

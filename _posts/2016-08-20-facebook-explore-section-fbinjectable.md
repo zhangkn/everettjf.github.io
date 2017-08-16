@@ -282,7 +282,7 @@ PS:文章修改：上面代码unused改为used。不需要引用，即可避免r
 
 Demo中模仿了这个机制。
 
-代码： https://github.com/everettjf/Yolo/FBInjectableTest
+代码： https://github.com/everettjf/Yolo/tree/master/FBInjectableTest
 
 ![](/media/14717165824862.jpg)
 

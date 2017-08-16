@@ -1195,7 +1195,7 @@ RSIZE=81M
 
 # Demo
 
-根据微信上面的消息界面实现，我实现了一个很简单的类似机制的界面Demo [https://github.com/everettjf/Yolo/WeChatLikeMessageDemo](https://github.com/everettjf/Yolo/WeChatLikeMessageDemo) 。
+根据微信上面的消息界面实现，我实现了一个很简单的类似机制的界面Demo [https://github.com/everettjf/Yolo/tree/master/WeChatLikeMessageDemo](https://github.com/everettjf/Yolo/tree/master/WeChatLikeMessageDemo) 。
 
 实现过程中发现这种机制有个好处，就是在preCreate消息时，可以提前（在heightForRowAtIndexPath之前）知道cell的高度，也就很方便的解决了Cell动态高度这个问题。
 

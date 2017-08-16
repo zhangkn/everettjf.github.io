@@ -117,7 +117,7 @@ getSection 来自 GlobalVariable的父类 GlobalObject。
 
 # 参考工程
 
-代码： https://github.com/everettjf/Yolo/FBInjectableTest
+代码： https://github.com/everettjf/Yolo/tree/master/FBInjectableTest
 
 ![](/media/14717179771404.jpg)
 

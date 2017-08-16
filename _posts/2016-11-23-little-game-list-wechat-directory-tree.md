@@ -38,6 +38,6 @@ $ strings WeChat > strings_wechat.txt
 ![](/media/14798366527896.jpg)
 
 
-[脚本地址](https://github.com/everettjf/Yolo/ListWechatDirTree)
+[脚本地址](https://github.com/everettjf/Yolo/tree/master/ListWechatDirTree)
 
-[输出的微信文件层次](https://github.com/everettjf/Yolo/ListWechatDirTree/wechat_tree.txt)
+[输出的微信文件层次](https://github.com/everettjf/Yolo/tree/master/ListWechatDirTree/wechat_tree.txt)

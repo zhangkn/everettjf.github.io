@@ -15,7 +15,7 @@ comments: true
 想到最近自己开发的一个简单的Tab页面，尝试完善一下，做的更通用一些，放到CocoaPods上。
 
 # 最终
-使用方法及代码见：https://github.com/everettjf/Yolo/EVTTabPageScrollView
+使用方法及代码见：https://github.com/everettjf/Yolo/tree/master/EVTTabPageScrollView
 
 ![demo](https://everettjf.github.io/images/extern/EVTTabPageScrollView.gif)
 

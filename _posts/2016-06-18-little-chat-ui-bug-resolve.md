@@ -138,6 +138,6 @@ tableView的cellForRowAtIndexPath中改变frame时要禁用动画。
 
 # 总结
 
-[测试demo见这里](https://github.com/everettjf/Yolo/WeChatLikeMessageDemo/tree/master/Other/ChatCellFrameChangeDemo)。
+[测试demo见这里](https://github.com/everettjf/Yolo/tree/master/WeChatLikeMessageDemo/Other/ChatCellFrameChangeDemo)。
 
 貌似有些第三方IM的sdk也有类似问题。脉脉app应该是自己开发的，也有这个问题。如果开发人员看到这篇文章，就修改下哈。
