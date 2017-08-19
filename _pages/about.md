@@ -6,7 +6,7 @@ excerpt: "about everettjf"
 
 ``` c
 const string name = "everettjf";
-unordered_map<string,string> attr = { {"twitter",name},{"weibo",name},{"github",name} };
+unordered_map<string,string> attr = { {"github",name},{"wechat",name} };
 
 stack<string> exp;
 exp.push("5 Years on Windows Client, Focus on Security and C++");
