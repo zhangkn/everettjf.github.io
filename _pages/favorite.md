@@ -4,10 +4,16 @@ title: "favorite"
 excerpt: "my favorite"
 ---
 
-# Softwares
-## macOS
-## Windows
+# Apps
 
+## Desktop
+
+- SpaceVim
+
+
+## Mobile
+
+- Things
 
 # Books
 
