@@ -1,5 +1,7 @@
 # main links
 main:
+  - title: "Favorite"
+    url: /favorite/
   - title: "Archive"
     url: /archives/
   # - title: "Categories"
