@@ -14,6 +14,13 @@ comments: true
 
 # 安装
 
+第零步:
+安装最新的emacs。
+
+```
+brew install emacs --with-cocoa
+```
+
 第一步：
 首先确保Home目录下没有.emacs文件和.emacs.d目录，可以先执行下面的命令删除。
 
