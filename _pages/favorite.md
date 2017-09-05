@@ -16,6 +16,8 @@ comments: true
 - MacOS and iOS Internals
 - *OS Internals
 
+- [Advanced Apple Debugging & Reverse Engineering](https://store.raywenderlich.com/products/advanced-apple-debugging-and-reverse-engineering)
+
 # Reverse Engineering
  
 ## iOS/macOS
