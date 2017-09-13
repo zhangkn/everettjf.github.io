@@ -351,7 +351,7 @@ void myInitFunc_Initializer(int argc, const char* argv[], const char* envp[], co
 
 由于ASLR的存在，不能只记录函数的地址，还需要记录ASLR的地址。用于后续通过符号文件定位出函数地址。
 
-ASLR偏移（准确的说是，ASLR偏移后的基地址）(感谢 [Joy__](http://www.jianshu.com/u/9c51a213b02e)指出)就是上面代码中的变量 `mhp`（也就是 mach_header_64 的dli_fbase）。
+ASLR偏移（准确的说是，ASLR偏移后的基地址，感谢 [Joy__](http://www.jianshu.com/u/9c51a213b02e)指出）就是上面代码中的变量 `mhp`（也就是 mach_header_64 的dli_fbase）。
 
 # 浮动的日志出来了，怎么再定位到文件？
 
