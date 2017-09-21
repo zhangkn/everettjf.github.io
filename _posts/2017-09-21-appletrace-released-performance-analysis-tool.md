@@ -23,7 +23,7 @@ comments: true
 
 hook 所有的objc_msgSend，也就是把每个Objective C方法的耗时计算出来，并按照先后顺序生成`性能分析图`。
 
-![sample](../media/sample.png)
+![sample](/media/sample.png)
 
 
 # 要解决的问题
@@ -148,7 +148,7 @@ python catapult/tracing/bin/trace2html appletracedata/trace.json --output=applet
 
 参考例子 `sample/ManualSectionDemo`。
 
-![](../media/15060097326051.jpg)
+![](/media/15060097326051.jpg)
 
 
 ### Hook objc_msgSend
@@ -160,9 +160,9 @@ python catapult/tracing/bin/trace2html appletracedata/trace.json --output=applet
 
 参考 `sample/TraceAllMsgDemo`。
 
-![](../media/15060102746986.jpg)
+![](/media/15060102746986.jpg)
 
-![](../media/15060104195090.jpg)
+![](/media/15060104195090.jpg)
 
 
 注意：
@@ -174,7 +174,7 @@ python catapult/tracing/bin/trace2html appletracedata/trace.json --output=applet
 
 从App的沙盒中复制出 `tmp/appletracedata` 目录。（例如：Xcode可以直接Dump出整个沙盒）
 
-![appletracedata](../media/appletracedata.png)
+![appletracedata](/media/appletracedata.png)
 
 然后，
 ```
@@ -189,7 +189,7 @@ open trace.html
 ```
 
 就可以看到 
-![sample](../media/sample.png)
+![sample](/media/sample.png)
 
 
 
