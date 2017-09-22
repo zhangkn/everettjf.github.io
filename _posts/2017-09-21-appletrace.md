@@ -220,6 +220,12 @@ open trace.html
 Hook objc_msgSend的方法，有的类可能并不关心。可以采用白名单或者黑名单的方式，缩小分析范围。
 
 
+## 计划3：Hook +load and C++ static initializers
+
+见[A method of hook static initializers](http://everettjf.com/2017/02/06/a-method-of-hook-static-initializers/)
+和[A method of hook objective c +load](http://everettjf.com/2017/01/06/a-method-of-hook-objective-c-load/)
+
+
 # 总结
 
 这个工具本身的代码不多（写日志），主要是组合了catapult和HookZz，再次感谢catapult和HookZz。
