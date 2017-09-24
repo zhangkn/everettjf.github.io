@@ -1,19 +1,17 @@
 ---
-layout: default
+layout: archive
 permalink: /favorite/
 title: "All kinds of favorites"
-excerpt: "all kinds of favorites"
-comments: true
+author_profile: true
 ---
 
 {% include toc %}
 
 
+# Pending
 
 
 
-
-# Articles
 
 # Books
  
