@@ -231,11 +231,3 @@ Hook objc_msgSend的方法，有的类可能并不关心。可以采用白名单
 这个工具本身的代码不多（写日志），主要是组合了catapult和HookZz，再次感谢catapult和HookZz。
 
 有任何问题欢迎随时 [issue](https://github.com/everettjf/AppleTrace/issues)，或者联系我的微信 everettjf。
-
-# 招聘
-
-广告来咯。
-
-**北京 蚂蚁金服 支付宝基础架构部 招聘iOS开发/专家 P6+或P7**，亿级App的架构、性能、稳定性工作，绝对有挑战。如果有兴趣加入我们，欢迎随时加我微信 everettjf 交流，或者先发简历到我的个人邮箱 ：everettjf@live.com 。
-
-
