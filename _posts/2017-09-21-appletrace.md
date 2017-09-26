@@ -17,7 +17,7 @@ comments: true
 
 一天看到iosre论坛一篇[hook objc_msgSend](http://iosre.com/t/hookzz-hack-objc-msgsend/9422)的帖子。突然想到，可以结合catapult来生成Objective C方法的性能分析图（暂且这么叫吧）。（虽然一直也有hook objc_msgSend的方法，但这次煮好的佳肴终于忍不住下手了）。
 
-说搞就开始搞，暂停几天开发[MOEX](https://github.com/everettjf/MOEX)。近期一直利用少之又少的业余时间蜗牛般开发MOEX，但现在看来`生成性能分析图`更是重要，回想过去的一些苦力加班，如果能生成这个性能分析图，当时岂不是很快就解决问题了。
+说搞就开始搞，暂停几天开发[MachOExplorer](https://github.com/everettjf/MachOExplorer)。近期一直利用少之又少的业余时间蜗牛般开发MachOExplorer，但现在看来`生成性能分析图`更是重要，回想过去的一些苦力加班，如果能生成这个性能分析图，当时岂不是很快就解决问题了。
 
 # 目标
 

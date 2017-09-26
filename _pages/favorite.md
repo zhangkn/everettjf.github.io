@@ -7,17 +7,13 @@ author_profile: true
 
 {% include toc %}
 
+Yes, it is just for myself.
 
 # Pending
 
 
-
-
-# Books
- 
 - MacOS and iOS Internals
-- *OS Internals
-
+- *OS Internals (3rd vol3)
 - [Advanced Apple Debugging & Reverse Engineering](https://store.raywenderlich.com/products/advanced-apple-debugging-and-reverse-engineering)
 
 # Reverse Engineering
