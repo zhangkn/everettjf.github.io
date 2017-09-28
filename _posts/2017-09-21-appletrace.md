@@ -96,7 +96,7 @@ HookZz是jmpnews开发的微型hook框架，使用起来十分灵活。详见 [h
 
 格式弄清楚后，就需要生成json文件了。生成这个json文件本质上就是个日志功能，为了尽最大可能不影响App的性能，使用内存映射mmap方法来写文件。同时为了简单的处理多线程问题，使用了串行queue。代码见[这里](https://github.com/everettjf/AppleTrace/blob/master/appletrace/appletrace/src/appletrace.mm)
 
-最终trace文件会生成在App沙盒中的`tmp/appletracedata`目录。由于日志量可能很大，又结合mmap的特性，日志文件会以下面的逻辑生成：
+最终trace文件会生成在App沙盒中的`Library/appletracedata`目录。由于日志量可能很大，又结合mmap的特性，日志文件会以下面的逻辑生成：
 
 ```
 trace.appletrace
@@ -172,7 +172,7 @@ python catapult/tracing/bin/trace2html appletracedata/trace.json --output=applet
 
 ## 处理数据，生成html
 
-从App的沙盒中复制出 `tmp/appletracedata` 目录。（例如：Xcode可以直接Dump出整个沙盒）
+从App的沙盒中复制出 `Library/appletracedata` 目录。（例如：Xcode可以直接Dump出整个沙盒）
 
 ![appletracedata](/media/appletracedata.png)
 
