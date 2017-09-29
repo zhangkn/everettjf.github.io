@@ -832,12 +832,12 @@
             "aspect_id": 1,
             "created_at": 1467545432.0,
             "domain_id": 1,
-            "favicon": "https://everettjf.github.io/favicon.ico",
-            "feed_url": "https://everettjf.github.io/feed.xml",
+            "favicon": "https://everettjf.com/favicon.ico",
+            "feed_url": "http://everettjf.com/feed.xml",
             "id": 356,
             "name": "everettjf",
             "spider": "",
-            "url": "https://everettjf.github.io/",
+            "url": "http://everettjf.com/",
             "zindex": 0
         }
     ]
