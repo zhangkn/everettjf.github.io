@@ -40,7 +40,7 @@ $CATAPULT/tracing/bin/trace2html my_trace.json --output=my_trace.html && open my
 
 见文章[使用HookZz快速逆向(Hack objc_msgSend) 理清逻辑](http://iosre.com/t/hookzz-hack-objc-msgsend/9422)
 
-HookZz是jmpnews开发的微型hook框架，使用起来十分灵活。详见 [https://jmpews.github.io/zzpp/](https://jmpews.github.io/zzpp/)
+HookZz是jmpews开发的微型hook框架，使用起来十分灵活。详见 [https://jmpews.github.io/zzpp/](https://jmpews.github.io/zzpp/)
 
 ## 如何生成trace_event format的json文件
 
