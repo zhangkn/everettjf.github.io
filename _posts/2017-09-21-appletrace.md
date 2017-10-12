@@ -11,6 +11,8 @@ comments: true
 
 {% include toc %}
 
+(关联文章：http://everettjf.com/2017/10/12/appletrace-dancewith-monkeydev/ )
+
 # 背景
 
 一般情况下使用Instruments（主要是Time Profiler）进行iOS App的性能分析就足够了，但是Time Profiler 把调用方法都合并了起来，失去了时序的表现。直到有一天看到Android开发的同事使用 [systrace](https://developer.android.com/studio/profile/systrace.html) 分析性能，systrace生成一个html文件，把函数（方法）的调用耗时按照先后顺序表现出来。心里想：要是iOS也有这样的工具就好了。了解到这个html文件是 [catapult](https://github.com/catapult-project/catapult) 生成的。
