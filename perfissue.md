@@ -9,14 +9,14 @@ Performance Issue Collection and Summary
 
 # Video
 
-- wwdc
+- Optimizing App Startup Time https://developer.apple.com/videos/play/wwdc2016/406/
 
 # Library
 
 - https://github.com/path/FastImageCache
 - https://github.com/everettjf/AppleTrace
 
-# issue
+# Keyword
 
 - mmap
 - log performance
