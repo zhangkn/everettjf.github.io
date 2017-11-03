@@ -12,14 +12,14 @@ comments: true
 {% include toc %}
 
 
-MachOExplorer Alpha Release
 
 经过半年多断断续续的开发，最近终于发布一个测试版本。
 
 
 # 背景
 
-//todo
+http://iosre.com/t/machoview/7627
+http://iosre.com/t/machoview/5456
 
 # 功能
 
@@ -39,12 +39,13 @@ MachOExplorer Alpha Release
 
 # 下载地址
 
-// todo
+[https://github.com/everettjf/MachOExplorer/releases](https://github.com/everettjf/MachOExplorer/releases)
 
 # 代码
 
-https://github.com/everettjf/MachOExplorer
+[https://github.com/everettjf/MachOExplorer](https://github.com/everettjf/MachOExplorer
+)
 
 # 讨论群
 
-https://t.me/machoexplorer
+[https://t.me/machoexplorer](https://t.me/machoexplorer)
