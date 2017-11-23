@@ -31,11 +31,10 @@ arm64（仅在arm64环境下）
 2. 新建Podfile
 
     ```
-    #source 'https://github.com/AloneMonkey/MonkeyDevSpecs.git'
-    source 'https://github.com/everettjf/MonkeyDevSpecs.git'
+    source 'https://github.com/AloneMonkey/MonkeyDevSpecs.git'
     use_frameworks!
     target 'WeChatAppleTraceDylib' do
-         pod 'AppleTrace','1.0.1'
+         pod 'AppleTrace'
     end
     ```
 3. 把第三方App的ipa放入 MonkeyDev指定的Target目录中。
