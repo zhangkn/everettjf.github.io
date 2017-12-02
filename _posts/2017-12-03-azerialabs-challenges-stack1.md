@@ -1,6 +1,6 @@
 ---
 title: "Azeria Labs Challenges - Stack1"
-excerpt: Summary for this challenges Stack1
+excerpt: Summary for challenge Stack1
 categories:
   - CTF
 tags:
