@@ -1,10 +1,11 @@
 ---
-title: "Azeria Labs Challenges - Stack1"
+title: "AzeriaLabs Challenges - Stack1"
 excerpt: Summary for challenge Stack1
 categories:
   - CTF
 tags:
   - CTF
+  - AzeriaLabs
 comments: true
 ---
 
@@ -13,7 +14,7 @@ comments: true
 # 背景
 
 
-最近学习了 https://azeria-labs.com/ 出的ARM Exploit教程，最后作者出了几个挑战题目，以下是` Stack1`的解题思路。
+最近学习了 https://azeria-labs.com/ 出的ARM Exploit教程，最后作者出了几个挑战题目，以下是的解题思路。
 
 **（题目很简单，大神勿喷）**
 
@@ -24,7 +25,7 @@ comments: true
 1. 直接使用作者提供的虚拟机 https://azeria-labs.com/arm-lab-vm/
 2. armv6 树莓派
 
-# 题目
+# 题目 Stack1
 
 ```
 What you will learn
@@ -34,7 +35,7 @@ How the variables are laid out in memory
 Goal: Change the ‘modified’ variable. You solved the challenge once “You have changed the ‘modified’ variable” is printed out.
 ```
 
-# 初步运行
+## 初步运行
 
 先直接运行看看，
 
@@ -60,7 +61,7 @@ Segmentation fault
 
 哇，数值变了。0x31就是1啦。而且crash了。
 
-# 调试
+## 调试
 
 ```
 gdb stack1
@@ -142,16 +143,19 @@ r11是Frame Pointer地址（栈底），sp是栈顶，一般函数内的变量�
 
 ![](/media/15122367796672.jpg)
 
-# 通过
+## 通过
 
 终于挑战通过。Yeah!
 
 ![](/media/15122368686347.jpg)
 
-
-
-
-# 总结
-
 就像题目所说，是为了熟悉下 How the variables are laid out in memory。
+
+
+# 题目 Stack2
+
+
+
+todo
+
 
