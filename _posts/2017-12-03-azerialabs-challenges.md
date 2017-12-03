@@ -154,8 +154,30 @@ r11是Frame Pointer地址（栈底），sp是栈顶，一般函数内的变量�
 
 # 题目 Stack2
 
+与上一题目差不多，只是输入方式变成了环境变量。
+
+![](/media/15123013446710.jpg)
+
+断点到cmp指令可以看到，需要让环境变量最后的数值为\n\r\n\r。
+
+![](/media/15123014415309.jpg)
+
+也就是覆盖到上图的地址。从第一个0x31算下（假设输入是很多1111111），也就是需要17*4的字符，最后四个字符是`\n\r\n\r`。
+
+怎么设置环境变量是`\n\r`呢？参考Stack Overflow的回答 https://stackoverflow.com/questions/41309822/how-do-i-actually-write-n-r-to-an-environment-variable
+
+以下答案都可以了：
+
+```
+export GREENIE=$'1111111111111111111111111111111111111111111111111111111111111111\n\r\n\r'
+
+# 136 = 17*4*2
+export GREENIE="$(python -c 'print "\n\r"*136')"
+```
 
 
-todo
+# 题目 Stack3
 
+
+//todo
 
