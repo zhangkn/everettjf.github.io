@@ -1,5 +1,5 @@
 ---
-title: "AzeriaLabs Challenges"
+title: "AzeriaLabs Challenges Stack 1-4"
 excerpt: Summary for the challenges
 categories:
   - CTF
@@ -228,8 +228,4 @@ printf '11111111111111111111111111111111111111111111111111111111111111111111\x4c
 ```
 ![](/media/15123526858244.jpg)
 
-
-# 题目 Stack5
-
-todo
 
