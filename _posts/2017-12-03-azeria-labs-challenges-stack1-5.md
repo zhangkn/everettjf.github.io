@@ -16,8 +16,6 @@ comments: true
 
 最近学习了 https://azeria-labs.com/ 出的ARM Exploit教程，最后作者出了几个挑战题目，以下是的解题思路。
 
-**（题目很简单，大神勿喷）**
-
 题目在这： https://azeria-labs.com/part-3-stack-overflow-challenges/
 
 # 环境
