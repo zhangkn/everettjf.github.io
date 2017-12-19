@@ -191,12 +191,6 @@
 	
 		
 	
-		
-	
-		
-	
-		
-	
 
 
 </header>
@@ -255,6 +249,10 @@ window.onload = ready;
     <p>
     <nav id="TableOfContents">
 <ul>
+<li><a href="#背景">背景</a></li>
+<li><a href="#老想法">老想法</a></li>
+<li><a href="#开始了">开始了</a></li>
+<li><a href="#还原算法">还原算法</a></li>
 <li><a href="#总结">总结</a></li>
 </ul>
 </nav>
@@ -264,6 +262,73 @@ window.onload = ready;
     <p>&nbsp;</p>
 
     
+
+<h1 id="背景">背景</h1>
+
+<p>上周末两天与朋友（两个人组队）参加了segmentfault与angelhack举办的hackathon，北京站。主题是“文艺复兴”。</p>
+
+<p>周六经过简单开场，以及简单的API宣讲（太简单）。下午2点正式开始了构思。提供的sdk有：agoria的视频通话sdk 与 wacom的WILL sdk。</p>
+
+<p>在这个基础上我们有了个想法：</p>
+
+<ul>
+<li>视频绘画教学。agoria提供视频功能，wacom提供绘图板功能。由于两个sdk都有demo，应该能很快组装起来。</li>
+<li>匿名视频。随机与打开App的另一方建立连接。</li>
+<li>匿名兴趣视频。选择App中内置的兴趣，可以与所有进入这个兴趣的用户视频。</li>
+</ul>
+
+<p>然而，我们总觉得这些想法“没有创意”。视频sdk号称30分钟集成，WILL sdk也应该容易使用。岂不是所有人都做这个视频功能？简单的视频通话会不会没有创意？</p>
+
+<h1 id="老想法">老想法</h1>
+
+<p>然而，此时一个”老想法“又来了。前段时间看了”最强大脑“后自己也学习起魔方。想来做一个辅助还原魔方的App会更有创意。</p>
+
+<p>做这个App的想法在这次hackathon之前就有，也做了一些调查，当然重点是想使用AR来辅助还原魔方。AR自然想到了Vuforia，然而Vuforia只能识别marker，对于魔方这种每个面的颜色组成会变化，且需要识别出颜色来，Vuforia做不到（或者我没找到办法）。于是OpenCV登场。找到了这个 <a href="https://github.com/AndroidSteve/Rubik-Cube-Wizard">https://github.com/AndroidSteve/Rubik-Cube-Wizard</a> ，这个App主要用在 Google Glass上，且作者没有计划移植到手机上（<a href="https://github.com/AndroidSteve/Rubik-Cube-Wizard/tree/master/Rubik%20Solver/docs）。">https://github.com/AndroidSteve/Rubik-Cube-Wizard/tree/master/Rubik%20Solver/docs）。</a></p>
+
+<p>想来我可以做。但发现大量OpenCV的使用。后来投入较多时间去学习OpenCV。照着 Rubik-Cube-Wizard 的Java代码翻译……</p>
+
+<p>当然还没有完成，hackathon 就来了。</p>
+
+<h1 id="开始了">开始了</h1>
+
+<p>想来这个更独特，几乎不可能有人做。（当时感觉这个更有特色，但后来发现不对）</p>
+
+<p>使用OpenCV识别魔方，想来这两天很难做到。就放弃了。</p>
+
+<p>于是，使用UIView配合transform模拟了个立体的魔方。（当天也调查了openGL和metal，对这两个都不熟悉，就使用UIView组合了）。</p>
+
+<p>最主要的就是魔方每个面信息的输入，想了三个快速输入的方式：</p>
+
+<ul>
+<li>按钮</li>
+<li>语音</li>
+<li>拍照</li>
+<li>视频</li>
+<li>AR</li>
+</ul>
+
+<hr />
+
+<ul>
+<li><p>按钮如下图：
+<img src="https://everettjf.github.io/stuff/rubiks/app.jpg" alt="" /></p></li>
+
+<li><p>语音，可以使用讯飞识别。</p></li>
+
+<li><p>拍照，也就是每个面都拍照。识别出固定位置的颜色。</p></li>
+
+<li><p>视频，类似这个 <a href="https://github.com/bluquar/cubr。">https://github.com/bluquar/cubr。</a></p></li>
+
+<li><p>AR，就是Rubik-Cube-Wizard这个了。</p></li>
+</ul>
+
+<h1 id="还原算法">还原算法</h1>
+
+<p><a href="https://github.com/muodov/kociemba">https://github.com/muodov/kociemba</a></p>
+
+<p>最后，做出来使用按钮、语音的方式。代码在这里。<a href="https://github.com/xfteam/xfrubiks">https://github.com/xfteam/xfrubiks</a></p>
+
+<hr />
 
 <h1 id="总结">总结</h1>
 

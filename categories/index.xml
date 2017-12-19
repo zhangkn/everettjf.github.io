@@ -10,14 +10,5 @@
 	<atom:link href="http://everettjf.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title>Essay</title>
-      <link>http://everettjf.com/categories/essay/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://everettjf.com/categories/essay/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>

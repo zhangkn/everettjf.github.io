@@ -348,22 +348,9 @@
   </url>
   
   <url>
-    <loc>http://everettjf.com/categories/essay/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://everettjf.com/1/01/01/plan-for-the-next-half-year-2016-on-ios/</loc>
-  </url>
-  
-  <url>
     <loc>http://everettjf.com/post/</loc>
     <lastmod>2017-12-03T00:00:01+08:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://everettjf.com/1/01/01/summary-for-segmentfault-hackathon-2016/</loc>
   </url>
   
   <url>
@@ -375,10 +362,6 @@
     <loc>http://everettjf.com/</loc>
     <lastmod>2017-12-20T00:07:54+08:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://everettjf.com/1/01/01/supotato---tool-for-classify-class-dump-headers/</loc>
   </url>
   
 </urlset>
