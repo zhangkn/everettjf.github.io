@@ -1,0 +1,1112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>everettjf</title>
+    <link>http://everettjf.com/</link>
+    <description>Recent content on everettjf</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 20 Dec 2017 00:07:54 +0800</lastBuildDate>
+    
+	<atom:link href="http://everettjf.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>http://everettjf.com/about/</link>
+      <pubDate>Wed, 20 Dec 2017 00:07:54 +0800</pubDate>
+      
+      <guid>http://everettjf.com/about/</guid>
+      <description>Hi , I&amp;rsquo;m everettjf.
+iOS/macOS/Windows Developer | Interested in Reverse Engineering
+https://github.com/everettjf https://twitter.com/everettjf https://weibo.com/everettjf</description>
+    </item>
+    
+    <item>
+      <title>Azeria Labs Challenges Stack1-5</title>
+      <link>http://everettjf.com/2017/12/03/azeria-labs-challenges-stack1-5/</link>
+      <pubDate>Sun, 03 Dec 2017 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2017/12/03/azeria-labs-challenges-stack1-5/</guid>
+      <description>背景 最近学习了 https://azeria-labs.com/ 出的ARM Exploit教程，最后作者出了几个挑战题目，以下是的解题思路。
+题目在这： https://azeria-labs.com/part-3-stack-overflow-challenges/
+环境  直接使用作者提供的虚拟机 https://azeria-labs.com/arm-lab-vm/ armv6 树莓派  题目 Stack1 What you will learn How to modify variables to specific values in the program How the variables are laid out in memory Goal: Change the ‘modified’ variable. You solved the challenge once “You have changed the ‘modified’ variable” is printed out.  初步运行 先直接运行看看，
+pi@raspberrypi:~/ARM-challenges $ ./stack1 stack1: please specify an argument  那就加个参数</description>
+    </item>
+    
+    <item>
+      <title>MachOExplorer Alpha Release</title>
+      <link>http://everettjf.com/2017/11/03/machoexplorer-alpha-release/</link>
+      <pubDate>Fri, 03 Nov 2017 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2017/11/03/machoexplorer-alpha-release/</guid>
+      <description>经过半年多断断续续的开发，最近终于发布一个测试版本。
+背景 http://iosre.com/t/machoview/7627 http://iosre.com/t/machoview/5456
+功能 当前版本支持：  基本的MachO 文件的解析。类似MachOView查看的所有元素。  马上支持  地址对应的符号的解析。 Windows 版本  未来会支持  编辑  下载地址 https://github.com/everettjf/MachOExplorer/releases
+代码 https://github.com/everettjf/MachOExplorer
+讨论群 https://t.me/machoexplorer 或者 QQ群 259141165</description>
+    </item>
+    
+    <item>
+      <title>AppleTrace dance with MonkeyDev</title>
+      <link>http://everettjf.com/2017/10/12/appletrace-dance-with-monkeydev/</link>
+      <pubDate>Thu, 12 Oct 2017 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2017/10/12/appletrace-dance-with-monkeydev/</guid>
+      <description>(关联文章：http://everettjf.com/2017/09/21/appletrace/ )
+结果演示： 环境： arm64（仅在arm64环境下）
+工具：  MonkeyDev https://github.com/AloneMonkey/MonkeyDev AppleTrace https://github.com/everettjf/AppleTrace  步骤：  首先使用MonkeyDev创建MonkeyApp 新建Podfile
+source &#39;https://github.com/AloneMonkey/MonkeyDevSpecs.git&#39; use_frameworks! target &#39;WeChatAppleTraceDylib&#39; do pod &#39;AppleTrace&#39; end  把第三方App的ipa放入 MonkeyDev指定的Target目录中。
+ 运行
+ 从沙盒 Library目录中复制出 appletracedata目录
+ 按照 https://github.com/everettjf/AppleTrace README中的步骤可生成 trace.html
+  结果 https://github.com/everettjf/Yolo/raw/master/WeChatAppleTrace/Result/WeChatStartup.zip
+解压上面的zip文件，打开trace.html，按快捷键 w a s d 可缩放移动，就像在玩 CS，是吧。</description>
+    </item>
+    
+    <item>
+      <title>AppleTrace - Performance Analysis Tool</title>
+      <link>http://everettjf.com/2017/09/21/appletrace---performance-analysis-tool/</link>
+      <pubDate>Thu, 21 Sep 2017 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2017/09/21/appletrace---performance-analysis-tool/</guid>
+      <description>(关联文章：http://everettjf.com/2017/10/12/appletrace-dancewith-monkeydev/ )
+背景 一般情况下使用Instruments（主要是Time Profiler）进行iOS App的性能分析就足够了，但是Time Profiler 把调用方法都合并了起来，失去了时序的表现。直到有一天看到Android开发的同事使用 systrace 分析性能，systrace生成一个html文件，把函数（方法）的调用耗时按照先后顺序表现出来。心里想：要是iOS也有这样的工具就好了。了解到这个html文件是 catapult 生成的。
+一天看到iosre论坛一篇hook objc_msgSend的帖子。突然想到，可以结合catapult来生成Objective C方法的性能分析图（暂且这么叫吧）。（虽然一直也有hook objc_msgSend的方法，但这次煮好的佳肴终于忍不住下手了）。
+说搞就开始搞，暂停几天开发MachOExplorer。近期一直利用少之又少的业余时间蜗牛般开发MachOExplorer，但现在看来生成性能分析图更是重要，回想过去的一些苦力加班，如果能生成这个性能分析图，当时岂不是很快就解决问题了。
+目标 hook 所有的objc_msgSend，也就是把每个Objective C方法的耗时计算出来，并按照先后顺序生成性能分析图。
+要解决的问题 如何生成最终的html 从这里可以了解到catapult是如何生成html的。其中一种方式可以是：Chrome&amp;rsquo;s trace_event format。简单来说，trace_event format 就是个json格式，按照这个约定的json格式填充数据后，就可以使用trace2html命令（python脚本）转换为最终的html文件了。
+$CATAPULT/tracing/bin/trace2html my_trace.json --output=my_trace.html &amp;amp;&amp;amp; open my_trace.html  如何Hook objc_msgSend 见文章使用HookZz快速逆向(Hack objc_msgSend) 理清逻辑
+HookZz是jmpews开发的微型hook框架，使用起来十分灵活。详见 https://jmpews.github.io/zzpp/
+如何生成trace_event format的json文件 参考文档 Chrome&amp;rsquo;s trace_event format 可以了解到，最简单的json文件，可以是这样：
+[ {&amp;quot;name&amp;quot;: &amp;quot;Asub&amp;quot;, &amp;quot;cat&amp;quot;: &amp;quot;PERF&amp;quot;, &amp;quot;ph&amp;quot;: &amp;quot;B&amp;quot;, &amp;quot;pid&amp;quot;: 22630, &amp;quot;tid&amp;quot;: 22630, &amp;quot;ts&amp;quot;: 829}, {&amp;quot;name&amp;quot;: &amp;quot;Asub&amp;quot;, &amp;quot;cat&amp;quot;: &amp;quot;PERF&amp;quot;, &amp;quot;ph&amp;quot;: &amp;quot;E&amp;quot;, &amp;quot;pid&amp;quot;: 22630, &amp;quot;tid&amp;quot;: 22630, &amp;quot;ts&amp;quot;: 833} ]  每一行表示一个Event，</description>
+    </item>
+    
+    <item>
+      <title>reserved1 and reserved2 in MachO Section</title>
+      <link>http://everettjf.com/2017/08/28/reserved1-and-reserved2-in-macho-section/</link>
+      <pubDate>Mon, 28 Aug 2017 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2017/08/28/reserved1-and-reserved2-in-macho-section/</guid>
+      <description>//todo</description>
+    </item>
+    
+    <item>
+      <title>Decrypting iOS applications using lldb</title>
+      <link>http://everettjf.com/2017/05/14/decrypting-ios-applications-using-lldb/</link>
+      <pubDate>Sun, 14 May 2017 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2017/05/14/decrypting-ios-applications-using-lldb/</guid>
+      <description>In book : Hacking iOS Applications
+https://web.securityinnovation.com/hubfs/iOS%20Hacking%20Guide.pdf</description>
+    </item>
+    
+    <item>
+      <title>iOS10 jailbreak develop environment setup reference</title>
+      <link>http://everettjf.com/2017/05/08/ios10-jailbreak-develop-environment-setup-reference/</link>
+      <pubDate>Mon, 08 May 2017 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2017/05/08/ios10-jailbreak-develop-environment-setup-reference/</guid>
+      <description> Devices  iPhone5S iOS10.2  Jailbreak Step 1. yalu https://yalu.qwertyoruiop.com/
+http://www.cydiaimpactor.com/
+Step 2. Fix cydia error http://www.iblogapple.com/2016/12/31/fix-cydia-error-could-not-open-file-varlibdpkgstatus-ios-10-jailbreak/
+Step 3. ssh Connect via usbmux.
+https://www.reddit.com/r/jailbreak/comments/5r2mwr/tutorial_how_to_use_dropbear_ssh_via_usb_on/
+Step 4. AppSync  Add http://cydia.angelxwind.net/ to cydia source. Search AppSync Unified iOS10 and install.  Step 5. KStore  Add http://repo.xarold.com to cydia source. Search kStore and install. Reboot and Re-Jailbreak.  Development Tools  Clutch dumpdecrypted class-dump otool Flex Frida cycript lldb  </description>
+    </item>
+    
+    <item>
+      <title>First step towards LLVM clang plugin</title>
+      <link>http://everettjf.com/2017/04/18/first-step-towards-llvm-clang-plugin/</link>
+      <pubDate>Tue, 18 Apr 2017 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2017/04/18/first-step-towards-llvm-clang-plugin/</guid>
+      <description>This article almost copy part of the official article, but fix many bugs that may impede newbees on the way to develop a clang plugin.
+Environment : macOS
+Step 0 : Obtain Clang mkdir ~/clang-llvm &amp;amp;&amp;amp; cd ~/clang-llvm git clone http://llvm.org/git/llvm.git cd llvm/tools git clone http://llvm.org/git/clang.git cd clang/tools git clone http://llvm.org/git/clang-tools-extra.git extra  Step 1 : Obtain ninja and build cd ~/clang-llvm git clone https://github.com/martine/ninja.git cd ninja git checkout release .</description>
+    </item>
+    
+    <item>
+      <title>Generate framework dependency graph for CocoaPods</title>
+      <link>http://everettjf.com/2017/03/17/generate-framework-dependency-graph-for-cocoapods/</link>
+      <pubDate>Fri, 17 Mar 2017 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2017/03/17/generate-framework-dependency-graph-for-cocoapods/</guid>
+      <description>根据podspec生成framework的依赖关系graph 代码：
+https://github.com/everettjf/Yolo/tree/master/PodspecDependencyGraph
+步骤：
+ sh prepare.sh 或者 brew install graphviz
+ 用到一些es6的语法，可能需要node最新版本（我是7.8.0）。
+ 用法
+  sh gen.sh &amp;lt;起始framework名称&amp;gt; &amp;lt;podspec目录&amp;gt;   例子  sh gen.sh TomatoRead /Users/everettjf/specsdev  用chrome打开 目录下的tred.dot.svg文件就可以看到整棵树了。</description>
+    </item>
+    
+    <item>
+      <title>Spacemacs tutorial</title>
+      <link>http://everettjf.com/2017/03/11/spacemacs-tutorial/</link>
+      <pubDate>Sat, 11 Mar 2017 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2017/03/11/spacemacs-tutorial/</guid>
+      <description>背景 官网：http://spacemacs.org/
+安装 第零步: 安装最新的emacs。
+brew install emacs --with-cocoa  第一步： 首先确保Home目录下没有.emacs文件和.emacs.d目录，可以先执行下面的命令删除。
+rm -rf .emacs.d rm .emacs  第二步：
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d  第三步：
+运行emacs。 稍等片刻会有三个提问，都回车默认即可。
+基本概念 C-n 表示Ctrl键的同时，按下字母键n。 M-x 表示Option键（alt键）的同时，按下字母键x。 &amp;lt;spc&amp;gt; f f 表示先后按下空格键、字母键f、字母键f。 &amp;lt;ret&amp;gt; 回车。  基本操作 取消命令 C-g 如果在输入某个快捷键中途出错，可以用这个取消。  光标上下左右 上 k 或者 C-p 下 j 或者 C-n 左 h 或者 C-b 右 l 或者 C-f  （pnbf就是previous、next、backward、forward）
+打开或新建文件 &amp;lt;spc&amp;gt; f f  保存文件 &amp;lt;spc&amp;gt; s s  多个文件间切换 &amp;lt;spc&amp;gt; b b 列出所有打开的文件  然后C-n、C-p选择，或者输入字符过滤，最后。</description>
+    </item>
+    
+    <item>
+      <title>A method of delay premain code</title>
+      <link>http://everettjf.com/2017/03/06/a-method-of-delay-premain-code/</link>
+      <pubDate>Mon, 06 Mar 2017 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2017/03/06/a-method-of-delay-premain-code/</guid>
+      <description>下面三种方法可以让代码在main函数之前执行：
+ All +load methods All C++ static initializers All C/C++ attribute(constructor) functions  main函数之前执行的问题  无法Patch 不能审计耗时 调用UIKit相关方法会导致部分类提早初始化 主线程执行，完全阻塞式执行  如何解决这些问题 能否提供一种便捷的方法把main函数之前的代码移植到main函数之后。
+想法来源 发现 Facebook 有个新增的段 FBInjectable ，学习这个段的含义可以知道：可以在编译及链接时期把一些数据放到自定义段中，然后程序中获取段的数据。
+如果这个数据是字符串，我们可以通过字符串获取类名；如果是函数地址，我们可以直接调用。
+（关于 Facebook 的段 FBInjectable 的含义，可以参考文章 http://everettjf.com/2016/08/20/facebook-explore-section-fbinjectable ）
+那么如何创建FBInjectable段呢？
+可以使用 __attribute((used,section(&amp;ldquo;segmentname,sectionname&amp;rdquo;))) 关键字把某个变量的放入特殊的section中。
+（attribute 参考 http://gcc.gnu.org/onlinedocs/gcc-3.2/gcc/Variable-Attributes.html ）
+例如：
+char * kString1 __attribute((used,section(&amp;quot;__DATA,FBInjectable&amp;quot;))) = &amp;quot;string 1&amp;quot;; char * kString2 __attribute((used,section(&amp;quot;__DATA,FBInjectable&amp;quot;))) = &amp;quot;string 2&amp;quot;; char * kString3 __attribute((used,section(&amp;quot;__DATA,FBInjectable&amp;quot;))) = &amp;quot;string 3&amp;quot;;  编译后，可以在程序的 DATA segment下新建 FBInjectable section，并把kString1,kString2,kString3 三个变量的地址作为 FBInjectable section 内容。</description>
+    </item>
+    
+    <item>
+      <title>A method of hook static initializers</title>
+      <link>http://everettjf.com/2017/02/06/a-method-of-hook-static-initializers/</link>
+      <pubDate>Mon, 06 Feb 2017 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2017/02/06/a-method-of-hook-static-initializers/</guid>
+      <description>先补充：标题中 static initializers 其实应该叫做 C++ static initializers and C/C++ __attribute__(constructor) functions。
+使用 MachOView 打开一个MachO文件，多数情况下会看到这个section __mod_init_func 。
+这个section的用途是什么呢？ 从名字大概猜测，module initializer functions，模块初始化函数，大概就是这个意思。
+从dyld的源码中可以找到mod_init_func相关字样：
+typedef void (*Initializer)(int argc, const char* argv[], const char* envp[], const char* apple[]); extern const Initializer inits_start __asm(&amp;quot;section$start$__DATA$__mod_init_func&amp;quot;); extern const Initializer inits_end __asm(&amp;quot;section$end$__DATA$__mod_init_func&amp;quot;); static void runDyldInitializers(const struct macho_header* mh, intptr_t slide, int argc, const char* argv[], const char* envp[], const char* apple[]) { for (const Initializer* p = &amp;amp;inits_start; p &amp;lt; &amp;amp;inits_end; ++p) { (*p)(argc, argv, envp, apple); } }  注意注意：调试时会发现，dyld并没有通过调用 runDyldInitializers 来执行所有Initializer，而是通过 void ImageLoaderMachO::doModInitFunctions(const LinkContext&amp;amp; context) 来执行的。但上面的代码在首次搜索时，可以让我们对mod_init_func有个大概的印象。</description>
+    </item>
+    
+    <item>
+      <title>A method of hook objective c &#43;load</title>
+      <link>http://everettjf.com/2017/01/06/a-method-of-hook-objective-c--load/</link>
+      <pubDate>Fri, 06 Jan 2017 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2017/01/06/a-method-of-hook-objective-c--load/</guid>
+      <description>iOS有以下四种方法可方便的在premain阶段执行代码：
+1. Objective C类的+load方法 2. C++ static initializer 3. C/C++ __attribute__(constructor) functions 4. 动态库中的上面三种方法  所有类的+load方法是在main函数之前、在主线程，以串行方式调用。 因此，任何一个+load方法的耗时大小将直接影响到App的启动耗时。
+先看Objective C Runtime /*********************************************************************** * call_class_loads * Call all pending class +load methods. * If new classes become loadable, +load is NOT called for them. * * Called only by call_load_methods(). **********************************************************************/ static void call_class_loads(void) { int i; // Detach current loadable list. struct loadable_class *classes = loadable_classes; int used = loadable_classes_used; loadable_classes = nil; loadable_classes_allocated = 0; loadable_classes_used = 0; // Call all +loads for the detached list.</description>
+    </item>
+    
+    <item>
+      <title>Summary for 2016 and 3 months in Ant Financial</title>
+      <link>http://everettjf.com/2016/12/25/summary-for-2016-and-3-months-in-ant-financial/</link>
+      <pubDate>Sun, 25 Dec 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/12/25/summary-for-2016-and-3-months-in-ant-financial/</guid>
+      <description>每次换工作都是人生的一大改变 加入蚂蚁金服，实现了我曾经在二线城市时的“小梦想”。
+啰嗦下背景 2016年6月份，阿里的一位朋友说有内推名额，而且要求每个人内推3个人。当时抱着“测验自己iOS水平”的心态，交上了简历。但阴差阳错，因为这位朋友的主管一直出差，反而让另一位阿里的朋友内推，这样就要从阿里巴巴社会招聘上选择职位。
+于是先后提交了3次简历，闲鱼iOS、钉钉Mac、手淘iOS。
+闲鱼的电话面试很快通过，然后视频面试。视频面试第一轮是一位HR和两位技术同学（主管和一位P7），可这位主管一直电话缠身，我的自我介绍也没听完，更是没怎么问问题。P7技术同学问了不少问题（电话面试也是他）由于电话中已经聊了不少iOS逆向工程的话题，这次视频面试更偏向应用层面。三面是另一位HR和闲鱼的负责人处端，让我讲了下我的经验和技术学习历程，没有问技术问题。但长久不进行非技术面试的我，虽然很自信，但交流中暴露了各种“非技术”问题，没有通过面试。（这次太自信）
+钉钉Mac开发，当时投递时和朋友都认为我比较合适。技术栈全面，有5年Windows客户端开发经验和1年iOS经验，而且要求上也，但事与愿违，直接简历不合适。
+手淘也很快通过电话面试，视频面试的二面也比较顺利，但有个问题是：对方压根没有看我的博客，而且对逆向工程了解很少且没有表现出兴趣。这下缺少了些共同语言。三面也基本是非技术面试，HR也上来就问：你知道闲鱼为什么没有通过吗？我把自己认为的原因逐条讲了下。后来又问了下一些常见题目，比如你经历过的最大困难这些”哈哈“的问题。这些小非技术问题，我有自己的回答，但可能不符合面试官的答案，细节就不再说了，最后没有通过。简单总结就是：这次太想知道上次面试失败的原因了，以至于表现的不自然，过于看对方脸色回答，没有气质。（这次太不自信）
+还有个重要的问题，我曾经在一家小公司待了不到两个月，这段经历当时没有写入工作经历中，但在成长经历中提了。这个是个减分、增加不好印象的因素，也可能是导致失败的主因。
+当然，还有问题，曾经看过《Rework》这本书，在传统公司待了太久，一心想出来，去追求所谓的自由。2015年发生的”在小公司待了不到两个月“、”在家全职奶爸“、”自由职业“、”尝试创业（没有真正开始）”、“在济南已经买房的情况下携全家来北漂”。这一个个事件，相信”那些只求稳定工作“的同学们是很难以理解的，更是很容易理解偏的哈。
+后来朋友又投递了下杭州的”蘑菇街“，电话面试也不错，但对方需要iOS经验更丰富的。后来了解到电话面试我的是”银时“，加了下微信。
+四次简历投递，三次电话或视频面试。让我这从来没有面试过”大公司“的小菜鸟”过了把瘾“。面试发现了自己很多不足，也对自己有了更深入的认识。时间也过去了2个月。
+就这样，平静的工作吧。
+关于第一次面试失败，当时还写了篇经验总结。
+然而 我在一个社交平台上看到了一位蚂蚁金服同学的微信，加了微信，本想年底再去面试，但年底就没有名额了。于是第五次把简历交了出去（这次简历上把2015年的那自由的几个月梳理的更加清晰）。
+这次心里没有报任何希望（因为已经8月份，当时就不想再面试了，想过了年再说了），仅想着多交个朋友，平时如果能辅助解决点问题更好了。
+但这次蚂蚁金服更重视我曾经的C++经验，更看重逆向工程的技能。这次与HR的聊天也更自然，HR同学也更年轻爱笑。
+经过1个月的工作交接和假期，9月20号入职了蚂蚁金服。
+或许这就是缘分，无缘的人自然不会相见。事情总是朝向最适合自己的方向发展。或许加入了闲鱼或淘宝，或许更多是做一堆UI上的纯业务类事情，反而不适合自己。加入蚂蚁金服后，主要关注的是支付宝的性能和稳定性，相对远离业务，这或许才是我擅长的地方。
+是的，就是这样。
+然而 入职后生活和工作都相比之前发生了巨大变化：
+ 上班1分钟 变为 上班50分钟 工作8到11小时 变为 工作9到12小时  这样，每天在家陪伴家人的时间，减少了3到6小时（上下班2小时，多出的工作时间1到4小时）。
+恐怖。这才是真正体验到了北京的上班族生活。
+于是，急需寻找新的生活、工作、学习的平衡。
+刚开始工作经常这样：
+ 24小时 = 2小时上下班 + 12小时工作（早10晚10）+ 8小时睡眠 + 2小时（在家洗漱） 24小时 = 2小时上下班 + 13小时工作（早11晚12）+ 8小时睡眠 + 1小时（在家洗漱）  然而我看周围不少同事是这样：
+ 24小时 = 2小时上下班 + 10.5小时工作（早10:30晚9）+ 8小时睡眠 + 3.5小时（在家）  也有很多这样的：
+ 24小时 = 2小时上下班 + 12小时工作（早10:30晚10.</description>
+    </item>
+    
+    <item>
+      <title>List Wechat source files directory tree</title>
+      <link>http://everettjf.com/2016/11/23/list-wechat-source-files-directory-tree/</link>
+      <pubDate>Wed, 23 Nov 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/11/23/list-wechat-source-files-directory-tree/</guid>
+      <description>项目越大，就越需要合理的组织文件目录层次。
+逆向微信的过程中，经常看到一些“输出日志”的方法调用，而且带有完整的路径。例如：
+/Users/ioscmechine/Desktop/hudson/workspace/release_appstore_6.3.29/WeApp/Core/LocalCache/WAPackageSweeperLogic.mm  看来是用了FILE宏导致。
+用strings把微信（砸壳后）的字符串都存储到一个文件中，
+$ strings WeChat &amp;gt; strings_wechat.txt  也如图：
+写个小脚本把所有/Users/开头的字符串提出来，然后分隔，组装成一棵树。
+就可以看到微信的一部分文件结构啦。
+脚本地址
+输出的微信文件层次</description>
+    </item>
+    
+    <item>
+      <title>Explore facebook iOS client - section fbsessiongks</title>
+      <link>http://everettjf.com/2016/08/21/explore-facebook-ios-client---section-fbsessiongks/</link>
+      <pubDate>Sun, 21 Aug 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/08/21/explore-facebook-ios-client---section-fbsessiongks/</guid>
+      <description>现象 MachOView查看Facebook的可执行文件，发现 FBInjectable 和 fbsessiongks 的数据段，这篇文章就探索下 fbsessiongks 数据段的产生与用途。
+产生 参考上一篇关于FBInjectable的文章。
+初步探索 fbsessiongks的部分内容如下：
+@[&amp;quot;ios_share_extension_hashtags_enabled&amp;quot;,&amp;quot;ios_share_extension_mentions_disabled&amp;quot;,&amp;quot;ios_share_extension_360_upload_enabled&amp;quot;,&amp;quot;ios_share_extension_delegate_cleanup&amp;quot;,&amp;quot;ios_hemingway_limit_sections&amp;quot;,&amp;quot;aldrin_qr_code_experiment&amp;quot;,&amp;quot;ios_set_badge_count_on_init&amp;quot;,&amp;quot;ios_side_feed_show_newsfeed_units_gk&amp;quot;,&amp;quot;fb_app_zero_rating&amp;quot;,&amp;quot;fb_app_zero_rating_bad_url_errors&amp;quot;,&amp;quot;ios_zero_rating_header_request&amp;quot;,&amp;quot;ios_checkpoints_logged_in_blocking&amp;quot;,&amp;quot;uber_app_integration&amp;quot;,&amp;quot;nearby_friends_self_view&amp;quot;,&amp;quot;ios_nearby_friends_dashboard_invite&amp;quot;,&amp;quot;ios_nf_replace_pls_with_message&amp;quot;,&amp;quot;ios_nearby_friends_profile_style&amp;quot;,&amp;quot;nearby_friends_dashboard_checkins_hometown&amp;quot;,&amp;quot;nearby_friends_self_view&amp;quot;,&amp;quot;ios_nearby_friends_dashboard_reaction&amp;quot;,&amp;quot;ios_friends_nearby_bookmark_alert&amp;quot;,&amp;quot;ios_friends_nearby_bookmark_upsell&amp;quot;,&amp;quot;ios_nearby_friends_inv ....省略...  简单结论 实验性质的功能开关。gks 为 Gate Keepers 缩写。为了辅助测试。
+Facebook 员工提到Gate Keepers：（文章中搜索gate keeper） https://www.facebook.com/notes/facebook-engineering/building-and-testing-at-facebook/10151004157328920/
+与FBInjectable不同的是，这里的功能都是具有实验性质，且都只是BOOL类型（FBInjectable是有具体的配置功能，可提供详细的参数数值）。有专门的FBExperimentManager类管理、统计、上报各种日志。
+相关方法 void * +[FBFeatureGatingConfigFactory applicationSpecificFeatureGatingConfig](void * self, void * _cmd) { +[FBExperimentGatekeepers allSessionGatekeeperKeys] +[FBExperimentManager _getSupportedConfigurationsFromPolicy:]: -[FBExperimentManager initWithPolicy:experimentDiskFetcher:jsonOverrides:mobileConfigContextManager:]:  总结 具体探索过程类似上一篇文章 探索 Facebook iOS 客户端 - Section FBInjectable
+Demo有时间再补充啦</description>
+    </item>
+    
+    <item>
+      <title>Explore facebook iOS client - section FBInjectable</title>
+      <link>http://everettjf.com/2016/08/20/explore-facebook-ios-client---section-fbinjectable/</link>
+      <pubDate>Sat, 20 Aug 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/08/20/explore-facebook-ios-client---section-fbinjectable/</guid>
+      <description>现象 MachOView查看Facebook的可执行文件，发现 FBInjectable 和 fbsessiongks 的数据段，这篇文章就探索下 FBInjectable 数据段的产生与用途。
+如何定位 设备：iPhone5 越狱 iOS8.4 armv7
+砸壳 Clutch 或 dumpdecrypted，获取到未加密的Facebook armv7 可执行文件。
+初步查找 strings 使用strings 搜搜关键词FBInjectable，可知可以通过字符串作为切入点。
+使用Hopper和IDA分析 使用Hopper和IDA分析好。两个App各有优缺点，配合使用。
+分析较慢，我的MBP CPU2.2 i7 分析1个小时以上。
+分析完成后就可以畅游arm了。
+Hopper中初步定位 搜索字符串FBInjectable
+查看存在交叉引用的一个
+跳转过去查看，可知地址在 0x0334cc1c，且FBInjectable是作为 getsectiondata 的第三个参数。
+getsectiondata 的调用地址为 0x0334cc20。
+getsectiondata 的定义如下：
+反汇编：
+需要重点关注下，r11这个变量。Hopper反汇编的代码貌似丢掉一些很关键的r2的信息。但看完能大概知道这里在遍历 getsectiondata的返回值，每4个字节做了一些处理。
+如果IDA 有F5 反汇编功能，可以看到下图。这里没有丢掉关键的信息。v19作为返回值，转换为DWORD指针（做Windows开发比较熟悉，double word，word 是双字节，DWORD就是四字节），然后又把这个指针解引用。
+也就是把getsectiondata的返回值buffer中的前四个字节当做字符串的内存地址。
+MachOView 确认FBInjectable含义 再次看 FBInjectable 段的前四个字节，B8DB8404，由于little-endian的原因，内存地址为0x0484DBB8。
+Hopper中跳转到这个地址： 其他四个字节都是这样。
+lldb 确认getsectiondata返回值含义 为确认Facebook启动后是否调用了 getsectiondata，并传入了FBInjectable，可以先条件断点。
+使用debugserver启动App：
+everettjfs-iPhone:~ root# debugserver -x backboard *:1234 /var/mobile/Containers/Bundle/Application/A7811200-13B6-4053-BAED-8D3E8DE7C929/Facebook.</description>
+    </item>
+    
+    <item>
+      <title>Explore Facebook iOS Client - Section RODATA</title>
+      <link>http://everettjf.com/2016/08/19/explore-facebook-ios-client---section-rodata/</link>
+      <pubDate>Fri, 19 Aug 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/08/19/explore-facebook-ios-client---section-rodata/</guid>
+      <description>现象 使用 MachOView 查看 Facebook 的 iOS 二进制文件时，发现有几个 Section 与其他大多数 App 不同。
+下图是 Facebook ：
+下图是微信：
+初步分析  __TEXT The __TEXT segment contains our code to be run. It’s mapped as read-only and executable. The process is allowed to execute the code, but not to modify it. The code can not alter itself, and these mapped pages can therefore never become dirty. __DATA The __DATA segment is mapped read/write but non-executable.</description>
+    </item>
+    
+    <item>
+      <title>supotato - Tool for classify class-dump headers</title>
+      <link>http://everettjf.com/2016/07/09/supotato---tool-for-classify-class-dump-headers/</link>
+      <pubDate>Sat, 09 Jul 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/07/09/supotato---tool-for-classify-class-dump-headers/</guid>
+      <description>class-dump 出的头文件这么多，supotato 可以根据头文件的前2个字符形成个简单的分类报告。同时可以猜测出使用了哪些第三方库（CocoaPods）。
+源码
+使用方法 pip install supotato cd &amp;lt;header files directory&amp;gt; supotato  例子 例如 class-dump 出以下的头文件：
+Here
+运行supotato：
+$ supotato -i headers -o .  得到这个简单的分类：
+Here
+下面是真实的例子：
+Here.
+参数 [everettjf@e supotato (master)]$ supotato --help usage: supotato [-h] [-i INPUT] [-o OUTPUT] [-s SORTBY] [-d ORDER] [-p PREFIXLENGTH] [-u UPDATEDB] Generate a simple report for header files in your directory optional arguments: -h, --help show this help message and exit -i INPUT, --input INPUT directory that header(.</description>
+    </item>
+    
+    <item>
+      <title>Plan for the next half year (2016) on iOS</title>
+      <link>http://everettjf.com/2016/07/04/plan-for-the-next-half-year-2016-on-ios/</link>
+      <pubDate>Mon, 04 Jul 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/07/04/plan-for-the-next-half-year-2016-on-ios/</guid>
+      <description>Time Range  from : 2016-07-04 to : 2016-12-31  Mindmaps Listing (main items)  [basic] ReactiveCocoa
+ [source] YYModel vs Mantle
+ [source] AsyncDisplayKit
+ [source] AOP
+ [source] Modular Solution
+ [source] class-dump
+ [translate] Instruments Guide
+ [view] WWDC
+ [wheels] FZKit (Image,Cache,Model&amp;hellip;)
+  Layout 07  ReactiveCocoa
+ Model
+ Cache
+ Skelton of IMKit
+  08  AsyncDisplayKit Image
+ FleaTabBarController (TabBar like FleaMarket’s)</description>
+    </item>
+    
+    <item>
+      <title>Summary for segmentfault hackathon 2016</title>
+      <link>http://everettjf.com/2016/07/03/summary-for-segmentfault-hackathon-2016/</link>
+      <pubDate>Sun, 03 Jul 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/07/03/summary-for-segmentfault-hackathon-2016/</guid>
+      <description> 背景 上周末两天与朋友（两个人组队）参加了segmentfault与angelhack举办的hackathon，北京站。主题是“文艺复兴”。
+周六经过简单开场，以及简单的API宣讲（太简单）。下午2点正式开始了构思。提供的sdk有：agoria的视频通话sdk 与 wacom的WILL sdk。
+在这个基础上我们有了个想法：
+ 视频绘画教学。agoria提供视频功能，wacom提供绘图板功能。由于两个sdk都有demo，应该能很快组装起来。 匿名视频。随机与打开App的另一方建立连接。 匿名兴趣视频。选择App中内置的兴趣，可以与所有进入这个兴趣的用户视频。  然而，我们总觉得这些想法“没有创意”。视频sdk号称30分钟集成，WILL sdk也应该容易使用。岂不是所有人都做这个视频功能？简单的视频通话会不会没有创意？
+老想法 然而，此时一个”老想法“又来了。前段时间看了”最强大脑“后自己也学习起魔方。想来做一个辅助还原魔方的App会更有创意。
+做这个App的想法在这次hackathon之前就有，也做了一些调查，当然重点是想使用AR来辅助还原魔方。AR自然想到了Vuforia，然而Vuforia只能识别marker，对于魔方这种每个面的颜色组成会变化，且需要识别出颜色来，Vuforia做不到（或者我没找到办法）。于是OpenCV登场。找到了这个 https://github.com/AndroidSteve/Rubik-Cube-Wizard ，这个App主要用在 Google Glass上，且作者没有计划移植到手机上（https://github.com/AndroidSteve/Rubik-Cube-Wizard/tree/master/Rubik%20Solver/docs）。
+想来我可以做。但发现大量OpenCV的使用。后来投入较多时间去学习OpenCV。照着 Rubik-Cube-Wizard 的Java代码翻译……
+当然还没有完成，hackathon 就来了。
+开始了 想来这个更独特，几乎不可能有人做。（当时感觉这个更有特色，但后来发现不对）
+使用OpenCV识别魔方，想来这两天很难做到。就放弃了。
+于是，使用UIView配合transform模拟了个立体的魔方。（当天也调查了openGL和metal，对这两个都不熟悉，就使用UIView组合了）。
+最主要的就是魔方每个面信息的输入，想了三个快速输入的方式：
+ 按钮 语音 拍照 视频 AR   按钮如下图：  语音，可以使用讯飞识别。
+ 拍照，也就是每个面都拍照。识别出固定位置的颜色。
+ 视频，类似这个 https://github.com/bluquar/cubr。
+ AR，就是Rubik-Cube-Wizard这个了。
+  还原算法 https://github.com/muodov/kociemba
+最后，做出来使用按钮、语音的方式。代码在这里。https://github.com/xfteam/xfrubiks
+总结  最后熬夜做出了这个App，但只使用了按钮、语音，且演示阶段配合不好，导致效果不好。 活动赞助商提供了sdk，当然最好还是要用啦。用自然会加分啦。（当然这个活动目的不能纯粹为了获奖，做自己想做的才是最重要的） 演示阶段，自己还需要锻炼。发现自己虽然年近30，但有些小场合还是会紧张。表达的不够自然。且演示阶段还是尽量能简单排练下。与朋友的配合不够默契。本来设计的小笑话，由于表达与配合问题，成了鸡肋。 今年活动的场所在鸟巢附近的一家孵化器办公场所，环境很好，沙发很多。 没落实的这几个想法，视频绘画教学等，如果做出来其实还是很不错的。放弃的太过草率。 想想我们技术是有的，但还有更多其他因素。解决问题的思路，想法的商业价值。单纯的玩具意义并不大。等等。 比赛虽然很累，但还是很享受这个过程。（尤其是做出了这个辅助还原魔方的App。虽然使用时有些细节需要注意。哈）  </description>
+    </item>
+    
+    <item>
+      <title>Summary for C&#43;&#43; transfer to iOS developer for one year</title>
+      <link>http://everettjf.com/2016/06/26/summary-for-c---transfer-to-ios-developer-for-one-year/</link>
+      <pubDate>Sun, 26 Jun 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/06/26/summary-for-c---transfer-to-ios-developer-for-one-year/</guid>
+      <description>自去年（2015年）3月15日开始iOS开发以来，去掉中间3个月的全职奶爸（兼职O2O摄影创业）（5月10日至8月12日），到今天（2016年6月26日）已经1年多一点。
+去年11月份写过一篇 C++转iOS开发5个月总结 ，罗列了在接近5个月的时间内学习的知识，也做了一些计划。
+本篇文章就接着上篇继续。总结下最近6个月（去年12月至今天）的学习情况。
+起步 去年11月底至12月初，折腾了好久终于把之前的一个想法实现了（使用flask+mongodb）。雪花书签 上线运行。但可惜，简单又麻烦、无体验，只是实现了半个情怀。后来网站关闭，改版进化为 番茄阅读 和 钦慕设计导航 。
+了结了这个小情怀，就专心投入iOS学习中。
+逆向 11月底开始，至12月底，几乎一个月的晚上时间（孩子一般11点才睡觉，我就折腾到一两点）用来学习《iOS应用逆向工程》这本书，最终年底产出一个 支付宝语音保存Tweak ，也写了开发笔记。
+2014年我还在做类似360杀毒的安全软件，那时把《病毒分析实战》这本书仔细的边读边做了一遍，但没进一步学习，仅停留在了书中的例子和简单的分析上。由于工作仍然是以业务为主，客户上报了有问题的PE文件，汇编是我的弱势，更多是在金山火眼等其他工具中分析，自己并没有去仔细分析汇编代码。
+或许有这个基础，现在看iOS应用的逆向，且由于Objective C的动态机制，基础的逆向学习起来就比较容易。把这本书几乎所有例子逐个走了一遍。
+后来由于工作开发IM客户端的需要，逆向了微信等好多App的实现。其中微信消息界面的逆向也简单总结了下流程。
+源码学习 我有时有点折腾，为了学习源码还耗了大量宝贵业余时间写了个Xcode插件 XSourceNote。想法是好的，但使用起来体验并不是很好，仅能凑合用。用这个插件写了几篇源码阅读笔记。
+ UITableView-FDTemplateLayoutCell 学习笔记 YYCache 学习笔记 SDWebImage 学习笔记 YYWebImage学习笔记  这里要反思下，学习的太少，插件完全没必要做。 耗费时间去做低优先级的事情，这个是需要反思的
+书  iOS应用逆向工程 iOS应用安全攻防实战 Obscure Topics In Cocoa &amp;amp; Objective-C CFHipster iOS Core Animation Advanced Technique  除了iOS相关的书籍，还买了《程序员的数学》三本书，第一本简单点，已经看完。二三本已经加入任务队列。
+了解了OpenCV。为了实现AR还原魔方。最终在segmentfault hackathon 2016 Beijing上做了个简单的魔方还原辅助的App。源码。
+上线App 从雪花书签到iOS博客精选，到现在的App《番茄阅读》，天真的想法的想要实现，总要经历这个过程。 实现了这个小梦想。有个自己上线的App。《番茄阅读》开发总结在这里。
+文档 很多博客文章不会系统的讲解某一知识，还是应该更多时间投入到看官方文档中。系统、全面的学习才是更有效的学习
+ CoreData Programming Guide Thread Programming Guide  RunLoop detail  Concurrency Programming Guide  nsoperation dispatch queue dispatch sources  App Programming Guide 等若干轻量级Guide  博客文章 随着日常工作，感觉不错的文章都收藏在了《番茄阅读》中，也放在了这个web地址。</description>
+    </item>
+    
+    <item>
+      <title>Explore WeChat for chat UI implementation</title>
+      <link>http://everettjf.com/2016/06/19/explore-wechat-for-chat-ui-implementation/</link>
+      <pubDate>Sun, 19 Jun 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/06/19/explore-wechat-for-chat-ui-implementation/</guid>
+      <description>背景 工作中自己负责IM功能的开发，平时对微信进行了不少研究学习。 这篇文章主要关注微信iOS客户端界面实现中的“聊天消息界面”实现。
+写这篇文章的目的： - 分享微信的聊天界面实现方式。 - 展示逆向主要流程。
+PS: 最初是为了解决项目中的一个小问题才逆向的微信。
+准备 设备：iPhone5 iOS 8.4 越狱
+usbmuxd
+➜ python-client python tcprelay.py -t 22:2222 Forwarding local port 2222 to remote port 22 ......  ssh
+ssh root@localhost -p 2222  找到可执行文件：
+everettjfs-iPhone:~ root# ps aux | grep /App mobile 38363 4.4 8.5 776400 88748 ?? Ss 8:55PM 0:52.96 /var/mobile/Containers/Bundle/Application/25FB096A-8122-49B5-9304-5FDB9080D9B0/WeChat.app/WeChat  沙盒路径：
+everettjfs-iPhone:~ root# cycript -p WeChat cy# [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] @[#&amp;quot;file:///var/mobile/Containers/Data/Application/F36BD1C1-1C39-4C83-AD4B-6D9F2B976330/Documents/&amp;quot;]  砸壳：</description>
+    </item>
+    
+    <item>
+      <title>Little animation bug in chat UI when keyboard hide</title>
+      <link>http://everettjf.com/2016/06/18/little-animation-bug-in-chat-ui-when-keyboard-hide/</link>
+      <pubDate>Sat, 18 Jun 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/06/18/little-animation-bug-in-chat-ui-when-keyboard-hide/</guid>
+      <description>背景 聊天界面，有两种实现方法：
+ QQ的实现方式，也是大多数App的实现方式。每个类型的消息有各自不同的Cell，例如：TextCell，ImageCell等。 微信的实现方式。目前只知道微信这么干的。实现方式见这个文章。  这篇文章主要是讲第一种实现方式可能遇到的一个UI动画的小问题。 GitHub上有很多参考代码都是第一种实现方式（第二种没找到现成的代码），然而好多代码在实际应用时或多或少有些小问题。
+思路 由于聊天消息中头像会在左侧，也会在右侧，且消息内容有很多种也会左对齐或右对齐。如果每种组合都做一个Cell，将会有大量的Cell出现。
+ TextLeftCell TextRightCell ImageLeftCell ImageRightCell  这样不好，如果消息类型有几十种，则Cell就是两倍的数目。 （PS：如果一个Cell中，放两个View呢？LeftView和RightView。也不好，还是麻烦。）
+一种解决方法是，在tableView的cellForRowAtIndexPath中根据消息类型（对方消息还是我的消息）改变头像、内容View的位置frame。
+然而有个需求：
+ 键盘弹出，TableView要跟着向上。 TableView滑动时，收起键盘。  问题 这是一种实现方式，步骤如下：
+ 当键盘弹出，控制TableView的frame变小。 新增消息。 TableView向下滑动时同时收起键盘。改变TableView的frame恢复原有大小。  插播：上面的步骤是很容易出现的，改变tableView frame的大小也是一个容易想到的方法，当然也可以使用约束，改变TableView下面的View的大小（这种使用约束方式与改变frame大小类似，都会为这个小问题埋下坑）。
+最终效果如下：
+问题来了：
+当键盘收起时，TableView中上面有几个Cell中的头像和内容会有个动画，这个动画并不是预期的
+如何去掉这个动画？
+原因  键盘收起时，会以动画的方式收起， UITableView 的frame变大也是在动画上下文中，因此UITableView会以动画方式变大。 同时由于UITableView frame变大，可容纳更多Cell，新的Cell会创建，创建过程也在动画的上下文中。  解决 有两步：
+第一步 tableView的cellForRowAtIndexPath中改变frame时要禁用动画。
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{ ChatCell *cell = [tableView dequeueReusableCellWithIdentifier:@&amp;quot;Cell&amp;quot; forIndexPath:indexPath]; // [self _fillCell:cell indexPath:indexPath]; [UIView performWithoutAnimation:^{ [self _fillCell:cell indexPath:indexPath]; }]; return cell; }  然而这样还是不够，改变Cell大小时，还会有影响。</description>
+    </item>
+    
+    <item>
+      <title>iOS Debug Cheatsheet</title>
+      <link>http://everettjf.com/2016/05/25/ios-debug-cheatsheet/</link>
+      <pubDate>Wed, 25 May 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/05/25/ios-debug-cheatsheet/</guid>
+      <description>逆向过程中命令太多记不住，就整理了这个速查表，分享给大家。我只是看完了小黄书《iOS应用逆向工程》，这几个月没有再深入研究逆向。最近又想逆向几个app学习下怎么实现，发现很多命令都忘记了。于是整理了这个表。copy and paste就可以愉快的学习其他app的实现了。
+命令都很基础、简单、常用，主要是我也只学了这么多哈。
+common 查找进程：
+ps aux | grep /App ps -e | grep /Applications  查找文件：
+grep -r ToBeFind /System/Library/  分离fat binary
+lipo -thin armv7 WeChat.decrypted -output WeChat_armv7.decrypted lipo -thin armv64 xxx.decrypted -output xxx_arm64.decrypted  class dump
+class-dump --list-arches AlipayWallet.decrypted class-dump -S -s -H WeChat_armv7.decrypted -o dumparmv7 class-dump -s -S -H --arch armv7 AlipayWallet.decrypted -o dumpAlipay  lldb 参考
+ https://github.com/iosre/iOSAppReverseEngineering http://objccn.io/issue-19-2/  帮助
+help frame  打印UI结构</description>
+    </item>
+    
+    <item>
+      <title>How to write an RSS reader, along with readme for 番茄阅读</title>
+      <link>http://everettjf.com/2016/05/13/how-to-write-an-rss-reader-along-with-readme-for-%E7%95%AA%E8%8C%84%E9%98%85%E8%AF%BB/</link>
+      <pubDate>Fri, 13 May 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/05/13/how-to-write-an-rss-reader-along-with-readme-for-%E7%95%AA%E8%8C%84%E9%98%85%E8%AF%BB/</guid>
+      <description>终于上线第一个App，简单总结。对这个App，自己也算是“全栈开发”了。
+先上源码
+此次开发过程主要有两个产出：
+ 番茄阅读App：精选了一些iOS开发者博客的订阅。AppStore地址。 博客列表：按最后更新时间排序。每天自动刷新。  三个Tab页，第一页为订阅的文章列表，第二页为博客列表，第三页为我平时收集的各种文章、教程等网址。 如下图：
+背景  最初我是想做个大而全的开发者导航网站，想学什么都能找到最优质的网址，但没有那么多时间去搜集网址。由于工作是iOS开发，可以只关注iOS开发类的网址。 于是想做个App，将收集的博客以及博客的RSS订阅信息通过App展示出来。 目标不断的缩小，或许就是伪需求变为真实需求的过程。 更深入折腾的背景，可以看看这篇文章  架构  Web服务器：用于收藏网址 静态内容服务器：用户提供App访问接口 爬虫：爬取不支持RSS/Atom订阅的博客文章列表 App：最终展现  Web服务器 Web服务器主要用于网址收集和删除。
+为了能看到一个博客后，方便的收藏博客，可以编写Chrome插件。当浏览到一个博客网址后，点击Chrome插件，Chrome插件会自动收集当前博客的网址、标题、favicon。还可以添加订阅地址。
+免去了使用文本方式记录博客的麻烦。
+Web服务器使用Django实现（熟悉Python）。目前可以使用 http://iosblog.cc访问，由于App并不依赖这个域名，后期可能、可以随时更换。这个网址仅用于辅助收集，不用于公开使用。
+ Chrome插件源码 Web服务器源码
+ Django入门文档
+ Chrome Extension 入门文档
+  静态内容服务器 阿里云或其他各种云的VPS最低配置一般一年600元左右，而且带宽性能都较差。可又为了能让App较快的获取数据，怎么办。想到平时的博客使用GitHub Pages。可以把平时收藏到的内容，定时导出为json文件放到GitHub Pages下（例如我的博客目录下）。
+而阿里云服务器就不用担心带宽太小、配置太低的问题了。亚马逊的EC2最近还免费一年。
+这一层服务器的存在，让我们可以随便更换Web服务器。App也不依赖Web服务器。
+导出效果
+爬虫 有的博客是有RSS或Atom订阅的，但还有很多博客没有订阅。例如现在很火的简书。简书上有很多不错的 iOS/OS X 开发者博客。
+收藏了一些不错的简书博客后，可以写个小爬虫，只爬指定博客的文章列表。App中点击这类文章时，直接以浏览器的方式打开。
+scrapy是Python很好的爬虫框架，使用起来简单易用。爬某个网址文章列表的代码如下：
+ def parse(self, response): print response.url oid = self.url_to_oid[response.url] filepath = os.path.join(target_json_dir,&#39;spider&#39;, &#39;jianshu&#39;, &#39;%d.json&#39;%oid) print filepath items = [] for post in response.</description>
+    </item>
+    
+    <item>
+      <title>symbolicatecrash deadloop bug</title>
+      <link>http://everettjf.com/2016/05/10/symbolicatecrash-deadloop-bug/</link>
+      <pubDate>Tue, 10 May 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/05/10/symbolicatecrash-deadloop-bug/</guid>
+      <description>背景 去年写过一篇文章，里面讲了如何使用symbolicatecrash工具符号化崩溃信息。
+当时基于这个方法，给公司的产品实现了一个自动符号化崩溃信息的小系统。
+ App获取崩溃信息后，打包上传到公司收集崩溃的服务器。 Python脚本定时获取崩溃，并在内网Jenkins服务器上找到对应版本的符号文件。 最后符号化后，汇总到数据库中。 Web方便查询，按模块、版本、堆栈等汇总。方便查找崩溃原因，及跟踪崩溃趋势。  问题 然而，一直有个问题，symbolicatecrash在分析某些崩溃（大概崩溃总数的1/3）时会出现CPU 100%，且永远不结束 的情况。（永远不结束，是猜测，因为跑过好几次一晚上，最后只能结束进程）。symbolicatecrash是Perl脚本，perl进程CPU占用一直100%。
+猜测应该是这个perl脚本的问题，但各种搜索竟然没有找到结果。
+临时解决办法：分析崩溃超过15s就结束这个分析进程。也就有了这个博客
+然而这样解决会导致只能分析出大约2/3的崩溃。问题很严重，不过也忍了。
+解决 这小半年过去了，想来再试着解决下。
+同事发现一篇文章 ，激动的马上拿来试试。（文章是9月底写的，大概正好是我放弃查找的时候……）
+ 这是由于xcode提供的symbolicatecrash对于重复image的日志会出现死循环。
+ 修改symbolicatecrash文件 Xcode7.2 及以前： /Applications/Xcode.app/Contents/SharedFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/symbolicatecrash
+Xcode 7.3 /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/symbolicatecrash
+参考：https://forums.developer.apple.com/thread/43489
+将以下代码：
+# add ourselves to that chain $images{$nextIDKey}{nextID} = $image{base}; # and store under the key we just recorded $bundlename = $bundlename . $image{base};  替换为：
+if ($image{uuid} ne $images{$bundlename}{uuid}) { # add ourselves to that chain $images{$nextIDKey}{nextID} = $image{base}; # and store under the key we just recorded $bundlename = $bundlename .</description>
+    </item>
+    
+    <item>
+      <title>€ euro sign in cp936 and gb18030</title>
+      <link>http://everettjf.com/2016/05/01/-euro-sign-in-cp936-and-gb18030/</link>
+      <pubDate>Sun, 01 May 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/05/01/-euro-sign-in-cp936-and-gb18030/</guid>
+      <description>产品第一次AppStore审核通过，过年时遇到一个“神奇”的bug，在显示某些特殊字符时App会崩溃。后来经过各种尝试找到原因。
+第一层原因 一个函数返回的NSString为nil，使用者没有判断nil，导致崩溃。
+第二层原因  部分业务数据库中的信息不是utf-8，而是PC客户端存入的cp936（数据库是SQL Server） 部分信息iOS拿到的是cp936编码的文字。 文字中包含欧元符号 € 。（https://en.wikipedia.org/wiki/Euro） iOS把cp936当做gb18030解码（主要是受gbk转utf-8影响，网上一把这类文章） cp936中如果有欧元符号，则会返回nil。  第三层原因 Windows的CP936并符合标准的GBK定义。
+ Windows中CP936代码页使用0x80来表示欧元符号，而在GB18030编码中没有使用0x80编码位
+Code page 936 is not identical to GBK because a code page encodes characters while the GBK only defines code points. In addition, the Euro sign (€), encoded as 0x80 in CP936, is not defined in GBK.
+Windows CP936 code page 0x80 to represent the euro symbol in the GB18030 encoding 0x80 encoding, with other locations to represent the euro symbol.</description>
+    </item>
+    
+    <item>
+      <title>企业证书签名的App启动慢（停在暗色图标N秒）</title>
+      <link>http://everettjf.com/2016/04/22/%E4%BC%81%E4%B8%9A%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%90%8D%E7%9A%84app%E5%90%AF%E5%8A%A8%E6%85%A2%E5%81%9C%E5%9C%A8%E6%9A%97%E8%89%B2%E5%9B%BE%E6%A0%87n%E7%A7%92/</link>
+      <pubDate>Fri, 22 Apr 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/04/22/%E4%BC%81%E4%B8%9A%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%90%8D%E7%9A%84app%E5%90%AF%E5%8A%A8%E6%85%A2%E5%81%9C%E5%9C%A8%E6%9A%97%E8%89%B2%E5%9B%BE%E6%A0%87n%E7%A7%92/</guid>
+      <description>问题 最近1个月左右QA发现App经常出现启动慢的情况。且较容易复现。
+复现系统版本：iOS 9.3，且安装企业证书签名的App。
+App启动过程一般是这样的：App图标颜色会首先变暗，变暗后图标再出现放大效果进入LaunchScreen。
+问题是这样的：首次启动App不会出现卡顿，当切换到其他App一段时间后，再次点击App图标时，停在暗色图标这里3至10秒，每次时间不同。
+见右上角51VV的图标，下图是暗色的图标（也即是卡在这个界面3至10秒）：
+下图是正常的图标：
+尝试方法 这个问题主要是我同事尝试解决的，我进行了全程跟踪以及一些签名的支持。
+ 开始以为是AppDelegate里启动的代码太多，进行了很多优化。 后来发现根本没有执行到这里的代码。 后来以为是工程配置的问题，新创建了个工程，进行企业签名，没有出现此问题。 再后来直接在开发机器上企业签名，没有出现此问题。（此时基本怀疑编译机的问题） （编译机，也就是配置的Jenkins持续集成，自动打包，自动企业签名，自动上传fir。以前的博客写过类似文章），也由于工作忙(懒）一直没有升级编译机。 最后，升级编译机到最新的OS X系统（OS X 10.10)，Xcode也升级到最新（7.3），再次打包、企业签名。 不会再出现此问题。  复现环境  编译机 Xcode 7.1 + OS X 10.10 开发机器 Xcode 7.3 + OS X 10.11  影响范围  仅企业证书签名的App。（AppStore证书签名的App不会出现此问题）  问题原因  可能原因1：老版本的Xcode在老版本系统上进行企业证书的签名，在App启动时验证App签名证书的代码上，没有做到iOS 9.3系统的完美兼容。或者说，应该是苹果的bug。 可能原因2：老版本Xcode编译新版本的Xcode工程导致。  当然，我觉得，原因1更加可能。
+解决办法  编译机与开发机环境保持一致。 尽量保持最新版本的系统和开发环境。  相关资料 stackoverflow 有问类似问题的，但问题原因不一样。
+http://stackoverflow.com/questions/29589285/why-ios-apps-signed-with-development-or-enterprise-certificates-launch-slower</description>
+    </item>
+    
+    <item>
+      <title>Apple Developer 登录错误，400电话解决</title>
+      <link>http://everettjf.com/2016/04/20/apple-developer-%E7%99%BB%E5%BD%95%E9%94%99%E8%AF%AF400%E7%94%B5%E8%AF%9D%E8%A7%A3%E5%86%B3/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/04/20/apple-developer-%E7%99%BB%E5%BD%95%E9%94%99%E8%AF%AF400%E7%94%B5%E8%AF%9D%E8%A7%A3%E5%86%B3/</guid>
+      <description>前端时间发现自己的Apple Developer账号不能在 https://developer.apple.com 登录了。
+只要登录就提示下图：
+后来，开始以为公司网络问题，后来在家，在同事电脑，Chrome, Safari 都试了还不行。
+网上找到有人遇到类似问题，打苹果客服解决了。
+于是找到电话，
+打了 4006 701 855 ，普通话服务，等了几个两三分钟，就解决了。
+最后，问我还有什么问题，我说“能知道原因吗？”，对面说“不能告诉您”。
+我问“平时使用VPN会有影响吗？”，对面说“没有影响”。
+好吧，解决了。</description>
+    </item>
+    
+    <item>
+      <title>TabBar位置的二级页面touchesBegan被延迟调用</title>
+      <link>http://everettjf.com/2016/04/09/tabbar%E4%BD%8D%E7%BD%AE%E7%9A%84%E4%BA%8C%E7%BA%A7%E9%A1%B5%E9%9D%A2touchesbegan%E8%A2%AB%E5%BB%B6%E8%BF%9F%E8%B0%83%E7%94%A8/</link>
+      <pubDate>Sat, 09 Apr 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/04/09/tabbar%E4%BD%8D%E7%BD%AE%E7%9A%84%E4%BA%8C%E7%BA%A7%E9%A1%B5%E9%9D%A2touchesbegan%E8%A2%AB%E5%BB%B6%E8%BF%9F%E8%B0%83%E7%94%A8/</guid>
+      <description>问题 最近开发类似微信发语音的功能，ViewController 如下：
+TabBarController -&amp;gt; Navigation Controller -&amp;gt; Session View Controller -&amp;gt; Message View Controller
+ SessionViewController 实现会话列表页面 MessageViewController 实现消息列表页面  在会话列表页面点击某一会话，会隐藏TabBar的方式Push到消息列表页面。相关代码如下：
+ MessageViewController *vc = [[MessageViewController alloc]init]; vc.hidesBottomBarWhenPushed = YES; [self.navigationController pushViewController:vc animated:YES];  在MessageViewController最下面（TabBar位置）放置录音的View。此View响应按下时间：
+ - (void)touchesBegan:(NSSet&amp;lt;UITouch *&amp;gt; *)touches withEvent:(UIEvent *)event{ NSLog(@&amp;quot;touches began&amp;quot;); [super touchesBegan:touches withEvent:event]; }  然而，touchesBegan在手指按下时并不能马上得到调用，而是在手指抬起或者移动后才能被调用。
+解决办法 设置MessageViewController的self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan为NO。
+-(void)viewDidAppear:(BOOL)animated{ [super viewDidAppear:animated]; self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = NO; } - (void)viewDidDisappear:(BOOL)animated{ [super viewDidDisappear:animated]; self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = _savedDelaysTouchBegan; }  同类问题  https://segmentfault.</description>
+    </item>
+    
+    <item>
+      <title>YYWebImage note</title>
+      <link>http://everettjf.com/2016/04/05/yywebimage-note/</link>
+      <pubDate>Tue, 05 Apr 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/04/05/yywebimage-note/</guid>
+      <description>Basic Information  Name : YYWebImage Site : https://github.com/ibireme/YYWebImage Repo : https://github.com/ibireme/YYWebImage Revision : c97ef715462aa8f94ecaa55564aa4514cc39ae89 Description : YYKit 组件之一。新出炉的WebImage。  Global Note File Notes 0. YYImageCache.m  Path : /YYWebImage/YYImageCache.m Line : 47 - 55 Note :  - (NSUInteger)imageCost:(UIImage *)image { CGImageRef cgImage = image.CGImage; if (!cgImage) return 1; CGFloat height = CGImageGetHeight(cgImage); size_t bytesPerRow = CGImageGetBytesPerRow(cgImage); NSUInteger cost = bytesPerRow * height; if (cost == 0) cost = 1; return cost; }  CGImageGetHeight 和 CGImageGetBytesPerRow。</description>
+    </item>
+    
+    <item>
+      <title>SDWebImage note</title>
+      <link>http://everettjf.com/2016/04/03/sdwebimage-note/</link>
+      <pubDate>Sun, 03 Apr 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/04/03/sdwebimage-note/</guid>
+      <description>Basic Information  Name : SDWebImage Site : https://github.com/rs/SDWebImage Repo : https://github.com/rs/SDWebImage Revision : 0da78a4ce6485d8d4c23d348d355fabad7c227f3 Description : 经典的、异步下载图片的、带缓存的库  Global Note File Notes 0. SDWebImageCompat.h  Path : /SDWebImage/SDWebImageCompat.h Line : 60 - 72 Note :  #define dispatch_main_sync_safe(block)\ if ([NSThread isMainThread]) {\ block();\ } else {\ dispatch_sync(dispatch_get_main_queue(), block);\ } #define dispatch_main_async_safe(block)\ if ([NSThread isMainThread]) {\ block();\ } else {\ dispatch_async(dispatch_get_main_queue(), block);\ }  方便的dispatch_main 保证主线程运行
+1. SDWebImageDownloader.m  Path : /SDWebImage/SDWebImageDownloader.</description>
+    </item>
+    
+    <item>
+      <title>UITableView-FDTemplateLayoutCell note</title>
+      <link>http://everettjf.com/2016/03/24/uitableview-fdtemplatelayoutcell-note/</link>
+      <pubDate>Thu, 24 Mar 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/03/24/uitableview-fdtemplatelayoutcell-note/</guid>
+      <description>Basic Information  Name : UITableView-FDTemplateLayoutCell Site : https://github.com/forkingdog/UITableView-FDTemplateLayoutCell Repo : https://github.com/forkingdog/UITableView-FDTemplateLayoutCell Revision : e3ee86ce419d18d3ff735056f1474f2863e43003 Description : 简单易用的UITableViewCell自动高度。 作者的博客文章 http://blog.sunnyxx.com/2015/05/17/cell-height-calculation/  Global Note 简单易用，但在一些复杂界面（例如聊天窗口）中使用时还是需要考虑更多优化问题。
+File Notes 0. UITableView+FDTemplateLayoutCell.h  Path : /Classes/UITableView+FDTemplateLayoutCell.h Line : 35 - 35 Note :  - (__kindof UITableViewCell *)fd_templateCellForReuseIdentifier:(NSString *)identifier;  __kindof XXXClass 可以这么用
+1. UITableView+FDTemplateLayoutCell.h  Path : /Classes/UITableView+FDTemplateLayoutCell.h Line : 28 - 28 Note :  @interface UITableView (FDTemplateLayoutCell)  UITableView的extension
+2. UITableView+FDTemplateLayoutCell.</description>
+    </item>
+    
+    <item>
+      <title>YYCache note</title>
+      <link>http://everettjf.com/2016/03/17/yycache-note/</link>
+      <pubDate>Thu, 17 Mar 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/03/17/yycache-note/</guid>
+      <description>Basic Information  Name : YYCache Site : https://github.com/ibireme/YYCache Repo : https://github.com/ibireme/YYCache Revision : f433c3455121bd0308cd6f551613c7ec629e937a Description : 在内存与磁盘上性能都不错的缓存库。  这是作者的设计思路介绍：http://blog.ibireme.com/2015/10/26/yycache/
+Global Note 作者的成长经历值得我们学习，在一年多的iOS开发中提高的很快。
+File Notes 0. YYMemoryCache.h  Path : /YYCache/YYMemoryCache.h Line : 16 - 30 Note :  /** YYMemoryCache is a fast in-memory cache that stores key-value pairs. In contrast to NSDictionary, keys are retained and not copied. The API and performance is similar to `NSCache`, all methods are thread-safe.</description>
+    </item>
+    
+    <item>
+      <title>iOS博客精选 来源、使命及反思</title>
+      <link>http://everettjf.com/2016/02/24/ios%E5%8D%9A%E5%AE%A2%E7%B2%BE%E9%80%89-%E6%9D%A5%E6%BA%90%E4%BD%BF%E5%91%BD%E5%8F%8A%E5%8F%8D%E6%80%9D/</link>
+      <pubDate>Wed, 24 Feb 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/02/24/ios%E5%8D%9A%E5%AE%A2%E7%B2%BE%E9%80%89-%E6%9D%A5%E6%BA%90%E4%BD%BF%E5%91%BD%E5%8F%8A%E5%8F%8D%E6%80%9D/</guid>
+      <description>2016年5月19日补充：《iOS博客精选》App已经完成，并重命名为 番茄阅读。(AppStore中App命名不能包含Apple公司的产品商标，因此不能包含iOS)
+近况 Warning:本篇博客较为啰嗦，但或许能提供些什么。
+前不久又将很久之前的想法缩小了开发范围，最终产出了 http://iosblog.cc 这个网站。
+iOS博客精选 ，目标是收集各种iOS开发大小牛的博客，附带收集少量经典文章及系列教程。
+网站使用Python的Django框架，数据库为MySQL。源码见 https://github.com/everettjf/TomatoRead/
+组成部分：
+ Web：也就是看到的 http://iosblog.cc Chrome 扩展：辅助维护人员添加网站的 Chrome扩展插件。 iOS客户端（即将开发）：提供博客订阅及网址手机端的查看。  作为一名iOS程序猿，这也算是全栈了。依靠大学时期ASP制作网站的底子，学起Django来还算轻松。这3个组成部分，已经完成的前两部分都不是我擅长的，未开发的第三部分是我工作中擅长的。
+马上开始第三部分开发，目标是作为我学习iOS开发以来的第一个上架AppStore的作品。
+历史 看似简单的 http://iosblog.cc ，有个很冗长的历史，这个历史充分体现了我对开发个人作品的经验不足，或者说充分体现了一个看似简单的想法变为现实的艰难过程（这里艰难或许主要原因在于我的想法的实现在我的熟悉的技能栈之外）。
+见这里 https://github.com/everettjf/TomatoRead/releases
+ 2015年6月份，使用Golang的Beego开发了第一个版本。数据库使用了ssdb。尝鲜的语言，尝鲜的数据库。这时的想法是：实现多人的网址博客系统。另外，前端使用了AngularJS，也是尝鲜。 2015年8月份，来北京之前，改为PHP的Laravel框架重构了一版本。（5、6、7这三个月，裸辞在家，实践自由职业，但恰好没有接任何单子，反而与一位想创业者”合作“，在实现一个摄影O2O平台，当时为了后期容易其他人员加入，选择了PHP开发。这个选择后来证明是正确的，我来北京工作，交接给了他人，或许PHP很容易找到交接的人）（短暂的自由职业，其实没有尝试到真正的自由职业，只是体验了下创业的第一步） 2015年11月份，虽然来到北京做了iOS开发，还是”愚昧“的要实现这个想法，使用Flask又重写了一遍，数据库使用了MongoDB（想在想想我那时是不是着魔了，脑子进水了，体验各种技术玩呢啊，耗费了大把青春）。还做了个小记录：这里。这时起名：http://mostlike.link ，最喜欢的链接。 仍然是11月份，月底，又改名 雪花链接 http://snows.link，（小经验：域名总会想到更好的，没到最后想好还是先不要买域名了）。这次支持了多人注册（GitHub账号注册），每个人可以使用Chrome插件（也上传到Chrome商店）添加链接。这个版本算是功能较全的版本，基本使用已经没有问题。且发布到了V2EX上，大家还是给了很多鼓励。[见这里](http://www.v2ex.com/t/240956)。这次在V2EX上，认识了 wantline ，我们想法十分相似，于是合作。 12月份，与wantline及团队沟通想法。 2016年1月重新开发，这次吸取以前的教训，决定使用我更熟悉的Python语言，以及更成熟的框架Django，以及MySQL。 2016年3月中旬，经过断断续续的开发、交流。钦慕 https://admire.so 上线。2月份时，觉得钦慕如果包含设计与iOS，有点不伦不类，不够专一。且由于新的设计要求重新制作网站的大图标，导致我没有那么多时间去维护每个网站的图标。于是决定 钦慕 专注于设计。而我获取了一份很早的代码（大概是1月底），经过简单的改造 成为 iOS博客精选 http://iosblog.cc ，这由于这个版本较老，而且很简单，钦慕之后已经做了大量的修改和新特性增加，且为了让我这个“古老”的仓库有个归宿 https://github.com/everettjf/TomatoRead ， 决定将此代码开源。（代码质量不好，仅供初学者了解大概思路）  反思 一个看似简单的想法，却前后开发了这么久，却最终还没有实现，只是看似走在了正确的道路上。
+ 是要快速实现想法，还是要尝鲜新技术 快速实现想法，那就选择成熟的技术、框架 尝鲜？那就折腾去吧 多想，多设计，不要一上来就写代码 想法要从简，想想怎么以最简单的方式实现想法的核心功能 精简想法，去掉那些不关键、不核心的东西 想法的实现技术最好是自己擅长的 确定要投入大量的业余时间吗，确定吗？  未来 钦慕 未来大量时间会投入到钦慕的开发中，逐渐将最初的想法以更合适的方式融入。（不忘初心）
+iOS博客精选 专注于iOS博客，日常不断维护。 iOS客户端会首先尝试开发，试错。力争尽快上线第一个版本。</description>
+    </item>
+    
+    <item>
+      <title>XSourceNote第一版完成（Xcode源码笔记插件）</title>
+      <link>http://everettjf.com/2016/02/16/xsourcenote%E7%AC%AC%E4%B8%80%E7%89%88%E5%AE%8C%E6%88%90xcode%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Tue, 16 Feb 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/02/16/xsourcenote%E7%AC%AC%E4%B8%80%E7%89%88%E5%AE%8C%E6%88%90xcode%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0%E6%8F%92%E4%BB%B6/</guid>
+      <description>PS: 此想法意义不大，不再开发和维护。
+背景 今年计划多学习一些源码，说好的源码学习呢。1月份主要学习了SDWebImage和YYCache的源码，一行一行的看的，发现不少好东西。开始想边学习边记录，分享出来，但总觉得麻烦。
+去年做了个XBookmark，Xcode的书签插件。想想，可以做个对源码做笔记的插件。功能如下：
+ 对工程做笔记。 对文件做笔记。 对某一个文件的一行或多行做笔记。 可以导出为markdown格式。  导出为markdown格式就可以直接放到博客当文章了。 （头脑风暴下，如果每个人都分享到一个网站上，都可以对某一行代码进行讨论呢…… ） （先一步一步来，想法太多，也好也坏。为了学习源码，还要做出个插件来……也好也坏）
+对SDWebImage和YYCache或者其他源码的学习笔记，到时候一起放出来吧……
+&amp;mdash;以下2016年3月21日补充&amp;ndash;
+源码 https://github.com/everettjf/XSourceNote
+效果 经过这1个月断断续续的开发及不断的使用修改，终于可以发布第一个版本啦。
+效果如下：
+安装 在 Alcatraz 中搜索“XSourceNote”安装即可。
+使用 0. 菜单 Xcode-&amp;gt;Edit-&amp;gt;XSourceNote
+或按对应的快捷键。（快捷键在Tool中可修改)
+1. 配置 例如：
+ 使用Xcode打开位于 /Users/everettjf/GitHub/XSourceNote 路径下的工程文件。 按快捷键 Shift+F4 打开“笔记列表窗口”，如下图：   Root Path（必填）: 选择工程文件所在的本地文件夹。（为了添加笔记时把文件全路径转换为相对路径。这里可优化为查找.git目录自动配置） Project Name : 工程名字 Official Site : 官方网站名字 Repo : 代码仓库地址 Revision : 当前修订版本 （这里是为了唯一表示当前学习的源代码的版本） Description : 简介。  2. 工程笔记 就是整体做个笔记
+3. 总结 总结会在最后导出Markdown笔记时，放在内容最后面。</description>
+    </item>
+    
+    <item>
+      <title>In-App Purchase一个坑和一个未解答问题</title>
+      <link>http://everettjf.com/2016/02/01/in-app-purchase%E4%B8%80%E4%B8%AA%E5%9D%91%E5%92%8C%E4%B8%80%E4%B8%AA%E6%9C%AA%E8%A7%A3%E7%AD%94%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 01 Feb 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/02/01/in-app-purchase%E4%B8%80%E4%B8%AA%E5%9D%91%E5%92%8C%E4%B8%80%E4%B8%AA%E6%9C%AA%E8%A7%A3%E7%AD%94%E9%97%AE%E9%A2%98/</guid>
+      <description> 背景 产品类似QQ，有QQ币。必须集成In-App Purchase, 怎么解释都不行。
+坑  当创建的产品被拒绝时，SKProduct 的 localizeTitle是nil。这多数情况足够让程序崩溃。  小经验  产品的语言描述，不要出现价格（价格要从price中获取）。详细描述要写的详细一些，进入App后，从哪里点击能进入到购买页面，点击哪个按钮可以购买当前产品，购买后效果如何。 苹果的产品审核与App审核是不同的人。 苹果的电话通知与产品或App审核是不同的人。 苹果的电话通知是用中文。 苹果会拿iPad测试iPhone的App。 由于产品被拒绝后，localizeTitle为nil导致程序崩溃，苹果审核人员是不知道这个原因的，他们只会说测试过很多设备，总是崩溃，崩溃的程序是不能通过审核的。 提交审核的电话一定要正确，苹果是会打电话的。  还未找到明确解答的问题 多账号App的IAP支付失败的一种情况的处理。 见这两个提问：
+ http://stackoverflow.com/questions/34872020/apple-in-app-purchase-how-to-detect-the-owner-of-the-payment-in-an-multi-user https://segmentfault.com/q/1010000004320362  有时间找到解决办法后，再补充到这里
+服务端小经验  Apple服务器验证凭据返回的信息是可靠的，可以从这里获取购买的产品ID、数量、价格等。 如果为了更安全，可以与客户端上传的再比较一次。 凭据中有可能包含多个产品。（可能上次有网络异常等问题，导致凭据中包含多个产品）。 服务端要仔细看文档，验证凭据返回的json中有的字段是数组（array）。  </description>
+    </item>
+    
+    <item>
+      <title>Python2.7 subprocess调用perl脚本增加timeout</title>
+      <link>http://everettjf.com/2016/01/29/python2.7-subprocess%E8%B0%83%E7%94%A8perl%E8%84%9A%E6%9C%AC%E5%A2%9E%E5%8A%A0timeout/</link>
+      <pubDate>Fri, 29 Jan 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/01/29/python2.7-subprocess%E8%B0%83%E7%94%A8perl%E8%84%9A%E6%9C%AC%E5%A2%9E%E5%8A%A0timeout/</guid>
+      <description>背景 去年（2015年）年底开发了个自动分析崩溃的工具，分两个功能模块。
+ 解析模块：一个python脚本，获取客户端上传上来的崩溃日志，并在Jenkins上找到对应的版本，下载对应的app文件和dSYM文件，调用Apple提供的symbolicatecrash对崩溃日志中的堆栈地址符号化，找到崩溃的符号存储到本地数据库中。 展示模块：flask开发的web应用，按照崩溃地址的符号分类展示所有崩溃。  在实际运行中发现一个“找了好多资料”都没解决的问题，symoblicatecrash（这是个perl脚本）在符号化某些日志的时候会“阻塞”（perl进程cpu占用99%）。
+一时间找不到直接解决办法，只能采用“躲避”方案。
+问题 之前在运行symbolicatecrash命令时，使用 os.system(cmdline) 的方式，此命令会一直阻塞等待 cmdline 命令结束。
+于是找 timeout 方法，（以前做Windows开发，一个WaitForSingleObject 就可以等待进程句柄了）找到了subprocess模块，但发现subprocess的方法Popen 在Python2.7下没有 timeout 参数。（Python3.x下有timeout参数）。
+搜到一个替代方案，配合threading，
+import subprocess, threading class Command(object): def __init__(self, cmd): self.cmd = cmd self.process = None def run(self, timeout): def target(): print &#39;Thread started&#39; self.process = subprocess.Popen(self.cmd, shell=True) self.process.communicate() print &#39;Thread finished&#39; thread = threading.Thread(target=target) thread.start() thread.join(timeout) if thread.is_alive(): print &#39;Terminating process&#39; self.process.terminate() thread.join() print self.process.returncode command = Command(&amp;quot;echo &#39;Process started&#39;; sleep 2; echo &#39;Process finished&#39;&amp;quot;) command.</description>
+    </item>
+    
+    <item>
+      <title>2015 summary , 2016 plan</title>
+      <link>http://everettjf.com/2016/01/01/2015-summary--2016-plan/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2016/01/01/2015-summary--2016-plan/</guid>
+      <description>2015年总结 工作维度 5个关键的事件，值得自己反思
+ 为打破安逸的现状及可预测的未来，3月份离开了工作5年的第一家公司，从一名Windows平台的C++开发转为iOS开发。 因对自由职业的向往及各种综合原因，5月份又离开了氛围很好且工作2个月的小创业公司。 全职在家看孩子，美其名曰“自由职业”。与朋友合伙做了第一个版本的摄影预约平台，使用PHP Laravel，因朋友去杭州阿里，再次对北上广的充满向往，以及创业决心不足，退出。 小插曲，去一家公司上了1天班。（很对不起这家公司。也或许当我先后填了两份一模一样的性格测试表时就注定了这个结果。也或许是因为这家公司的位置在我第一家公司的位置附近，中午吃饭的地方都一样） 8月份携家带口来北京，继续iOS开发至今，来了朋友在的公司，没有再认真考虑其他的机会。  反思今年这5件事情，只有第一件是经过了深思熟虑。其他四件事情更多是跟着感觉走，加入或退出的太过轻率，缺少长远考虑。
+总结：认真对待自己的未来，多一些把握。
+技术维度  今年用的最多的语言就是Objective-C，发现自己很喜欢这门语言，很动态、很灵活、很好玩。11月份开始认真学习了《iOS应用逆向工程》，其实很久没有静下心来，仔细、认真、每一页、每一字的阅读、思考一本书了。 Python。为了实现曾经的一个想法（http://snows.link），使用Flask开发了这个网站。 PHP，是的，还有PHP Laravel，用这个在家做了个微信摄影师预约公众号。 Golang，怎么还有Golang，snows.link第一版用Beego做的。折腾之后，终于深刻理解 Enough is Perfect。 C++，这个从第一家公司离职后几乎再也没有使用。  总结：业务为主，技术为辅，Enough is Perfect
+心态维度  3月份之前一直想离开稳定的工作，摆脱那看得清的未来。 真正加入小型创业公司后，开始认真的观察公司与生活，反思自己真正想要什么，对待工作有了更积极的心态。 当面临是否创业时，更加冷静、清晰的看到了自己的不足，也看到了现实。 当带着媳妇和孩子加入北漂大军，似乎自己更清醒了一些，未来更应该认真对待，时间不允许走一步算一步。  总结：多想好的一面
+为何做了iOS开发  迷茫导致。 3月份加入的第一家创业公司缺少iOS开发，我说我可以做。来北京的公司缺少iOS开发，我说我可以做。就这样两个公司的职位缺口把我引向了iOS开发。 那时的我，觉得什么都可以做，只要有意义。或者说，那时的我根本不知道自己要做什么，于是把自己的未来交了出去。 现在想来，这是极大的对自己不负责任的表现。 当然，现在对iOS开发兴趣十分浓厚，很是喜欢。但加入之前可是不知道自己是否喜欢这个开发。有个朋友说，不处处怎么知道喜不喜欢，或许就是这样。  总结：喜欢，那就深入学习
+作品维度  想想5年的C++开发以及业余时间的学习，可以这么说“一直在学习，很少在思考，从未有产出”。 学习了iOS自然要吸取以前的教训。 Xcode书签插件 https://github.com/everettjf/XBookmark 雪花书签 https://github.com/everettjf/snows.link 支付宝语音保存Tweak https://github.com/everettjf/Yolobroccoli/AlipayWalletChatVoiceSaver 这三个小作品，都不大，但都是自己费了不少劲做出来的。  总结：投入，投入，出一个精品
+生活维度  孩子媳妇都来北京。 都挺好，心情好就是真的好。  总结：认真生活
+2016年计划 学习源码 过去5年看的源码少之又少，多数只是简单浏览一遍，很少有认真去学习、去分析。
+至少认真学习、分析、总结以下源码：
+ SDWebImage YYCache YYModel Mantle Masonry AsynDisplayKit YYText Aspects fishhook MJRefresh  书 2016年看书原则一：源码学习优先，看书次之。 2016年看书原则二：少而精。</description>
+    </item>
+    
+    <item>
+      <title>Tweak for saving voice in alipay</title>
+      <link>http://everettjf.com/2015/12/29/tweak-for-saving-voice-in-alipay/</link>
+      <pubDate>Tue, 29 Dec 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/12/29/tweak-for-saving-voice-in-alipay/</guid>
+      <description>背景 加入了MacTalk作者池院长的支付宝群“攻城狮之路”，已经有了三次分享（昨天第三次），分享是以语音形式进行。近期正好看完了《iOS应用逆向工程》这本书，想来可以试试写个tweak，保存聊天中的语音。
+环境  iPhone 5，iOS 8.3，越狱。 支付宝9.3 。  使用iPhone5主要是因为CPU是32位，32位arm汇编。IDA免费版不能反汇编64位程序。其次也是我初学，这本书中的例子也都是32位汇编，对我来说更简单点。
+去掉保护 获取 AppBundleIdentifier 进入 AlipayWallet.app 目录，
+everettjfs-iPhone:/var/mobile/Containers/Bundle/Application/9DB7CE45-3B4C-42A3-9D4D-49A3A5122903/AlipayWallet.app root# cat Info.plist | grep com. &amp;lt;string&amp;gt;com.alipay.iphoneclient&amp;lt;/string&amp;gt;  去掉 ptrace 和 __RESTRICT section 两个保护 参见：https://everettjf.github.io/2015/12/28/simple-ios-antidebugging-and-antiantidebugging/
+破掉保护后就可以使用cycript了。
+分析 砸壳 使用 dumpdecripted
+everettjfs-iPhone:~ root# cycript -p AlipayWallet cy# [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] @[#&amp;quot;file:///var/mobile/Containers/Data/Application/F3E3A318-3E42-40BB-B1AC-2DE3CD8ACB00/Documents/&amp;quot;]  class-dump $ class-dump --list-arches AlipayWallet.decrypted $ class-dump -s -S -H --arch armv7 AlipayWallet.decrypted -o dumpAlipay  找到语音对应的UITableViewCell 打开支付宝，切换到聊天界面。保持聊天对话的对方有语音消息。
+everettjfs-iPhone:~ root# cycript -p AlipayWallet cy# ?</description>
+    </item>
+    
+    <item>
+      <title>Simple antidebugging and antiantidebugging</title>
+      <link>http://everettjf.com/2015/12/28/simple-antidebugging-and-antiantidebugging/</link>
+      <pubDate>Mon, 28 Dec 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/12/28/simple-antidebugging-and-antiantidebugging/</guid>
+      <description>最近学习完了《iOS应用逆向工程》第二版，抓紧实战几个App。结果遇到少数App有反调试的代码，总结两个简单的反调试方法及去掉方法。
+ptrace 保护 可以在main函数中先调用ptrace。
+#import &amp;lt;mach-o/dyld.h&amp;gt; #import &amp;lt;dlfcn.h&amp;gt; int main(int argc, char * argv[]) { #ifndef DEBUG typedef int (*ptrace_type)(int request, pid_t pid,caddr_t addr,int data); void *handle = dlopen(0, 0xA); ptrace_type pt = (ptrace_type)dlsym(handle, &amp;quot;ptrace&amp;quot;); pt(31,0,0,0); dlclose(handle); #endif //... }	 去掉保护 参考文章 https://everettjf.github.io/2015/12/20/amap-ios-client-kill-anti-debugging-protect/
+RESTRICT section 学习完这本书，发现cycript太好用了，Objective-C这语言太灵活了…… 但，有些程序无法使用。
+保护 在Project的 Other Linker Flags 增加
+-Wl,-sectcreate,__RESTRICT,__restrict,/dev/null  去掉保护 基本思路就是，
+ ps -e | grep /var 找到AppBinary路径 把AppBinary复制出 二进制编辑器（iHex等）修改RESTRICT和restrict为其他值。（比如：RRRRRRRR和rrrrrrrr。保证长度不变就行啦） ldid -S AppBinary 重签名。 Cydia中安装 AppSync。  在这篇文章中 http://www.</description>
+    </item>
+    
+    <item>
+      <title>Anti ptrace</title>
+      <link>http://everettjf.com/2015/12/20/anti-ptrace/</link>
+      <pubDate>Sun, 20 Dec 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/12/20/anti-ptrace/</guid>
+      <description>学习了 http://www.iosre.com/t/7-2-0-ios/770 和 http://bbs.iosre.com/t/ptrace/371 两篇文章后，上手操作了下。 发现高德地图7.5.4版本已经没有了sub函数，而是直接在start中加入了ptrace的动态加载。如下图：
+想来可以直接hook dlsym，当第二个参数为&amp;rdquo;ptrace&amp;rdquo;时，返回一个假的ptrace函数。
+图中可以看到高德地图并没有判断ptrace的返回值。
+关键代码：
+#import &amp;lt;substrate.h&amp;gt; #import &amp;lt;mach-o/dyld.h&amp;gt; #import &amp;lt;dlfcn.h&amp;gt; int fake_ptrace(int request, pid_t pid, caddr_t addr, int data){ return 0; } void *(*old_dlsym)(void *handle, const char *symbol); void *my_dlsym(void *handle, const char *symbol){ if(strcmp(symbol,&amp;quot;ptrace&amp;quot;) == 0){ return (void*)fake_ptrace; } return old_dlsym(handle,symbol); } %ctor{ MSHookFunction((void*)dlsym,(void*)my_dlsym,(void**)&amp;amp;old_dlsym); }  自己已测试，还蛮好用。 这是代码，可参考： https://github.com/everettjf/iOSREPractise/tree/master/AMap754/amaptest
+2015年12月28日补充：
+上面hook dlsym是一种途径，其实直接hook ptrace更直接啦。
+static int (*oldptrace)(int request, pid_t pid, caddr_t addr, int data); static int newptrace(int request, pid_t pid, caddr_t addr, int data){ return 0; // just return zero /* // or return oldptrace with request -1 if (request == 31) { request = -1; } return oldptrace(request,pid,addr,data); */ } %ctor { MSHookFunction((void *)MSFindSymbol(NULL,&amp;quot;_ptrace&amp;quot;), (void *)newptrace, (void **)&amp;amp;oldptrace); }  ptrace 的第一个参数当是31时，会detach调试器。所以，newptrace中可以直接返回0，也可以判断第一个参数request等于31时，更改下request的参数值。</description>
+    </item>
+    
+    <item>
+      <title>SnowBookmarks readme</title>
+      <link>http://everettjf.com/2015/12/13/snowbookmarks-readme/</link>
+      <pubDate>Sun, 13 Dec 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/12/13/snowbookmarks-readme/</guid>
+      <description>2016年5月19日补充：雪花书签已经逐渐演化为 番茄阅读。是的，不断的演化，失去了原本的功能。
+新的  域名：http://snows.link/ 名称：雪花书签 服务器提供商：vultr  是什么  书签博客  两大功能  建立书签博客  每个人可分享喜欢的书签，同时建立起自己的书签博客，分享自己的书签宝库。
+ 个人书签助手  方便管理大量的浏览器收藏，跟踪点击并分析统计。
+用户故事  某大牛是iOS开发高手，热爱分享，浏览器收藏夹里积累了大量iOS开发相关的实用网站、论坛以及文章。希望能很方便的分享出来。
+ 某小白很崇拜某大牛，总是想知道大牛平时都上什么网站，有什么好的文章。又不好意思总打扰大牛，于是让大牛使用了雪花书签。平时有空就看看大牛的雪花书签博客，收益良多。
+ 某网址收藏爱好者，平时收藏了几千个网址，难以管理，很多书签自从收藏了就再也没有看过。同步到雪花书签后，进入到个人书签博客页面，会看到点击量的排行榜，哪些书签很久不看了，哪些最近刚看了。
+  支持环境  查看书签  任意浏览器  添加书签  Chrome浏览器   使用说明 添加书签  点击安装Chrome扩展。（目前需要翻墙哦，以后支持其他浏览器时，会上传到对应浏览器的扩展市场。） 点击登录。目前只支持使用GitHub账号登录。 使用Chrome浏览器浏览到喜欢的页面，点击地址栏最后侧的雪花图标。会自动添加此网址的书签。  可以修改链接名称。 可以添加标签，多个标签以空格隔开。 如果不想添加，则可以点击弹出页面左下角的删除按钮。   特殊书签  如何置顶  添加:TOP为标签，则此标签会置顶到个人博客页面。
+ 设置私有书签  添加:PRIVATE为标签，则此链接不会被其他人看到。
+ 话题  标签名称以#为前缀，此标签自动转换为一个话题标签。
+管理功能  可以管理标签。 可以管理书签。 可以配置个人博客不公开。  页面介绍 首页  包含所有人最近添加的书签。 明星话题。 明星用户。 所有用户列表。  个人博客页面 公开视图  置顶书签 所有话题 所有标签 最近添加的书签列表（或选中话题或标签的书签列表）  登录后还包含  点击最多的书签列表 最近点击的书签列表 点击最少的书签列表  补充  原有的域名mostlike.</description>
+    </item>
+    
+    <item>
+      <title>Summary for C&#43;&#43; transfer to iOS develop for the past 5 months</title>
+      <link>http://everettjf.com/2015/11/18/summary-for-c---transfer-to-ios-develop-for-the-past-5-months/</link>
+      <pubDate>Wed, 18 Nov 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/11/18/summary-for-c---transfer-to-ios-develop-for-the-past-5-months/</guid>
+      <description>啰嗦 8月5号左右突然做出了来北京工作的决定，给北京同学了解情况时正好同学公司缺人，7号来面试了下，13号一早就来报到了。自己与iOS开发还是有些缘分，3月中旬到5月初在济南一家小公司做了不到2个月的iOS开发（当初面试是做Android，但近来后iOS更急需，我想我这刚转行都可以啦，就开始做了iOS；后来北京同学这开始也想做Android（抱着以后能学习学习Android源码的想法那时对Android情有独钟），不过同学这也是缺少iOS，于是就这样定了吧）。
+（现在想来，转为开发iOS，也与我有些迷茫有关系。移动开发、渗透测试、机器学习，三个自己都投入过不少时间的方向，拿不定主意，就看找到哪个工作了。（或许面试我的人能看出我是否适合那个方向哈，不错现在想想真是对自己的未来不负责任，后来再想，只能说自己运气好或者这个方向真的适合我））。
+ 3月中旬到5月初，接近两个月时间。 （中间两个月做梦O2O创业去了，梦醒后就8月份了） 8月13号到今天（11月18日），3个月多点。  总共5个月了，感觉自己iOS开发算是入门了，总结总结，最后也计划计划。
+前言 在 Windows 平台用 C++ 开发了 5 年客户端，平时喜欢看书且信书，第5年了就想着跨界一下，看到一本《MacTalk人生元编程》……从此迈入了 Apple 的大门。
+此文主要总结下，我这5个月如何从 Windows C++ 开发转到 iOS 开发。
+准备 信息  《MacTalk人生元编程》，让我对 Apple 有了第一次认识（以前只知道乔布斯）。（这本书我是2014年买的）  硬件  MacBook Pro 15寸 非顶配，我是从小闷的水果店买的港版。（现在公司用的13寸+外接显示器，感觉13寸也不错。）（2014年底购买） iPhone 4S，从闲鱼上700块钱买了的二手的。（从来没有用过Apple的产品，为了让自己熟悉iOS系统的操作）（2015年3月份开始做iOS开发后买的） 鼠标。前期还是配个鼠标，否则不习惯。慢慢习惯了触摸板就很少用鼠标了。  软件  Xcode，使用AppStore安装。 搭建一个Mac开发环境，推荐看这个文章 https://aaaaaashu.gitbooks.io/mac-dev-setup/content/。  学习 第一阶段：基础 这个阶段大概用了一个星期，遇到的问题百度都能很快找出来。
+1. 《马上着手开发 iOS 应用程序》 英文是 Start Developing iOS Apps Today。
+首先看了这份官方提供的教程，手把手教程。边看边做，完成后信心大增。
+2. 《Objective-C 程序设计》 我看的第四版，大概两天的时间，从头到尾浏览了一遍。类和Foundation部分照着写了一些例子程序熟悉语法。
+3. 《iOS开发指南：从零基础到AppStore上架》 看的第二版。书中虽然步骤很详细，从头到尾看快速浏览了一遍，前几章的挑了一些例子，一步一步完成了，熟悉了开发套路后，后面章节的小项目，跟着做出来。大概花费了3、4天时间。之后就是边开发边看书了。</description>
+    </item>
+    
+    <item>
+      <title>UITableViewCell自动高度计算优化小总结</title>
+      <link>http://everettjf.com/2015/11/11/uitableviewcell%E8%87%AA%E5%8A%A8%E9%AB%98%E5%BA%A6%E8%AE%A1%E7%AE%97%E4%BC%98%E5%8C%96%E5%B0%8F%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Wed, 11 Nov 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/11/11/uitableviewcell%E8%87%AA%E5%8A%A8%E9%AB%98%E5%BA%A6%E8%AE%A1%E7%AE%97%E4%BC%98%E5%8C%96%E5%B0%8F%E6%80%BB%E7%BB%93/</guid>
+      <description>背景  一个主播聊天室，大量观众能发送大量的消息，赠送一些道具也会导致产生大量的道具消息。这里假设消息很多的情况：每秒5条消息到来。 消息使用NSAttributedString实现，消息中包含不同大小的图片和文字。 消息到来后，自动滚动到最后一条消息。 全局消息列表（存储最近500条消息，到达500条后直接删除最早的300条）  要求  不能占用大量CPU。 在大量消息到来的情况下，界面不能卡顿。  功能实现 自动计算高度 使用一个不错的开源库 UITableView-FDTemplateLayoutCell
+这个开源库在数据较少时没有问题，但当数据（消息）不断增加时，会导致高度计算量大增。
+高度计算占用CPU的原因 自动布局的高度计算速度慢。这个函数：systemLayoutSizeFittingSize计算慢。
+使用estimated效果不好 - (CGFloat)tableView:(UITableView * _Nonnull)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath  估计高度，会减少很多高度的计算量，每当Cell需要显示的时候才会计算高度。但大量消息的到来会导致Cell抖动，看起来很不舒服。
+因为新增Cell是先按照估计高度显示，如果实际所需高度与估计高度不同，会在Cell显示后，再有个调整高度的过程（会有个简单的动画效果。这个效果如果在新增一条消息时很不多，但如果大量消息很短的间隔到来，就会导致Cell跳动起来）
+使用缓存 不能使用IndexPath缓存：如果使用IndexPath缓存，则当消息到达500条，删除最早300条时，会导致所有Cell都需要重新计算高度。然而，剩余的那200条消息是已经计算过的。
+由于消息一旦产生就不会变化，可将计算后的Cell高度再一次缓存到消息中。
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{ NSInteger row = [indexPath row]; MessageEntity *msg = self.data[row]; if(msg.heightCache &amp;gt; 0){ //当缓存有缓存的高度时，直接返回对应的高度 return msg.heightCache; } CGFloat height = [tableView fd_heightForCellWithIdentifier:@&amp;quot;Cell&amp;quot; cacheByIndexPath:indexPath configuration:^(id obj) { MessageTableViewCell *cell = obj; // Fill Cell }]; msg.</description>
+    </item>
+    
+    <item>
+      <title>参与SegmentFault Hackathon 2015 北京站 总结</title>
+      <link>http://everettjf.com/2015/11/01/%E5%8F%82%E4%B8%8Esegmentfault-hackathon-2015-%E5%8C%97%E4%BA%AC%E7%AB%99-%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sun, 01 Nov 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/11/01/%E5%8F%82%E4%B8%8Esegmentfault-hackathon-2015-%E5%8C%97%E4%BA%AC%E7%AB%99-%E6%80%BB%E7%BB%93/</guid>
+      <description>开始 2015年10月24日参加了 SegmentFault Hackathon 2015 北京 活动。
+先上一张图片哈： 这是我第二次参加黑客马拉松活动。
+回忆下过去 上一次参加大概是2013年，微软 Windows 8 刚刚出炉，当时作为微软阵营的一员，虽身处济南（没见过世面），但还是不远千里自费跑到北京，只为身临其境微软亚洲研究院，只为感受下北京的开发氛围。
+简单总结下这上一次Windows 8开发黑客马拉松让我印象深刻的几件事：
+ 有坐在同一桌有一位六旬老程序员，已经退休，但也一起通宵写了一晚上程序（不过第二天早上就回去休息了，没有等到比赛结束，已经很厉害了）。我想来北京这次的目的达到了，就是要感受这种对编程的热爱。 曾经的我一直属于语言派，执迷于C++，对其他语言不屑于顾。因此对微软搞的C++/CX情有独钟，苦心练剑，却在开发现场很少见到有用C++/CX的。（多数都是C#，少数Javascript。遇到一位做游戏开发的哥们使用C++/CX，互留了下QQ。） 这次 Windows 8 黑客马拉松是可以提前开发，且不需要两天的活动结束前提交App。自己做的App也没有坚持开发到提交（毅力问题，瞎折腾问题）。深刻理解了App的开发从想法到落实不是简单的过程。  这次比赛 提前1个月从朋友圈知道这次比赛了，而且济南也有赛区，想想既然来了北京就参加北京的吧，给朋友M（也是同事兼曾经同学）一说，朋友一想，要来就来真的。于是，这次比赛我们队伍共5个人。
+来到中关村创业大街的天使汇。几个大牛逐个讲解黑客马拉松的精神和这次活动内容等，然后比赛就开始了。
+技能  M，队长，Android G，音视频处理，NDK J，Android X，UI 我，Windows，iOS，Flask  比赛要求第二天中午12点之前必须提交作品，大家一起讨论后初步确定两点：
+ 做一款移动产品，只开发Android版本（只能做服务端了） 下午1点之前必须确定做什么。（上午10点左右活动讲解就结束了）  做什么 大概主要想到以下几个App：
+ 照片墙，工具，方便制作照片墙 语音任务，团队语音任务 多人旅行AA付款，方便计算出谁出钱多，谁出钱少 社交小游戏，两个虚拟人物，增加各种动画效果 儿童玩的小游戏（具体忘记了）  经过讨论，确定一款旅行App，功能描述如下：
+ 建立旅行群组。 使用语音代替打字。 每个人可以使用语音记账（用户A出了100元），旅行结束后，根据平均消费计算出谁该给谁多少钱。 创建语音提醒（提醒所有人9点到哪集合） 创建语音日记（每人一句话，最后导出合并为一个音频文件）  分工  M，实现语音录制及识别为文字。 G，实现多个语音合并。 J，实现各个界面。 X，几个见面效果及切图。 我，服务端（登录、群组管理、语音消息管理、语音上传下载、语音合并的调用等）  开工 界面布局一起确定 草稿纸上简单画了下几个界面的基本布局，就各自开工了。
+源代码管理 多人合作少不了源代码管理，除UI外，我们四个使用了http://git.</description>
+    </item>
+    
+    <item>
+      <title>Xcode书签插件XBookmark开发笔记</title>
+      <link>http://everettjf.com/2015/10/04/xcode%E4%B9%A6%E7%AD%BE%E6%8F%92%E4%BB%B6xbookmark%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 04 Oct 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/10/04/xcode%E4%B9%A6%E7%AD%BE%E6%8F%92%E4%BB%B6xbookmark%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</guid>
+      <description>代码：https://github.com/everettjf/XBookmark
+效果 使用方法 首先要安装插件管理器 Alcatraz ，搜索XBookmark并安装，重启Xcode后就可以在Edit菜单中找到以下功能啦。
+- 对应代码行，按F3可增加、删除书签 - Shift+F3，可显示书签列表 - Command+F3，下一个书签 - Shift+Ctrl+F3，上一个书签  背景 初入iOS开发，发现自己以前在Visual Studio中常用的书签功能，Xcode中竟然没有。网上找了一阵子，大概有以下替代方法：
+- 使用断点（Disabled Breakpoint) - 使用插件XToDo，增加标签BOOKMARK，并在想加书签的代码行增加注释 BOOKMARK - 使用插件XcodeBookmark（不是本文说的XBookmark），但此插件貌似不支持Xcode7，而且原理仍然是辅助增加断点。  目前找到了这3种方法，但感觉都不理想。没法快速进行上一个书签、下一个书签切换，没法增加书签注释。 于是，想自己开发一个，就叫做 XBookmark 吧。
+预习文章 开发中大概看了以下几篇文章。
+Xcode插件的文章：
+http://studentdeng.github.io/blog/2014/02/21/xcode-plugin-fun/ http://www.poboke.com/study/write-a-xcode-plugin-to-auto-select-all-targets.html http://www.onevcat.com/2013/02/xcode-plugin/
+Mac开发的文章：
+http://www.raywenderlich.com/17811/how-to-make-a-simple-mac-app-on-os-x-10-7-tutorial-part-13
+还看了几个插件的源码。
+开发步骤简要总结 安装模板、创建工程 在 Alcatraz 中的 Templates 中搜索 Xcode Plugin。安装后从此模板创建工程。  增加菜单 NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@&amp;quot;Edit&amp;quot;]; if (menuItem) { [[menuItem submenu] addItem:[NSMenuItem separatorItem]]; { NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@&amp;quot;Toggle Bookmark&amp;quot; action:@selector(toggleBookmark) keyEquivalent:f3]; [actionMenuItem setKeyEquivalentModifierMask:0]; [actionMenuItem setTarget:self]; [[menuItem submenu] addItem:actionMenuItem]; } //.</description>
+    </item>
+    
+    <item>
+      <title>简单的iOS TabPageScrollView开发笔记</title>
+      <link>http://everettjf.com/2015/09/26/%E7%AE%80%E5%8D%95%E7%9A%84ios-tabpagescrollview%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 26 Sep 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/09/26/%E7%AE%80%E5%8D%95%E7%9A%84ios-tabpagescrollview%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</guid>
+      <description>背景 看到CocoaPods上这么多好东西，初入iOS开发，也想熟悉熟悉这个流程。 想到最近自己开发的一个简单的Tab页面，尝试完善一下，做的更通用一些，放到CocoaPods上。
+最终 使用方法及代码见：https://github.com/everettjf/Yolo/tree/master/EVTTabPageScrollView
+步骤  创建模板工程 参考链接：https://guides.cocoapods.org/making/using-pod-lib-create.html  pod lib create MyLibrary  修改描述、编写库的代码 测试  pod lib lint pod spec lint  上传  $ pod trunk register orta@cocoapods.org &#39;Orta Therox&#39; --description=&#39;macbook air&#39; $ pod trunk push EVTTabPageScrollView.podspec  参考链接：https://guides.cocoapods.org/making/getting-setup-with-trunk  其他 这个还很简单，仅作为自己试用CocoaPods的例子。</description>
+    </item>
+    
+    <item>
+      <title>iOS崩溃收集与分析，使用PLCrashReporter</title>
+      <link>http://everettjf.com/2015/09/09/ios%E5%B4%A9%E6%BA%83%E6%94%B6%E9%9B%86%E4%B8%8E%E5%88%86%E6%9E%90%E4%BD%BF%E7%94%A8plcrashreporter/</link>
+      <pubDate>Wed, 09 Sep 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/09/09/ios%E5%B4%A9%E6%BA%83%E6%94%B6%E9%9B%86%E4%B8%8E%E5%88%86%E6%9E%90%E4%BD%BF%E7%94%A8plcrashreporter/</guid>
+      <description>简介 App上线后，如果崩溃，难道只能干瞪眼？不可能拿到用户的手机来通过Organizer导入崩溃日志，因此需要在程序崩溃时自动收集崩溃的日志，并在程序再次启动时，将崩溃日志上传到服务器。
+ 崩溃日志要关联到某一个revision的代码（如果是svn）。（一般使用持续集成Jenkins，可以通过Jenkins的BuildNumber间接关联到代码）。 对应版本的dSYM符号文件。（链接时可配置生成）  直接调用系统函数获取崩溃时的栈信息 这种方式，能获取到简单的崩溃信息，但无法配合dSYM文件，定位到具体的哪行代码。且能获取到的崩溃类型种类有限，如果要获取更多的信息还需要更多的工作（下文中的开源的plcrashreporter已经做好了）。
+ signal 进行错误信号的捕获 NSSetUncaughtExceptionHandler 未捕获的OC异常  static int s_fatal_signals[] = { SIGABRT, SIGBUS, SIGFPE, SIGILL, SIGSEGV, SIGTRAP, SIGTERM, SIGKILL, }; static int s_fatal_signal_num = sizeof(s_fatal_signals) / sizeof(s_fatal_signals[0]); void UncaughtExceptionHandler(NSException *exception) { NSArray *arr = [exception callStackSymbols];//得到当前调用栈信息 NSString *reason = [exception reason];//非常重要，就是崩溃的原因 NSString *name = [exception name];//异常类型 } void SignalHandler(int code) { NSLog(@&amp;quot;signal handler = %d&amp;quot;,code); } void InitCrashReport() { // 1 linux错误信号捕获 for (int i = 0; i &amp;lt; s_fatal_signal_num; ++i) { signal(s_fatal_signals[i], SignalHandler); } // 2 objective-c未捕获异常的捕获 NSSetUncaughtExceptionHandler(&amp;amp;UncaughtExceptionHandler); } int main(int argc, char * argv[]) { @autoreleasepool { InitCrashReport(); return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class])); } }  使用PLCrashReporter 官网 https://www.</description>
+    </item>
+    
+    <item>
+      <title>使用fastlane实现iOS持续集成</title>
+      <link>http://everettjf.com/2015/09/08/%E4%BD%BF%E7%94%A8fastlane%E5%AE%9E%E7%8E%B0ios%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</link>
+      <pubDate>Tue, 08 Sep 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/09/08/%E4%BD%BF%E7%94%A8fastlane%E5%AE%9E%E7%8E%B0ios%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</guid>
+      <description>简介 持续集成是个“一次配置长期受益”的工作。但很多小公司都没有。以前在做Windows开发配置感觉简单一些，这次配置iOS的，感觉步骤还挺多。整理出来，分享给大家，不正确的地方请及时指正。
+本文主要使用fastlane配置iOS的持续集成，自动编译、打包出多个版本。
+最近转行iOS开发，首要任务是使用Jenkins（算是hudson的兄弟）配置iOS工程的持续集成。 查找各种资料后，整理出以下几个关键词。
+ jenkins搭建。 使用fastlane中提供的工具修改工程配置。 gym 或 ipa 工具编译工程。  目标  配置一台电脑自动获取代码，并定时打包出以下版本的ipa文件。
+ 内部测试版本：使用标准开发者的Developer证书签名的ipa文件。 公开测试版本：使用企业账户的Distribute InHouse证书签名的ipa文件。 AppStore版本：使用标准开发者的AppStore证书签名的ipa文件。 渠道版本：内部测试版本，但Info.plist中增加每个渠道的标示符（因为渠道例如fir.im 会使用自己的证书重新签名ipa） PS: 2015年11月24日补充，fir.im 不会重新签名ipa。  保留每个版本的dSYM调试符号文件。
+  源代码 https://github.com/everettjf/Yolo/tree/master/FastlaneBasicDemo4iOS
+安装 fastlane和shenzhen都需要gem安装，把gem更换为淘宝源。
+1- 安装fastlane
+sudo gem install fastlane   fastlane是ruby编写，使用gem安装。 https://fastlane.tools/  2- 安装shenzhen
+ sudo gem install shenzhen   如果只使用了gym命令，而不使用ipa命令，可以不安装。 https://github.com/nomad/shenzhen  示例步骤 1- 在xcodeproj文件同级目录下，执行
+fastlane init  fastlane 很强大，甚至能自动截图，自动提交AppStore审核，不过我只用最简单的打包功能。 这里会有一系列提问。
+* Do you want to get started.</description>
+    </item>
+    
+    <item>
+      <title>北京，我来了，开心的奋斗吧</title>
+      <link>http://everettjf.com/2015/08/13/%E5%8C%97%E4%BA%AC%E6%88%91%E6%9D%A5%E4%BA%86%E5%BC%80%E5%BF%83%E7%9A%84%E5%A5%8B%E6%96%97%E5%90%A7/</link>
+      <pubDate>Thu, 13 Aug 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/08/13/%E5%8C%97%E4%BA%AC%E6%88%91%E6%9D%A5%E4%BA%86%E5%BC%80%E5%BF%83%E7%9A%84%E5%A5%8B%E6%96%97%E5%90%A7/</guid>
+      <description>2009年还没毕业就去了济南齐鲁软件园，在一家公司一工作就是五年。
+五年间，多少次想来北京发展，多少次犹豫。
+2015年8月12日，终于实现。
+在济南已经有房有车有老婆有孩子。
+为什么不继续在济南？
+还年轻，工作太稳定不好，应该闯闯，
+被这里的互联网的氛围吸引，
+被这里的技术氛围吸引，
+被这里的同学们吸引，
+对这里所有的未知吸引，
+围城。
+做了5年Windows客户端的开发，主要使用C++。
+这次来北京，转行为iOS开发，主要使用Objective C。
+不要盲目的奋斗。
+3月份从第一家公司（工作了5年Windows下C++）离职以来，
+在一个小创业公司待了不到两个月（转为做iOS开发），
+在家又做了两个半月的奶爸兼开发。
+这两个半月有两个不成型的作品：
+1、LinkHub 开始用golang（beego）开发，后来改为php（laravel）。功能完成了70%， 但效果与我预期还有不少差距。
+2、微信公众号“光影e站”的后台，业余摄影师O2O平台。最终因为我决定去北京，转交。
+第一个产品更偏向“情怀”，第二个项目算是合伙创业，
+但两个月来让我感觉“我还不适合创业，至少现在不适合”，
+我更应该做的是找一份工作，继续提升技术能力，
+更重要的是维持住家庭的开支，给家庭一份安全感。
+北京，我来了，
+开心的奋斗吧。</description>
+    </item>
+    
+    <item>
+      <title>我的渗透测试之路，第零篇，全是工具</title>
+      <link>http://everettjf.com/2015/07/28/%E6%88%91%E7%9A%84%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8B%E8%B7%AF%E7%AC%AC%E9%9B%B6%E7%AF%87%E5%85%A8%E6%98%AF%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Tue, 28 Jul 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/07/28/%E6%88%91%E7%9A%84%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8B%E8%B7%AF%E7%AC%AC%E9%9B%B6%E7%AF%87%E5%85%A8%E6%98%AF%E5%B7%A5%E5%85%B7/</guid>
+      <description>2015年9月补充，济南的渗透测试职位没有应聘上，8月份来到北京开始iOS开发，渗透测试之路暂停。渗透测试的简要学习只是作为我的知识面扩展了。
+（PS：没有应聘上的主要原因，应该是我要求的待遇较高，想与自己更擅长的技术同等待遇，想多了哈。）
+第零篇，仅作记录。
+背景 2014年接手一个类似“杀毒软件”（准确的说是查毒软件）的项目，于是按照我的逻辑， 就买了一堆相关的书。其中一本《0Day安全：软件漏洞分析技术》，业余时间就照着 书上一步一步来。
+网上找资料，知道了还有 web渗透测试、app渗透测试。于是又买了几本书了解。
+总结  三个方向：web、app、二进制方向（服务器、软件） 任何一个方向都可深入很多 不可迷恋工具。metasploit等等工具很多。要理解原理。 二进制类：要求反汇编能力 各种工具整理：下载  公司 几个比较出名的公司或组织或网站
+ web方向：知道创宇 二进制方向：天融信 乌云漏洞报告平台 网络尖刀  书 看了一遍（看的多，做的少）： 《计算机病毒分析与防范大全》（感觉挺粗糙的书，但入门不错，能了解不少知识） 《Metasploit渗透测试魔鬼训练营》（好书，五星，入门必备） 《0Day安全：软件漏洞分析技术》（好书，入门必备） 《黑客免杀攻防》（了解如何免杀的很全面的书） 《软件调试》（经典） 《白帽子Web安全》（了解Web安全，入门Web安全） 《Web前端黑客技术揭秘》（稍微深入Web安全） 《社会工程：安全体系中的人性漏洞》（入门社会工程的好书） 《Metasploit渗透测试指南》（打开Metasploit的神秘面纱）
+还没看： 《黑客大曝光》 《Rootkit系统灰色地带的潜伏着》</description>
+    </item>
+    
+    <item>
+      <title>我的机器学习之路，第零篇，横冲直撞</title>
+      <link>http://everettjf.com/2015/07/27/%E6%88%91%E7%9A%84%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E7%AC%AC%E9%9B%B6%E7%AF%87%E6%A8%AA%E5%86%B2%E7%9B%B4%E6%92%9E/</link>
+      <pubDate>Mon, 27 Jul 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/07/27/%E6%88%91%E7%9A%84%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E7%AC%AC%E9%9B%B6%E7%AF%87%E6%A8%AA%E5%86%B2%E7%9B%B4%E6%92%9E/</guid>
+      <description>这是第0篇，下一篇可能会1年之后再写，也可能不再写。 这不是一片成功的文章，只是一个流水账。 横冲直撞，仍需静下心来，潜心研究，一步一脚印。  结局  没有任何结果。  总结  机器学习的人有几种  数据挖掘专业的研究生。科班出身，数学基础好。 数学专业的研究生。内功好，入门快，主要精力在调参数。 计算机专业的程序员。编码能力强，数学底子弱。  我们是计算机专业的程序员  编码没问题。 几年编码，数学都忘记了，还需要重新复习。  我们可以这样  先学习《集体智慧编程》，然后就可以写代码做项目了。 业余时间，做个爬虫。（集体智慧编程中的例子） 补充理论知识。线性代数、微积分、数理统计。见这里的各种教程（http://www.cppblog.com/everett/archive/2013/08/24/202737.html） 之后，现在不知道，以后再写。  横冲直撞  仍需静下心来，潜心研究，一步一脚印。  七月算法  学习SVM时，看到july的svm博客文章 http://blog.csdn.net/v_july_v/article/details/7624837。 现在july创办了七月算法。可以去学习下。 机器学习课程，真的想参加一下。http://www.julyedu.com/course/index/category/machinelearning.html   流水账  2013年上半年，在一位同事的带领下，看到《机器学习实战》一书。当时的学习总结(http://www.cppblog.com/everett/archive/2013/08/24/202736.html) 2013年下半年，学习各种理论，http://www.cppblog.com/everett/archive/2013/08/24/202737.html 2014年上半年，集体智慧编程、模式分类、数据之魅。 2014年12月份，Ruby版本的基于SVM的病毒分类器，代码https://github.com/everettjf/RubySVMVirusScanner。 2014年下半年至今（2015年7月份），几乎暂停了一年时间。  这段时间没有经住好奇心和互联网行业吸引，学习了渗透测试、Android和iOS开发。 消耗了大量时间和精力，并没有达到心中的圣地麦加。   [1] - xiao70</description>
+    </item>
+    
+    <item>
+      <title>redis使用方式总结</title>
+      <link>http://everettjf.com/2015/05/31/redis%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sun, 31 May 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/05/31/redis%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/</guid>
+      <description>《redis入门指南》笔记。 注意：使用何种类型取决于具体情境，以下仅是某一种方式。
+数据类型  string 字符串类型（就是最简单的key-value）   SET bar 1 GET bar   hash 散列类型(key-field1-value1-field2-value2&amp;hellip;)   HSET car price 500 HSET car name BMW HGET car name   list 列表类型(key-value1-value2&amp;hellip;)   链表实现，靠近两端数据获取速度快，而元素增多后，访问中间数据速度较慢。 更适合“新鲜事”、“日志”这种访问中间元素较少的情况。 LPUSH numbers 1 2 3 RPUSH numbers 6 5 4 LPOP numbers RPOP numbers LRANGE numbers 0 -1   set 集合类型(key-member1-member2&amp;hellip;)   SADD letters a b c SREM letters c d SMEMBERS letters SISMEMBER letters a SDIFF lettersA lettersB SINTER lettersA lettersB SUNION lettersA lettersB   zset 有序集合类型(key-score1-member1-score2-memeber2&amp;hellip;)   ZADD scoreboard 89 Tom 68 Peter 100 David ZSCORE scoreboard Tom ZRANGE scoreboard 0 -1 ZRANGE scoreboard 60 90 WITHSCORES  博客系统实现  博客名称存储   key = blog.</description>
+    </item>
+    
+    <item>
+      <title>idea-网址管理及分享</title>
+      <link>http://everettjf.com/2015/05/09/idea-%E7%BD%91%E5%9D%80%E7%AE%A1%E7%90%86%E5%8F%8A%E5%88%86%E4%BA%AB/</link>
+      <pubDate>Sat, 09 May 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/05/09/idea-%E7%BD%91%E5%9D%80%E7%AE%A1%E7%90%86%E5%8F%8A%E5%88%86%E4%BA%AB/</guid>
+      <description> 背景  平时看网页、查资料，看到好的网站就加到收藏夹中，看到就加，看到就加……越来越多。日积月累，成百上千。 平时经常上得网站就那么几个。 网站收藏夹的作用如何发挥呢？  想法  一个网站 可管理个人网址收藏 个人收藏可自动统计点击数目（可生成统计表等） 可将个人收藏共享到“网址广场” 网址来源:  各大浏览器插件，替代各大浏览器的收藏功能。 导入现有收藏。 从网址广场加入到个人收藏。 手动录入。 系统根据个人收藏爱好，自动推荐广场的。 推荐收藏了，但很久不看的网址。   其他  知乎上有这么多人贡献自己的知识，那贡献所知道的网址应该不是问题。 可作为浏览器首页。  竞争对手  还没看到完全类似的。有一些网址收藏站点，但做的都太差了。  盈利  “优质”广告网址推送（标明是广告条目） 高级功能的按月收费（每月5元？）  我开始了，你呢？  在家第一个项目就从这个web项目开始吧，你看好吗？ 有想法，告诉我吧。  </description>
+    </item>
+    
+    <item>
+      <title>技术团队软硬件配置随想</title>
+      <link>http://everettjf.com/2015/05/06/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E8%BD%AF%E7%A1%AC%E4%BB%B6%E9%85%8D%E7%BD%AE%E9%9A%8F%E6%83%B3/</link>
+      <pubDate>Wed, 06 May 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/05/06/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E8%BD%AF%E7%A1%AC%E4%BB%B6%E9%85%8D%E7%BD%AE%E9%9A%8F%E6%83%B3/</guid>
+      <description> 技术分享氛围  务必每周至少一次。内容不在多、不在精，在于交流、呼唤知识。  硬件配置  电脑配置：不能为破旧的电脑付钱。电脑配置低，严重影响工作效率。 传言某老板说，我不能让我的员工去等待电脑响应。 双显示器。  项目管理工具  BUG管理：Jira，redmine等。 任务分配：worktile，tower等。 需求、知识库：印象笔记（evernote）、有道云协作等。  座位  按照项目组织。同一项目成员在一起。 座位不固定。  座机电话  研发人员务必不能配座机。  数据分析  电商与技术相关更重要的是数据。 当量多后，应该招聘专门的数据分析人员。（使用机器学习技术分析大量数据）  代码如何存放？  代码是软件公司的核心竞争力，必须保证代码的有效性和安全性。 一般来说，公司内部要有存放代码的服务器（svn或git服务器）。 或者可以使用GitHub的私有服务器（收费）。 代码的有效性：保证代码服务器中包含所有产品代码（与最终产品一致）。 以前有的同事不喜欢提交代码。电脑坏了、硬盘坏了，或者人员离职了，代码还需要U盘手动复制。 更或者，与领导关系有问题的同事，少交接点代码什么的就不好了。 代码的安全性：保证代码服务器的安全。  设置权限。最好不要每个人都能看到所有代码。（至少以项目或单个产品为单位，不同产品之间隔离） 权限应该“最小范围内最大化”。（以前同事做开发，总是缺少关键代码的权限，严重影响效率。） 防止数据丢失。有条件没条件都要对硬盘做RAID。 服务器防止偷窃。没遇到过，但认为很重要。   持续集成  一些重复性工作一定做成脚本，自动执行：利用hudson等。  专门的测试人员  认为创业团队可后期考虑。  项目时间估算  根据具体需求确定项目周期。 多个版本迭代。切记一个版本吃个“胖子”。 优先保证可用。（简单、可用）  内部部署环境  一般可以使用阿里云，但建议阿里云作为最终产品的发布环境。 若使用阿里云，可以有两个阿里云服务器，一个作为测试版本环境，一个作为发布环境。 也可以，公司内部服务器中通过虚拟机搭建测试环境。  </description>
+    </item>
+    
+    <item>
+      <title>理想的工作环境</title>
+      <link>http://everettjf.com/2015/04/28/%E7%90%86%E6%83%B3%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Tue, 28 Apr 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/04/28/%E7%90%86%E6%83%B3%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/</guid>
+      <description> 以下想法主要面向软件公司（互联网公司）
+多数现有的工作环境  1周工作5天或6天，1天工作8小时、7.5小时或7小时。 办公室隔间。 每年一次或每两年一次的集体旅游。 白色的墙上贴着规章制度。 层级管理。 对员工健康不关注。 全部时间用于工作。 被动的知识分享。 员工固定的12或14、15薪。 乒乓球室。 台式电话。 自己翻墙，甚至隔离网络。  我认为理想的工作环境  1周工作4天或5天，1天工作7.5小时或7小时。 开放办公环境。 公司内部办公位置随意组合，可以站着编程，甚至可以趴着编程。 内部装饰、涂鸦由员工创造。 每月4天或8天（甚至更多）远程办公时间。 弹性工作时间。 扁平化管理。 关注员工健康，每天定时提醒员工锻炼。 主动的知识分享。 业绩好，年底不只是14、15，甚至24、36薪（有点夸大，但存在）。 乒乓球室、游戏娱乐室、台球室等。 没有台式电话。 公司网络内置翻墙。 全自动咖啡机。 多个白板。 工程学椅子。 人均带宽100MB/s。 有公共书架，每个人都可以贡献书籍。 双显示器。  理想的  理想，如何成为现实？ 找不到现有的公司，为何不尝试从自己开始。  </description>
+    </item>
+    
+    <item>
+      <title>计划</title>
+      <link>http://everettjf.com/2015/04/13/%E8%AE%A1%E5%88%92/</link>
+      <pubDate>Mon, 13 Apr 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/04/13/%E8%AE%A1%E5%88%92/</guid>
+      <description> 计划即瞎猜 《重来》有一篇文章“计划即瞎猜”。
+ 并不是说应该无视未来，或者不应该对未来的挑战未雨绸缪。只是不要觉得自己必须把这些问题白纸黑字写出来，或者为此纠结不休。 放下计划吧，只要找出下一项最重要的任务，然后，起而行之。  射中膝盖的文章 《选择学习目标的困难与焦虑》（详细见微信订阅号：TimYang）
+ 技术的学习除了看书本与资料，通常还需要该领域的实战，因此任何一个兴趣的选择都伴随着大量时间的消耗。 从一大堆细分领域里面挑选出一个适合自己的本来就很困难，选择后如果没有很强的驱动力往往半途而费。 见异思迁会导致上一个学习目标投入时间的浪费。 业界不会缺少热点，简单追随热点会让你最终炫耀一些新的词汇外，不会留下太多积累的东西。  那些我曾经的计划  曾经计划每天做一道ACM题目， 曾经计划每天问自己一个问题，并写成博客，
+ 曾经计划辞职后至少三个月不找工作，
+ 曾经计划自由职业，
+ 曾经计划实现Arduino的机器人，
+ 曾经计划做一个可用的测量身高的App，
+ 曾经计划每周日晚上9点更新文章，
+ 曾经计划每周三晚上9点更新idea，
+  代价  为了完成不切实际的计划，代价往往很大很大。 会牺牲掉成员对团队领导的信任。 会牺牲掉陪伴家庭的宝贵时间。 会忙忙碌碌迷茫在计划完不成的自责中。  总结  找出下一项最重要的任务，起而行之。 每天叫醒你的不是闹钟，而是伟大的梦想。  </description>
+    </item>
+    
+    <item>
+      <title>选择</title>
+      <link>http://everettjf.com/2015/04/04/%E9%80%89%E6%8B%A9/</link>
+      <pubDate>Sat, 04 Apr 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/04/04/%E9%80%89%E6%8B%A9/</guid>
+      <description>每时每刻都在选择 那天倒车太快，撞到了临时停的车。之前发生了什么呢？简化后如下： 1. 电脑带回家：前一天选择了把工作电脑带回家。 2. 电脑忘家里：早上选择了开车去公司。（忘记带电脑） 3. 回家拿电脑：在公司不想使用别人的电脑，选择开车回家拿。 4. 不吃中午饭：到家后媳妇做好了中午饭，让吃了饭再走。选择了直接去上班。 5. 电动车上班：这次选择了骑电动车上班。 6. 返程再开车：没走多远，选择了返回再开车。 加上没看两遍后视镜，和速度太快，就发生了这次小事故。
+每时每刻都是选择，每一个小小的选择，都对未来有着想象不到的重要性。
+影响选择的因素 “不够坚定” 很多决定是最后时刻做出的，而且与之前想做出的不同。 5年工作，2次辞职失败（第二年、第三年）。第一次是要去北京工作，最后时刻家庭内部反对，自己不够坚定，辞职失败。第二次是受够了老项目维护带来的电话量，（程序猿不写代码，接起电话来，是要抢客服饭碗吗？！），由于公司承诺开始交接给其他同事（真是害了那位同事），而且涨money，年轻缺钱的我又辞职失败。 最近办理停车卡，在办理时间上犹豫了很久，最后决定6个月。但就在去办理的路上，遇到同事随便聊了几句停车卡时间的问题，就这样，最后时刻问我办理时间的问题时，我回答了2个月。事情就这么神奇。
+“兴趣源头” 少量的努力，超出预计的回报，就会产生浓厚的兴趣。 学习技术，很重要的就是兴趣。就像很多外行人说我猿类，“每次看你们对着屏幕打代码，一打一整天，就感觉很神秘。对这屏幕一整天，不累吗？！”，每次我就回答“兴趣”。（还有更好的回答吗？告诉我哈） 兴趣能趋势做出选择。就像我的兴趣在“写代码”，而不是“接电话”，于是就有了那第2次辞职的选择。“我只想安安静静的做(zuo)在(yi)那(ge)写(mei)代(nan)码(zi)”。
+“共同的价值观” 降低薪水也要选择小型创业公司，更多是因为共同的价值观。 以前不相信“价值观”这三字的重要性。5年传统行业公司的工作，原来人与人之间的差别，是那么那么大的（多大啊，就那么大，老大了）。不多说了，就是挺大。每个人的追求不同。有的人还没有想到还有“追求”二字，有的人想到了但置之不理，有的人想到了就去寻找。 想象一个世界，没有我。那个世界和现在这个有什么区别呢？ 推荐：李开复的上海交通大学演讲
+“舆论的力量”  都说Vim是神，我就去学Vim。（那5年我搞Windows开发的啊？VisualStudio也有Vim插件） 看了Emacs也是神，我就去学Emacs。 同事说Golang多NB，多多NB，我就花了一周学习Golang。 都说C++11是未来，我就用到项目中。 都说Python科学计算好，那咱也去买本书。 都说吴恩达NB，那咱也去听听那公开课。 看着《疯狂Android讲义》评论多，就花好多毛毛买了本，终于发现：真的不适合我这搞C++的。 都说Vista比RIO更高大上，我就去喝Vista。 &amp;hellip;  “小马过河” 或许由于自信，或许还是由于自信，“当别人说出某某事情很难之类的话时，我总觉得不相信”。当我们寻求别人的观点时，应该牢记，每个人都是根据自己的认知来回答我们的问题。信息总是以一种不那么准确（或者说，不那么适合自己）的形式传递给我们。 例如：很多iOS开发有段时间的猿，觉得是纯用代码来写界面更好维护（这个不那么反对）。用代码关键的问题就是定位界面元素的坐标。可以有两种方式： 1. 计算坐标（定义一堆Macro来辅助计算大小） 2. 代码写约束。（Masonry等AutoLayout辅助库） 很多猿会很容易习惯上第1种方式，而且自我感觉高大上，飘飘然而不知第2种方式。每当谈论起xib或storyboard，就心生反(wei)感(ju)，心想难以维护或不知如何维护。猿的信息很多，当接收到这些信息，不可一概相信。要结合自己的认知处理出适合自己的结论。
+每天8小时 工作占用了8小时，一天的三分之一。工作不开心，那人生多可悲。 以前的工作工资高一些，但总觉自己发挥不出“能量”，当每次的建议总以一种拐弯抹角的方式告诉你“建议很好，真的很好，就是现在公司不会去这么做。这么做会动了很多人得奶酪。当每次的想法都没那担心上级、担心上上级的人们抹杀掉。当每次想起来那些加班，而又被告知“这个失败项目的加班情况不能如实告诉上级，可以私下偷偷摸摸调休，而不敢告诉上上级”。当这些加起来，就构建成了一个“不那么积极向上的氛围”，就构成“不那么开心的一天”。 工作8小时，应该不止8小时。8小时的工作应该全身心的投入，把爱好融入其中。8小时之外也会去想怎么把工作做好，怎么把自己的想法实现。
+那些我的选择 先列出的就是我已经选择的。有些是曾经选择的。
+ C++开发 or C#开发 工作 or 考研 济南工作 or 北京工作 期房 or 现房 离职去互联网公司（低一些的薪水） or 继续留在传统公司（相对稳定较高的薪水） 去一家小型创业公司 or 在家寻求自由职业</description>
+    </item>
+    
+    <item>
+      <title>Windows平台C&#43;&#43;5年来使用到的工具汇总</title>
+      <link>http://everettjf.com/2015/03/06/windows%E5%B9%B3%E5%8F%B0c--5%E5%B9%B4%E6%9D%A5%E4%BD%BF%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7%E6%B1%87%E6%80%BB/</link>
+      <pubDate>Fri, 06 Mar 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/03/06/windows%E5%B9%B3%E5%8F%B0c--5%E5%B9%B4%E6%9D%A5%E4%BD%BF%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7%E6%B1%87%E6%80%BB/</guid>
+      <description>Windows平台的C++开发工作已经5年时间，在即将转向Android开发之时，整理下曾经使用到的工具。 Star表示此工具很常用。
+ Tools  | Star | Tools | Comment | |&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | * | Visual Studio | 2008 (SP1) + Windows SDK 7.1 + MSDN + 2013 | | * | Windbg | | | * | VMWare | 10 | | * | DbgView | in Sysinternals Toolset | | * | Xmind | | | * | TotalCommander | | | * | Beyond Compare | | | * | Everything | | | | VisualKD | | | | Google Chrome | | | | StarUML | | | | Python27 | | | | WingIDE | | | | FeiQ | | | | Notepad++ | | | * | RapidEE | Rapid Environment Variable Editor | | | FlashFXP | ftp tools | | | SQLyogEnt | mysql tools | | | Dependency Walker | | | | emacs | | | | gvim | | | | VisualBox | | | | Axure | | | * | 360zip | | | | 7z | | | | Git | | | | mysql | | | * | NSIS | | | | Qt Creator | Qt Library + Qt Visual Studio Plugin | | * | Office | | | * | ViEmu | Visual Studio Vim Plugin (for VS2008) | | * | VsVim | Visual Studio Vim Plugin (for VS2013) | | | UltraISO | | | | TortoiseSVN | svn client | | | VisualSVN | svn server | | | SogouPinyinInput | IME | | * | Visual Assist X | Visual Studio Plugin | | | Balsamiq Mockups | mockup | | | c32asm | | | | devicetree | | | | Fast Stone Capture | screen capture tool | | | GoAgent | | | | IceSword | | | | XueTr (PCHunter) | | | | LordPE | | | | OllyDbg (OllyICE) | | | | reshack | | | | SYSTEMRUN | | | | todolist | | | | winapioverride | | | | wmiexplorer | | | | Application Verifier | | | | AStyle | | | | cpplint.</description>
+    </item>
+    
+    <item>
+      <title>vim emacs 常用快捷键对比</title>
+      <link>http://everettjf.com/2015/03/05/vim-emacs-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%AF%B9%E6%AF%94/</link>
+      <pubDate>Thu, 05 Mar 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/03/05/vim-emacs-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%AF%B9%E6%AF%94/</guid>
+      <description>习惯了vim快捷键，又了解下emacs。 vim使用spf，emacs使用prelude，体验了两位“大神”。（写多了，这篇文章与这两个没有直接关系，写出了作为笔记）
+个人经常使用vim的dd或者yy然后p，感觉emacs的就麻烦了（C-a C-k C-y） 主要是emacs用的很少。
+习惯了vim，可以emacs启用evil-mode。 emacs的M-x很强大。
+简单整理下常用快捷键的对比，作为笔记。
+|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | star | vim | emacs | comment | |&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | * | i | &amp;mdash; | 插入模式 | | * | : | &amp;mdash; | 命令模式 | | * | ESC | &amp;mdash; | 普通模式 | | | h | C-b | 左 | | | l | C-f | 右 | | | j | C-n | 下 | | | k | C-p | 上 | | | :q | C-x C-c | 退出 | | | :q!</description>
+    </item>
+    
+    <item>
+      <title>emacs新手遇到的坑，以及笔记</title>
+      <link>http://everettjf.com/2015/03/04/emacs%E6%96%B0%E6%89%8B%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91%E4%BB%A5%E5%8F%8A%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 04 Mar 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/03/04/emacs%E6%96%B0%E6%89%8B%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91%E4%BB%A5%E5%8F%8A%E7%AC%94%E8%AE%B0/</guid>
+      <description>作为一名windows程序猿、vim、markdown新手。忽然进入另一个“世界，遇到osx、emac、org，遇到了一些坑，记录下来。
+安装  MacOS   brew install emacs --with-cocoa brew linkapps emacs 然后重新打开iTerm2，输入emacs就可以在终端运行emacs了。 也在Applications里有了emacs项。  坑  windows8.1下emacs24.4部分中文显示为“方块”。 在.emacs文件中（或者prelude的init.el文件中）加入下面一行：  (set-fontset-font &amp;quot;fontset-default&amp;quot; &#39;gb18030 &#39;(&amp;quot;Microsoft YaHei&amp;quot; . &amp;quot;unicode-bmp&amp;quot;))   .emacs文件和.emacs.d文件夹中的init.el同时存在，只有.emacs文件生效。
+当使用prelude时，需要删除.emacs文件(如何使两者都有效？)  osx10.10.1（界面英文）terminal下使用brew安装emacs，中文显示问号。
+  系统切换为中文，解决。（不切换如何解决，暂不想研究了）   osx下，terminal或iterm下meta按键问题
+ terminal下   终端-&amp;gt;偏好设置-&amp;gt;描述文件-&amp;gt;键盘 最下方选择“使用Option键作为Meta键”   iterm  Preferences -&amp;gt; Profiles 然后选择当前的profile -&amp;gt; Keys 最下面都选择+Esc Left option key acts as : +Esc Rigth option key acts as : +Esc   如何找到.</description>
+    </item>
+    
+    <item>
+      <title>Windows程序猿的OSX入门笔记</title>
+      <link>http://everettjf.com/2015/02/14/windows%E7%A8%8B%E5%BA%8F%E7%8C%BF%E7%9A%84osx%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 14 Feb 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/02/14/windows%E7%A8%8B%E5%BA%8F%E7%8C%BF%E7%9A%84osx%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description> macbook pro 2014年10月初，买了macbook pro和《MacTalk人生元编程》，从此一位在Windows下搬了5年砖的C++程序猿不小心跨入了OSX的世界。
+几个小常识  开机按钮（键盘最右上角的按钮） Finder（对应Windows的资源管理器，就是资源管理器的名字） Command（对应Windows系统的Windows键） Option（对应Windows的Alt键） 触摸板手势（点击左上角的苹果，系统偏好设置，触摸板，这里有动画演示） img文件（mac的安装程序，类似Windows的绿色软件，类似Windows的iso文件） 全屏与最大化（没有最大化，只有全屏。或者说全屏与最大化类似） Command-Tab 不同程序间切换 Control—Tab同程序间切换  从一篇文章开始 文章地址：Mac开发配置手册
+github地址
+看完后，Mac就入门啦。
+iTerm2的monokai主题 比较喜欢monokai主题，可以在这里面找到。 https://github.com/mbadolato/iTerm2-Color-Schemes
+打开下面的链接，下载Raw，就可以导入iTerm2的Colors里了。 https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/schemes/Monokai%20Soda.itermcolors  zsh cd ~ vim .zshrc  例如：
+alias e=&amp;quot;emacs&amp;quot;  </description>
+    </item>
+    
+    <item>
+      <title>2014年总结及2015年计划</title>
+      <link>http://everettjf.com/2015/01/15/2014%E5%B9%B4%E6%80%BB%E7%BB%93%E5%8F%8A2015%E5%B9%B4%E8%AE%A1%E5%88%92/</link>
+      <pubDate>Thu, 15 Jan 2015 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2015/01/15/2014%E5%B9%B4%E6%80%BB%E7%BB%93%E5%8F%8A2015%E5%B9%B4%E8%AE%A1%E5%88%92/</guid>
+      <description>2014关键事件  媳妇生了个大胖小子，8斤沉。 迷茫中不断的尝试。（从机器学习，到机器人制作，到Android开发，到渗透测试）。 重新找回了对编程的热爱。 看了一些非纯技术类的书籍，例如《Rework》《Remote》《MacTalk人生元编程》等。 购买了MacBookPro和HHKB。 第一次公开场合（非公司内部）技术分享，并第一次学习Ruby。 第一次去主动面试10人以下的创业公司。 成为了微信、微博、知乎、奇妙清单的忠实用户。 离不开Vim了（各种IDE中的vim插件）。 开始使用GitHub来写博客。 开始觉得现在的工作没有意义。 开始思考未来5-10年，应该做什么。 购买了Arduino开发板。  2014年看的书和视频 机器人方向：
+《小型智能机器人制作全攻略》（很全面，但全部看后，能对小型机器人的制作方法有一定的了解，但还是比较入门） 《Arduino基础教程》（很基础，看了就懂，让我入门了Arduino）  Android方向：
+《精通Android 4》（从头到尾翻了遍） 《疯狂Android讲义》（例子好多，例子好多，确实有些初级）  机器学习方向：
+《数据之魅》（偏向数学，看了，建立了索引，忘了） 《集体智慧编程》（入门很好，适合我这种浮躁的人、想快速看到成果的人。使用python来实践机器学习） 《统计学习方法》（数学基础，同事说很好，我是看不懂，浏览了一遍） 斯坦福大学公开课“机器学习课程”（开始能听懂，但是到了公式就吃劲） 《数据挖掘：实用机器学习技术》（Weka平台） 《机器学习实战》（也是用python） 《Python科学计算》（大全，宝典） 《学习OpenCV》（了解了OpenCV与基本用法、基本功能）  渗透测试方向：
+《计算机病毒分析与防范大全》（感觉挺粗糙的书，但入门不错，能了解不少知识） 《Metasploit渗透测试魔鬼训练营》（好书，五星，入门必备） 《0Day安全：软件漏洞分析技术》（好书，入门必备） 《黑客免杀攻防》（了解如何免杀的很全面的书） 《软件调试》（经典） 《白帽子Web安全》（了解Web安全，入门Web安全） 《Web前端黑客技术揭秘》（稍微深入Web安全） 《社会工程：安全体系中的人性漏洞》（入门社会工程的好书） 《Metasploit渗透测试指南》（打开Metasploit的神秘面纱） 买了没看：《黑客大曝光》《Rootkit系统灰色地带的潜伏着》  编程语言：
+《Ruby基础教程》（为了开源中国的一个技术分享） 《Go语言编程》（公司一同事鼓吹Go语言多么多么好，于是就快速看了看）  非技术类：
+《重来》（经典书籍） 《重来2》（憧憬远程办公，不要憧憬，让我们实践吧） 《MacTalk人生元编程》（让我买了Macbook Pro，进入Mac的世界） 《大数据时代》（了解了大数据的应用）  最后，
+还有遗漏，但相信，想不起来的，一定是那些不那么重要的了，或者要远离我的了。  终于知道自己为什么脑子很乱了，太多东西看了， 大脑内存不足了。大脑摄入信息的速度是一定的， 一下子看了这么多，还没有太深入研究，记忆自然会很快淡化。 或者说是，贪婪。
+2014年的问题  缺少笔记。仅为了看而看（或者说只是建立索引了），当时心情激动，看后记得不多。  2015简要计划  第一步，辞职。 第二步，找到自己未来5-10年的工作方向。  回顾那些年的计划和总结  找工作前的大学15天 找工作的前15天 2009年应聘总结 2012年下半年计划 2013年计划 2013年上半年总结 2013年下半年计划 2014年上半年学习计划  这些年，想法很多，想法确实很多。</description>
+    </item>
+    
+    <item>
+      <title>如何编写简易病毒扫描程序</title>
+      <link>http://everettjf.com/2014/12/07/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E7%AE%80%E6%98%93%E7%97%85%E6%AF%92%E6%89%AB%E6%8F%8F%E7%A8%8B%E5%BA%8F/</link>
+      <pubDate>Sun, 07 Dec 2014 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2014/12/07/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E7%AE%80%E6%98%93%E7%97%85%E6%AF%92%E6%89%AB%E6%8F%8F%E7%A8%8B%E5%BA%8F/</guid>
+      <description>背景  2014年12月7日，开源中国济南城市圈活动技术分享 第一次公开场合技术分享 将此次分享的内容整理成简单的教程  面向读者  对病毒分析感兴趣的新手  主要内容  什么是计算机病毒 反病毒技术的发展 分析计算机病毒 编写简易的病毒扫描程序  什么是计算机病毒 计算机病毒的定义  1949年，冯诺依曼在论文《Theory of self-reproducing automata》中就第一次给出了病毒的定义： “能够实际复制自身的自动机”。 wikipedia：计算机病毒是一种在*人为或非人为*的情况下产生的、在*用户不知情或未批准*下，能*自我复制或运行*的电脑程序。 参考  第一个计算机病毒  19世纪60年代，贝尔实验室3个人，在磁芯存储器上实现了2个程序，这2个程序想办法复制自身并让杀掉对方的程序，称为“磁芯大战”的游戏。
+ 公认的第一个病毒1971年诞生，叫做Creeper的程序。 参考.
+ Reaper是用来清除掉Creeper的类似病毒的程序。
+  病毒的主要特征  传播性 隐蔽性 感染性 潜伏性 可激发性 表现性 破坏性 变异性  病毒的分类  木马、僵尸网络（僵尸或称肉鸡，DDOS） 有害软件（蠕虫、间谍软件、流氓软件、恶作剧软件） 脚本病毒（宏病毒） 文件型病毒（感染文件，寄宿在可执行文件等）  此外，也可以参考开源杀毒软件ClamAntiVirus的病毒特征的分类，如图：
+当然，以上分类并不严格，也没有一个分类标准。我认为，可以统称为*“恶意程序”*。
+病毒的危害  冲击波蠕虫  2003年8月 DDOS攻击windowsupdate.com 利用系统rpc漏洞，自动传播 造成系统重启、崩溃 后期产生很多变种   病毒作者很有意思，把自己的名字Parson也写到病毒中了，于是就被抓了。</description>
+    </item>
+    
+    <item>
+      <title>windows下实现鼠标滚轮的”自然方向滚动”</title>
+      <link>http://everettjf.com/2014/11/07/windows%E4%B8%8B%E5%AE%9E%E7%8E%B0%E9%BC%A0%E6%A0%87%E6%BB%9A%E8%BD%AE%E7%9A%84%E8%87%AA%E7%84%B6%E6%96%B9%E5%90%91%E6%BB%9A%E5%8A%A8/</link>
+      <pubDate>Fri, 07 Nov 2014 00:00:01 +0800</pubDate>
+      
+      <guid>http://everettjf.com/2014/11/07/windows%E4%B8%8B%E5%AE%9E%E7%8E%B0%E9%BC%A0%E6%A0%87%E6%BB%9A%E8%BD%AE%E7%9A%84%E8%87%AA%E7%84%B6%E6%96%B9%E5%90%91%E6%BB%9A%E5%8A%A8/</guid>
+      <description>最近家里用上了macbookpro，用了一阵子发现鼠标的”自然方向滚动“还是挺好用，也适应了。
+但是在公司的windows7上还得换回来，
+于是，想起hook可以解决此问题，也配合网上找了些实现方法。
+搞了下面这个工具，比较简单。分享给大家。
+https://github.com/everettjf/NatrualScrollMouseForWindows</description>
+    </item>
+    
+  </channel>
+</rss>

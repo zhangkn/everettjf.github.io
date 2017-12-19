@@ -833,7 +833,7 @@
             "created_at": 1467545432.0,
             "domain_id": 1,
             "favicon": "https://everettjf.com/favicon.ico",
-            "feed_url": "http://everettjf.com/feed.xml",
+            "feed_url": "http://everettjf.com/html.xml",
             "id": 356,
             "name": "everettjf",
             "spider": "",
