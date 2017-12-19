@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>iOS10 jailbreak develop environment setup reference</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="iOS10 jailbreak develop environment setup reference">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="iOS10 jailbreak develop environment setup reference">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="iOS10 jailbreak develop environment setup reference">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/post/2017-05-08-ios10-jailbreak-dev-env-setup-tutorial/">
+	<meta name="og:site_name" content="iOS10 jailbreak develop environment setup reference">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div id="loadingMask" style="width: 100%; height: 100%; position: fixed; background: #fff;"></div>
+<script>
+function fadeOut(el) {
+  el.style.opacity = 1;
+
+  var last = +new Date();
+  var tick = function() {
+    el.style.opacity = +el.style.opacity - (new Date() - last) / 80;
+    last = +new Date();
+    
+
+    if (el.style.opacity > 0) {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    } else {
+    	el.style.display='none';
+    }
+  };
+
+  tick();
+}
+
+function ready(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+         el = document.getElementById('loadingMask');
+         fadeOut(el);
+        var elements = document.querySelectorAll("img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("alt")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("alt"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+window.onload = ready;
+</script>
+
+<div class="content">
+    <h1>iOS10 jailbreak develop environment setup reference <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#devices">Devices</a></li>
+<li><a href="#jailbreak">Jailbreak</a>
+<ul>
+<li><a href="#step-1-yalu">Step 1. yalu</a></li>
+<li><a href="#step-2-fix-cydia-error">Step 2. Fix cydia error</a></li>
+<li><a href="#step-3-ssh">Step 3. ssh</a></li>
+<li><a href="#step-4-appsync">Step 4. AppSync</a></li>
+<li><a href="#step-5-kstore">Step 5. KStore</a></li>
+</ul></li>
+<li><a href="#development-tools">Development Tools</a></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<h1 id="devices">Devices</h1>
+
+<ol>
+<li>iPhone5S</li>
+<li>iOS10.2</li>
+</ol>
+
+<h1 id="jailbreak">Jailbreak</h1>
+
+<h2 id="step-1-yalu">Step 1. yalu</h2>
+
+<p><a href="https://yalu.qwertyoruiop.com/">https://yalu.qwertyoruiop.com/</a></p>
+
+<p><a href="http://www.cydiaimpactor.com/">http://www.cydiaimpactor.com/</a></p>
+
+<h2 id="step-2-fix-cydia-error">Step 2. Fix cydia error</h2>
+
+<p><a href="http://www.iblogapple.com/2016/12/31/fix-cydia-error-could-not-open-file-varlibdpkgstatus-ios-10-jailbreak/">http://www.iblogapple.com/2016/12/31/fix-cydia-error-could-not-open-file-varlibdpkgstatus-ios-10-jailbreak/</a></p>
+
+<h2 id="step-3-ssh">Step 3. ssh</h2>
+
+<p>Connect via <code>usbmux</code>.</p>
+
+<p><a href="https://www.reddit.com/r/jailbreak/comments/5r2mwr/tutorial_how_to_use_dropbear_ssh_via_usb_on/">https://www.reddit.com/r/jailbreak/comments/5r2mwr/tutorial_how_to_use_dropbear_ssh_via_usb_on/</a></p>
+
+<h2 id="step-4-appsync">Step 4. AppSync</h2>
+
+<ol>
+<li>Add <code>http://cydia.angelxwind.net/</code> to cydia source.</li>
+<li>Search <code>AppSync Unified iOS10</code> and install.</li>
+</ol>
+
+<h2 id="step-5-kstore">Step 5. KStore</h2>
+
+<ol>
+<li>Add <code>http://repo.xarold.com</code> to cydia source.</li>
+<li>Search <code>kStore</code> and install.</li>
+<li>Reboot and Re-Jailbreak.</li>
+</ol>
+
+<h1 id="development-tools">Development Tools</h1>
+
+<ol>
+<li>Clutch</li>
+<li>dumpdecrypted</li>
+<li>class-dump</li>
+<li>otool</li>
+<li>Flex</li>
+<li>Frida</li>
+<li>cycript</li>
+<li>lldb</li>
+</ol>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written May 8, 2017. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%23post2017-05-08-ios10-jailbreak-dev-env-setup-tutorial%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/post/2017-04-18-llvm-clang-plugin-first-step/">← First step towards LLVM clang plugin</a>&nbsp;
+	<a href="/post/2017-05-14-decrypting-ios-applications-using-lldb/" style="float:right;">Decrypting iOS applications using lldb →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>

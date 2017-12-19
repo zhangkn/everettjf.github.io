@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Windows程序猿的OSX入门笔记</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="Windows程序猿的OSX入门笔记">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Windows程序猿的OSX入门笔记">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="Windows程序猿的OSX入门笔记">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/post/2015-02-14-macos-starter-kit-for-windows-programmers/">
+	<meta name="og:site_name" content="Windows程序猿的OSX入门笔记">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div id="loadingMask" style="width: 100%; height: 100%; position: fixed; background: #fff;"></div>
+<script>
+function fadeOut(el) {
+  el.style.opacity = 1;
+
+  var last = +new Date();
+  var tick = function() {
+    el.style.opacity = +el.style.opacity - (new Date() - last) / 80;
+    last = +new Date();
+    
+
+    if (el.style.opacity > 0) {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    } else {
+    	el.style.display='none';
+    }
+  };
+
+  tick();
+}
+
+function ready(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+         el = document.getElementById('loadingMask');
+         fadeOut(el);
+        var elements = document.querySelectorAll("img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("alt")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("alt"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+window.onload = ready;
+</script>
+
+<div class="content">
+    <h1>Windows程序猿的OSX入门笔记 <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#macbook-pro">macbook pro</a></li>
+<li><a href="#几个小常识">几个小常识</a></li>
+<li><a href="#从一篇文章开始">从一篇文章开始</a></li>
+<li><a href="#iterm2的monokai主题">iTerm2的monokai主题</a></li>
+<li><a href="#zsh">zsh</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<h3 id="macbook-pro">macbook pro</h3>
+
+<p>2014年10月初，买了macbook pro和《MacTalk人生元编程》，从此一位在Windows下搬了5年砖的C++程序猿不小心跨入了OSX的世界。</p>
+
+<h3 id="几个小常识">几个小常识</h3>
+
+<ul>
+<li>开机按钮（键盘最右上角的按钮）</li>
+<li>Finder（对应Windows的资源管理器，就是资源管理器的名字）</li>
+<li>Command（对应Windows系统的Windows键）</li>
+<li>Option（对应Windows的Alt键）</li>
+<li>触摸板手势（点击左上角的苹果，系统偏好设置，触摸板，这里有动画演示）</li>
+<li>img文件（mac的安装程序，类似Windows的绿色软件，类似Windows的iso文件）</li>
+<li>全屏与最大化（没有最大化，只有全屏。或者说全屏与最大化类似）</li>
+<li>Command-Tab 不同程序间切换</li>
+<li>Control—Tab同程序间切换</li>
+</ul>
+
+<h3 id="从一篇文章开始">从一篇文章开始</h3>
+
+<p>文章地址：<a href="http://aaaaaashu.gitbooks.io/mac-dev-setup/content/">Mac开发配置手册</a></p>
+
+<p><a href="https://github.com/Aaaaaashu/Mac-dev-setup">github地址</a></p>
+
+<p>看完后，Mac就入门啦。</p>
+
+<h3 id="iterm2的monokai主题">iTerm2的monokai主题</h3>
+
+<p>比较喜欢monokai主题，可以在这里面找到。
+<a href="https://github.com/mbadolato/iTerm2-Color-Schemes">https://github.com/mbadolato/iTerm2-Color-Schemes</a></p>
+
+<pre><code>打开下面的链接，下载Raw，就可以导入iTerm2的Colors里了。
+https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/schemes/Monokai%20Soda.itermcolors
+</code></pre>
+
+<h3 id="zsh">zsh</h3>
+
+<pre><code>cd ~
+vim .zshrc
+</code></pre>
+
+<p>例如：</p>
+
+<pre><code>alias e=&quot;emacs&quot;
+</code></pre>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written February 14, 2015. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%23post2015-02-14-macos-starter-kit-for-windows-programmers%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/post/2015-01-15-conclusion2014-and-plan2015/">← 2014年总结及2015年计划</a>&nbsp;
+	<a href="/post/2015-03-04-emacs-learn-for-starter/" style="float:right;">emacs新手遇到的坑，以及笔记 →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>

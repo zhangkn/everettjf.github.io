@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>emacs新手遇到的坑，以及笔记</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="emacs新手遇到的坑，以及笔记">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="emacs新手遇到的坑，以及笔记">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="emacs新手遇到的坑，以及笔记">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/post/2015-03-04-emacs-learn-for-starter/">
+	<meta name="og:site_name" content="emacs新手遇到的坑，以及笔记">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div id="loadingMask" style="width: 100%; height: 100%; position: fixed; background: #fff;"></div>
+<script>
+function fadeOut(el) {
+  el.style.opacity = 1;
+
+  var last = +new Date();
+  var tick = function() {
+    el.style.opacity = +el.style.opacity - (new Date() - last) / 80;
+    last = +new Date();
+    
+
+    if (el.style.opacity > 0) {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    } else {
+    	el.style.display='none';
+    }
+  };
+
+  tick();
+}
+
+function ready(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+         el = document.getElementById('loadingMask');
+         fadeOut(el);
+        var elements = document.querySelectorAll("img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("alt")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("alt"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+window.onload = ready;
+</script>
+
+<div class="content">
+    <h1>emacs新手遇到的坑，以及笔记 <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#安装">安装</a></li>
+<li><a href="#坑">坑</a></li>
+<li><a href="#笔记">笔记</a></li>
+</ul></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<p>作为一名windows程序猿、vim、markdown新手。忽然进入另一个“世界，遇到osx、emac、org，遇到了一些坑，记录下来。</p>
+
+<h2 id="安装">安装</h2>
+
+<ul>
+<li>MacOS</li>
+</ul>
+
+<pre><code>    brew install emacs --with-cocoa
+    brew linkapps emacs
+
+    然后重新打开iTerm2，输入emacs就可以在终端运行emacs了。
+    也在Applications里有了emacs项。
+</code></pre>
+
+<h2 id="坑">坑</h2>
+
+<ul>
+<li>windows8.1下emacs24.4部分中文显示为“方块”。
+在.emacs文件中（或者prelude的init.el文件中）加入下面一行：</li>
+</ul>
+
+<pre><code>(set-fontset-font &quot;fontset-default&quot; 'gb18030 '(&quot;Microsoft YaHei&quot; . &quot;unicode-bmp&quot;))
+</code></pre>
+
+<ul>
+<li><p>.emacs文件和.emacs.d文件夹中的init.el同时存在，只有.emacs文件生效。</p>
+
+<pre><code>当使用prelude时，需要删除.emacs文件(如何使两者都有效？)
+</code></pre></li>
+
+<li><p>osx10.10.1（界面英文）terminal下使用brew安装emacs，中文显示问号。</p></li>
+</ul>
+
+<pre><code>系统切换为中文，解决。（不切换如何解决，暂不想研究了）
+</code></pre>
+
+<ul>
+<li><p>osx下，terminal或iterm下meta按键问题</p>
+
+<ul>
+<li>terminal下</li>
+</ul></li>
+</ul>
+
+<pre><code>终端-&gt;偏好设置-&gt;描述文件-&gt;键盘
+最下方选择“使用Option键作为Meta键”
+</code></pre>
+
+<ul>
+<li>iterm</li>
+</ul>
+
+<pre><code>Preferences -&gt; Profiles 然后选择当前的profile -&gt; Keys
+最下面都选择+Esc
+Left option key acts as : +Esc
+Rigth option key acts as : +Esc
+</code></pre>
+
+<ul>
+<li>如何找到.emacs文件的存放位置（尤其是windows下）</li>
+</ul>
+
+<pre><code>    C-X C-F ~/
+</code></pre>
+
+<h2 id="笔记">笔记</h2>
+
+<ul>
+<li><p>prelude推荐</p>
+
+<ul>
+<li>Github地址：<a href="https://github.com/bbatsov/prelude">https://github.com/bbatsov/prelude</a></li>
+<li>其他没有试过，作为新手，prelude给了我能量。</li>
+<li>安装prelude</li>
+</ul></li>
+</ul>
+
+<pre><code>git clone git://github.com/bbatsov/prelude.git path/to/local/repo
+ln -s path/to/local/repo ~/.emacs.d
+cd ~/.emacs.d
+</code></pre>
+
+<p>samples中复制出prelude_modules.el，并启动emacs。</p>
+
+<ul>
+<li><p>关于evil与中文输入法</p>
+
+<ul>
+<li>中文输入法切换与vim本身的各种模式切换太别扭了（这也是想体验下emacs的原因之一吧）</li>
+<li>如果编写程序还是可以启用evil</li>
+</ul></li>
+</ul>
+
+<pre><code>启用或关闭evil-mode
+M-x evil-mode
+</code></pre>
+
+<ul>
+<li><p>osx下交换capslock与ctrl</p>
+
+<ul>
+<li>系统偏好设置-&gt;键盘-&gt;键盘-&gt;修饰键（右下角）</li>
+</ul></li>
+
+<li><p>按键重复速度</p>
+
+<ul>
+<li>系统偏好设置-&gt;键盘-&gt;键盘-&gt;调整按键重复（到最快）</li>
+</ul></li>
+
+<li><p>安装主题monokai
+很喜欢monokai这个主题</p></li>
+</ul>
+
+<pre><code>M-x package-install
+monokai-theme
+
+M-x customize-theme
+选择monokai后，save settings，就ok啦。
+</code></pre>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written March 4, 2015. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%23post2015-03-04-emacs-learn-for-starter%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/post/2015-02-14-macos-starter-kit-for-windows-programmers/">← Windows程序猿的OSX入门笔记</a>&nbsp;
+	<a href="/post/2015-03-05-vim-emacs-shortcut-compare/" style="float:right;">vim emacs 常用快捷键对比 →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>

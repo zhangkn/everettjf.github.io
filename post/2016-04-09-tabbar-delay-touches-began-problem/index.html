@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>TabBar位置的二级页面touchesBegan被延迟调用</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="TabBar位置的二级页面touchesBegan被延迟调用">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="TabBar位置的二级页面touchesBegan被延迟调用">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="TabBar位置的二级页面touchesBegan被延迟调用">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/post/2016-04-09-tabbar-delay-touches-began-problem/">
+	<meta name="og:site_name" content="TabBar位置的二级页面touchesBegan被延迟调用">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div id="loadingMask" style="width: 100%; height: 100%; position: fixed; background: #fff;"></div>
+<script>
+function fadeOut(el) {
+  el.style.opacity = 1;
+
+  var last = +new Date();
+  var tick = function() {
+    el.style.opacity = +el.style.opacity - (new Date() - last) / 80;
+    last = +new Date();
+    
+
+    if (el.style.opacity > 0) {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    } else {
+    	el.style.display='none';
+    }
+  };
+
+  tick();
+}
+
+function ready(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+         el = document.getElementById('loadingMask');
+         fadeOut(el);
+        var elements = document.querySelectorAll("img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("alt")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("alt"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+window.onload = ready;
+</script>
+
+<div class="content">
+    <h1>TabBar位置的二级页面touchesBegan被延迟调用 <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#问题">问题</a></li>
+<li><a href="#解决办法">解决办法</a></li>
+<li><a href="#同类问题">同类问题</a></li>
+<li><a href="#类似问题">类似问题</a></li>
+<li><a href="#总结">总结</a></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<h1 id="问题">问题</h1>
+
+<p>最近开发类似微信发语音的功能，ViewController 如下：</p>
+
+<p>TabBarController -&gt; Navigation Controller -&gt; Session View Controller -&gt; Message View Controller</p>
+
+<ul>
+<li>SessionViewController 实现会话列表页面</li>
+<li>MessageViewController 实现消息列表页面</li>
+</ul>
+
+<p>在会话列表页面点击某一会话，会隐藏TabBar的方式Push到消息列表页面。相关代码如下：</p>
+
+<pre><code>    MessageViewController *vc = [[MessageViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+
+</code></pre>
+
+<p>在MessageViewController最下面（TabBar位置）放置录音的View。此View响应按下时间：</p>
+
+<pre><code>
+- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event{
+    NSLog(@&quot;touches began&quot;);
+    
+    [super touchesBegan:touches withEvent:event];
+}
+</code></pre>
+
+<p>然而，touchesBegan在手指按下时并不能马上得到调用，而是在手指抬起或者移动后才能被调用。</p>
+
+<h1 id="解决办法">解决办法</h1>
+
+<p>设置MessageViewController的self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan为NO。</p>
+
+<pre><code>-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];    
+    self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = NO;
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = _savedDelaysTouchBegan;
+}
+
+</code></pre>
+
+<h1 id="同类问题">同类问题</h1>
+
+<ul>
+<li><a href="https://segmentfault.com/q/1010000002490506">https://segmentfault.com/q/1010000002490506</a></li>
+</ul>
+
+<h1 id="类似问题">类似问题</h1>
+
+<p>Stackoverflow 有类似问题</p>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/22285861/uibutton-touch-down-action-not-called-when-touch-down-but-called-when-touch-move">http://stackoverflow.com/questions/22285861/uibutton-touch-down-action-not-called-when-touch-down-but-called-when-touch-move</a></li>
+</ul>
+
+<p>类似原因如下：</p>
+
+<blockquote>
+<p>Because a scroll view has no scroll bars, it must know whether a touch signals an intent to scroll versus an intent to track a subview in the content. To make this determination, it temporarily intercepts a touch-down event by starting a timer and, before the timer fires, seeing if the touching finger makes any movement. If the timer fires without a significant change in position, the scroll view sends tracking events to the touched subview of the content view. If the user then drags their finger far enough before the timer elapses, the scroll view cancels any tracking in the subview and performs the scrolling itself. Subclasses can override the touchesShouldBegin:withEvent:inContentView:, pagingEnabled, and touchesShouldCancelInContentView: methods (which are called by the scroll view) to affect how the scroll view handles scrolling gestures.</p>
+</blockquote>
+
+<h1 id="总结">总结</h1>
+
+<p>delay的原因是由于手势需要知道是要滑动还是仅仅点击。</p>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written April 9, 2016. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%23post2016-04-09-tabbar-delay-touches-began-problem%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/post/2016-04-05-learn-yywebimage/">← YYWebImage note</a>&nbsp;
+	<a href="/post/2016-04-20-apple-developer-unable-to-process-your-request/" style="float:right;">Apple Developer 登录错误，400电话解决 →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>
