@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>简单的iOS TabPageScrollView开发笔记</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="简单的iOS TabPageScrollView开发笔记">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="简单的iOS TabPageScrollView开发笔记">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="简单的iOS TabPageScrollView开发笔记">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/2015/09/26/%E7%AE%80%E5%8D%95%E7%9A%84ios-tabpagescrollview%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">
+	<meta name="og:site_name" content="简单的iOS TabPageScrollView开发笔记">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div id="loadingMask" style="width: 100%; height: 100%; position: fixed; background: #fff;"></div>
+<script>
+function fadeOut(el) {
+  el.style.opacity = 1;
+
+  var last = +new Date();
+  var tick = function() {
+    el.style.opacity = +el.style.opacity - (new Date() - last) / 80;
+    last = +new Date();
+    
+
+    if (el.style.opacity > 0) {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    } else {
+    	el.style.display='none';
+    }
+  };
+
+  tick();
+}
+
+function ready(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+         el = document.getElementById('loadingMask');
+         fadeOut(el);
+        var elements = document.querySelectorAll("img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("alt")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("alt"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+window.onload = ready;
+</script>
+
+<div class="content">
+    <h1>简单的iOS TabPageScrollView开发笔记 <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#背景">背景</a></li>
+<li><a href="#最终">最终</a></li>
+<li><a href="#步骤">步骤</a></li>
+<li><a href="#其他">其他</a></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<h1 id="背景">背景</h1>
+
+<p>看到CocoaPods上这么多好东西，初入iOS开发，也想熟悉熟悉这个流程。
+想到最近自己开发的一个简单的Tab页面，尝试完善一下，做的更通用一些，放到CocoaPods上。</p>
+
+<h1 id="最终">最终</h1>
+
+<p>使用方法及代码见：<a href="https://github.com/everettjf/Yolo/tree/master/EVTTabPageScrollView">https://github.com/everettjf/Yolo/tree/master/EVTTabPageScrollView</a></p>
+
+<p><img src="https://everettjf.github.io/images/extern/EVTTabPageScrollView.gif" alt="demo" /></p>
+
+<h1 id="步骤">步骤</h1>
+
+<ol>
+<li>创建模板工程
+参考链接：<a href="https://guides.cocoapods.org/making/using-pod-lib-create.html">https://guides.cocoapods.org/making/using-pod-lib-create.html</a>
+<code>
+pod lib create MyLibrary
+</code></li>
+<li>修改描述、编写库的代码</li>
+<li>测试
+<code>
+pod lib lint
+pod spec lint
+</code></li>
+<li>上传
+<code>
+$ pod trunk register orta@cocoapods.org 'Orta Therox' --description='macbook air'
+$ pod trunk push EVTTabPageScrollView.podspec
+</code>
+参考链接：<a href="https://guides.cocoapods.org/making/getting-setup-with-trunk">https://guides.cocoapods.org/making/getting-setup-with-trunk</a></li>
+</ol>
+
+<h1 id="其他">其他</h1>
+
+<p>这个还很简单，仅作为自己试用CocoaPods的例子。</p>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written September 26, 2015. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%2320150926%25E7%25AE%2580%25E5%258D%2595%25E7%259A%2584ios-tabpagescrollview%25E5%25BC%2580%25E5%258F%2591%25E7%25AC%2594%25E8%25AE%25B0%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/2015/09/09/ios%E5%B4%A9%E6%BA%83%E6%94%B6%E9%9B%86%E4%B8%8E%E5%88%86%E6%9E%90%E4%BD%BF%E7%94%A8plcrashreporter/">← iOS崩溃收集与分析，使用PLCrashReporter</a>&nbsp;
+	<a href="/2015/10/04/xcode%E4%B9%A6%E7%AD%BE%E6%8F%92%E4%BB%B6xbookmark%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" style="float:right;">Xcode书签插件XBookmark开发笔记 →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>

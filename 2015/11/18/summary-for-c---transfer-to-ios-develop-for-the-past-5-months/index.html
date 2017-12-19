@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Summary for C&#43;&#43; transfer to iOS develop for the past 5 months</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="Summary for C&#43;&#43; transfer to iOS develop for the past 5 months">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Summary for C&#43;&#43; transfer to iOS develop for the past 5 months">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="Summary for C&#43;&#43; transfer to iOS develop for the past 5 months">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/2015/11/18/summary-for-c---transfer-to-ios-develop-for-the-past-5-months/">
+	<meta name="og:site_name" content="Summary for C&#43;&#43; transfer to iOS develop for the past 5 months">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div id="loadingMask" style="width: 100%; height: 100%; position: fixed; background: #fff;"></div>
+<script>
+function fadeOut(el) {
+  el.style.opacity = 1;
+
+  var last = +new Date();
+  var tick = function() {
+    el.style.opacity = +el.style.opacity - (new Date() - last) / 80;
+    last = +new Date();
+    
+
+    if (el.style.opacity > 0) {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    } else {
+    	el.style.display='none';
+    }
+  };
+
+  tick();
+}
+
+function ready(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+         el = document.getElementById('loadingMask');
+         fadeOut(el);
+        var elements = document.querySelectorAll("img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("alt")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("alt"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+window.onload = ready;
+</script>
+
+<div class="content">
+    <h1>Summary for C&#43;&#43; transfer to iOS develop for the past 5 months <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#啰嗦">啰嗦</a></li>
+<li><a href="#前言">前言</a></li>
+<li><a href="#准备">准备</a>
+<ul>
+<li>
+<ul>
+<li><a href="#信息">信息</a></li>
+<li><a href="#硬件">硬件</a></li>
+<li><a href="#软件">软件</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#学习">学习</a>
+<ul>
+<li><a href="#第一阶段-基础">第一阶段：基础</a>
+<ul>
+<li><a href="#1-马上着手开发-ios-应用程序">1. 《马上着手开发 iOS 应用程序》</a></li>
+<li><a href="#2-objective-c-程序设计">2. 《Objective-C 程序设计》</a></li>
+<li><a href="#3-ios开发指南-从零基础到appstore上架">3. 《iOS开发指南：从零基础到AppStore上架》</a></li>
+<li><a href="#4-ios代码写界面">4. iOS代码写界面</a></li>
+</ul></li>
+<li><a href="#第二阶段-真正开始开发">第二阶段：真正开始开发</a>
+<ul>
+<li><a href="#5-熟练控件">5. 熟练控件</a></li>
+<li><a href="#6-cocoapods">6. CocoaPods</a></li>
+<li><a href="#7-熟悉常用的几个库">7. 熟悉常用的几个库</a></li>
+<li><a href="#8-几个概念">8. 几个概念</a></li>
+<li><a href="#9-xcode插件">9. Xcode插件</a></li>
+<li><a href="#10-几本书">10. 几本书</a></li>
+<li><a href="#11-常用网站">11. 常用网站</a></li>
+</ul></li>
+<li><a href="#第三阶段-深入">第三阶段：深入</a>
+<ul>
+<li><a href="#12-崩溃获取及分析">12. 崩溃获取及分析</a></li>
+<li><a href="#13-持续集成">13. 持续集成</a></li>
+<li><a href="#14-cocoapods">14. CocoaPods</a></li>
+<li><a href="#15-一些更深一步的概念">15. 一些更深一步的概念</a></li>
+<li><a href="#16-源码学习">16. 源码学习</a></li>
+<li><a href="#17-单元测试">17. 单元测试</a></li>
+<li><a href="#18-mvvm">18. MVVM</a></li>
+<li><a href="#19-几本书">19. 几本书</a></li>
+<li><a href="#20-文章">20. 文章</a></li>
+</ul></li>
+<li><a href="#第四阶段">第四阶段</a>
+<ul>
+<li><a href="#21-继续深入">21. 继续深入</a></li>
+<li><a href="#22-安全">22. 安全</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#总结">总结</a></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<h1 id="啰嗦">啰嗦</h1>
+
+<p>8月5号左右突然做出了来北京工作的决定，给北京同学了解情况时正好同学公司缺人，7号来面试了下，13号一早就来报到了。自己与iOS开发还是有些缘分，3月中旬到5月初在济南一家小公司做了不到2个月的iOS开发（当初面试是做Android，但近来后iOS更急需，我想我这刚转行都可以啦，就开始做了iOS；后来北京同学这开始也想做Android（抱着以后能学习学习Android源码的想法那时对Android情有独钟），不过同学这也是缺少iOS，于是就这样定了吧）。</p>
+
+<p>（现在想来，转为开发iOS，也与我有些迷茫有关系。移动开发、渗透测试、机器学习，三个自己都投入过不少时间的方向，拿不定主意，就看找到哪个工作了。（或许面试我的人能看出我是否适合那个方向哈，不错现在想想真是对自己的未来不负责任，后来再想，只能说自己运气好或者这个方向真的适合我））。</p>
+
+<ul>
+<li>3月中旬到5月初，接近两个月时间。
+（中间两个月做梦O2O创业去了，梦醒后就8月份了）</li>
+<li>8月13号到今天（11月18日），3个月多点。</li>
+</ul>
+
+<p>总共5个月了，感觉自己iOS开发算是入门了，总结总结，最后也计划计划。</p>
+
+<h1 id="前言">前言</h1>
+
+<p>在 Windows 平台用 C++ 开发了 5 年客户端，平时喜欢看书且信书，第5年了就想着跨界一下，看到一本《MacTalk人生元编程》……从此迈入了 Apple 的大门。</p>
+
+<p>此文主要总结下，我这5个月如何从 Windows C++ 开发转到 iOS 开发。</p>
+
+<h1 id="准备">准备</h1>
+
+<h3 id="信息">信息</h3>
+
+<ul>
+<li>《MacTalk人生元编程》，让我对 Apple 有了第一次认识（以前只知道乔布斯）。（这本书我是2014年买的）</li>
+</ul>
+
+<h3 id="硬件">硬件</h3>
+
+<ul>
+<li>MacBook Pro 15寸 非顶配，我是从小闷的水果店买的港版。（现在公司用的13寸+外接显示器，感觉13寸也不错。）（2014年底购买）</li>
+<li>iPhone 4S，从闲鱼上700块钱买了的二手的。（从来没有用过Apple的产品，为了让自己熟悉iOS系统的操作）（2015年3月份开始做iOS开发后买的）</li>
+<li>鼠标。前期还是配个鼠标，否则不习惯。慢慢习惯了触摸板就很少用鼠标了。</li>
+</ul>
+
+<h3 id="软件">软件</h3>
+
+<ul>
+<li>Xcode，使用AppStore安装。</li>
+<li>搭建一个Mac开发环境，推荐看这个文章 <a href="https://aaaaaashu.gitbooks.io/mac-dev-setup/content/">https://aaaaaashu.gitbooks.io/mac-dev-setup/content/</a>。</li>
+</ul>
+
+<h1 id="学习">学习</h1>
+
+<h2 id="第一阶段-基础">第一阶段：基础</h2>
+
+<p>这个阶段大概用了一个星期，遇到的问题百度都能很快找出来。</p>
+
+<h3 id="1-马上着手开发-ios-应用程序">1. 《马上着手开发 iOS 应用程序》</h3>
+
+<p>英文是 Start Developing iOS Apps Today。</p>
+
+<p>首先看了这份官方提供的教程，手把手教程。边看边做，完成后信心大增。</p>
+
+<h3 id="2-objective-c-程序设计">2. 《Objective-C 程序设计》</h3>
+
+<p>我看的第四版，大概两天的时间，从头到尾浏览了一遍。类和Foundation部分照着写了一些例子程序熟悉语法。</p>
+
+<h3 id="3-ios开发指南-从零基础到appstore上架">3. 《iOS开发指南：从零基础到AppStore上架》</h3>
+
+<p>看的第二版。书中虽然步骤很详细，从头到尾看快速浏览了一遍，前几章的挑了一些例子，一步一步完成了，熟悉了开发套路后，后面章节的小项目，跟着做出来。大概花费了3、4天时间。之后就是边开发边看书了。</p>
+
+<h3 id="4-ios代码写界面">4. iOS代码写界面</h3>
+
+<p>主要是看的这篇文章，<a href="http://www.cocoachina.com/bbs/read.php?tid=131516">http://www.cocoachina.com/bbs/read.php?tid=131516</a></p>
+
+<h2 id="第二阶段-真正开始开发">第二阶段：真正开始开发</h2>
+
+<p>这个阶段前后加起来算是最长时间，大概4个多月吧。</p>
+
+<h3 id="5-熟练控件">5. 熟练控件</h3>
+
+<ul>
+<li>UITableView</li>
+<li>UIScrollView</li>
+</ul>
+
+<h3 id="6-cocoapods">6. CocoaPods</h3>
+
+<ul>
+<li>基本使用</li>
+</ul>
+
+<h3 id="7-熟悉常用的几个库">7. 熟悉常用的几个库</h3>
+
+<p>这些库基本上都是开发必用的了。</p>
+
+<ul>
+<li>AFNetworking 很出名的网络库</li>
+<li>Masonry 方便的手写自动布局</li>
+<li>MBProgressHUD 等待进度</li>
+<li>MJRefresh 下拉刷新</li>
+<li>JSONKit JSON解析</li>
+<li>SDWebImage 异步加载图片</li>
+</ul>
+
+<h3 id="8-几个概念">8. 几个概念</h3>
+
+<ul>
+<li>GCD</li>
+<li>KVC/KVO</li>
+<li>MVC</li>
+<li>NSCoping</li>
+<li>NSCoding</li>
+<li>开发者账号的类别</li>
+<li>开发证书、生产证书、推送证书</li>
+<li>描述文件</li>
+</ul>
+
+<h3 id="9-xcode插件">9. Xcode插件</h3>
+
+<p>先安装插件管理器 <a href="http://alcatraz.io/">http://alcatraz.io/</a></p>
+
+<ul>
+<li>FuzzyAutocomplete 代码自动完成的模糊匹配</li>
+<li>XToDo 查找代码中的TODO标记</li>
+<li>KSImageNamed 代码中写<code>[UIImage imageNamed:]</code>时可预览图片</li>
+<li>XVim VIM模式</li>
+<li>VVDocumenter-Xcode 按<code>///</code>产生注释</li>
+<li>XBookmark 书签功能（我习惯用书签功能，以前用VisualStudio时的习惯）</li>
+<li>ColorSenseRainbow 代码中方便预览颜色</li>
+</ul>
+
+<h3 id="10-几本书">10. 几本书</h3>
+
+<ul>
+<li>《精通iOS开发》 补充概念，工具书。</li>
+<li>《iOS开发进阶》 页数不多，但很实用。</li>
+<li>《Effective Objective-C 2.0》 小经典</li>
+</ul>
+
+<h3 id="11-常用网站">11. 常用网站</h3>
+
+<ul>
+<li>Code4App</li>
+<li>CocoaChina</li>
+<li>GitHub</li>
+</ul>
+
+<h2 id="第三阶段-深入">第三阶段：深入</h2>
+
+<p>给一个App的需求，自己能自信的说没问题了。应该进一步深入的强化下自己的知识了。</p>
+
+<h3 id="12-崩溃获取及分析">12. 崩溃获取及分析</h3>
+
+<ul>
+<li>PLCrashReporter</li>
+<li>分析崩溃</li>
+<li>理解崩溃 <a href="https://developer.apple.com/library/ios/technotes/tn2151/_index.html">https://developer.apple.com/library/ios/technotes/tn2151/_index.html</a></li>
+<li>符号化方法 <a href="http://wufawei.com/2014/03/symbolicating-ios-crash-logs/">http://wufawei.com/2014/03/symbolicating-ios-crash-logs/</a></li>
+</ul>
+
+<h3 id="13-持续集成">13. 持续集成</h3>
+
+<ul>
+<li>fastlane 是一个工具集合，各种iOS开发的流程，甚至App自动截图。</li>
+<li>fir.im 很好的解决了App内测分发。老板想看看最新开发中的App，给他一个链接就OK了。</li>
+<li>Jenkins 强大的持续集成系统，配合 fastlane 和 fir.im 方便的自动化整个打包、上传过程。</li>
+</ul>
+
+<h3 id="14-cocoapods">14. CocoaPods</h3>
+
+<ul>
+<li>如何自己创建库</li>
+</ul>
+
+<h3 id="15-一些更深一步的概念">15. 一些更深一步的概念</h3>
+
+<ul>
+<li>Method Swizzing ：以前做Windows Hook，Objective-C也有啊，概念总是相似的。</li>
+<li>消息转发机制</li>
+<li>Toll-Free Bridging</li>
+<li>关联对象</li>
+<li>Bitcode</li>
+<li>Objective C++</li>
+</ul>
+
+<h3 id="16-源码学习">16. 源码学习</h3>
+
+<ul>
+<li>Masonry</li>
+<li>UITableViewCell-Auto&hellip;</li>
+<li>MBProgressHUD</li>
+<li>MJRefresh</li>
+<li>看到一些不错的效果，有源码就看一看</li>
+</ul>
+
+<h3 id="17-单元测试">17. 单元测试</h3>
+
+<ul>
+<li>Specta/Expecta</li>
+<li>Kiwi</li>
+</ul>
+
+<h3 id="18-mvvm">18. MVVM</h3>
+
+<ul>
+<li>ReactiveCocoa</li>
+</ul>
+
+<h3 id="19-几本书">19. 几本书</h3>
+
+<ul>
+<li>《Objective-C编程之道》主要是学习思想。还没看完。</li>
+<li>《大话移动APP测试，Android与iOS应用测试指南》从测试的角度反思下开发。</li>
+<li>《Objective-C 高级编程：iOS与OS X多线程和内存管理》</li>
+</ul>
+
+<h3 id="20-文章">20. 文章</h3>
+
+<ul>
+<li>招聘一个靠谱的iOS <a href="http://blog.sunnyxx.com/2015/07/04/ios-interview/">http://blog.sunnyxx.com/2015/07/04/ios-interview/</a></li>
+<li>答案 <a href="https://github.com/ChenYilong/iOSInterviewQuestions">https://github.com/ChenYilong/iOSInterviewQuestions</a></li>
+</ul>
+
+<h2 id="第四阶段">第四阶段</h2>
+
+<p>这一阶段是我的计划。过去5年自己一直做安全产品，对安全总是情有独钟，现在做iOS开发了，肯定不能少。书已经买好等着我看啦。</p>
+
+<h3 id="21-继续深入">21. 继续深入</h3>
+
+<ul>
+<li>各种特效</li>
+<li>各种动画</li>
+<li>各种界面</li>
+</ul>
+
+<h3 id="22-安全">22. 安全</h3>
+
+<ul>
+<li>《iOS应用逆向工程》</li>
+<li>《iOS应用安全攻防实战》</li>
+<li>《深入解析Mac OS X &amp; iOS操作系统》</li>
+</ul>
+
+<h1 id="总结">总结</h1>
+
+<p>以上是我这几个月的iOS学习经历，可能有遗漏，分享给大家，希望能帮助到其他C++转iOS的同行们。</p>
+
+<p>如有不正确的地方，请指正。</p>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written November 18, 2015. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%2320151118summary-for-c---transfer-to-ios-develop-for-the-past-5-months%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/2015/11/11/uitableviewcell%E8%87%AA%E5%8A%A8%E9%AB%98%E5%BA%A6%E8%AE%A1%E7%AE%97%E4%BC%98%E5%8C%96%E5%B0%8F%E6%80%BB%E7%BB%93/">← UITableViewCell自动高度计算优化小总结</a>&nbsp;
+	<a href="/2015/12/13/snowbookmarks-readme/" style="float:right;">SnowBookmarks readme →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>

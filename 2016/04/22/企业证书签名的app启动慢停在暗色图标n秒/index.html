@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>企业证书签名的App启动慢（停在暗色图标N秒）</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="企业证书签名的App启动慢（停在暗色图标N秒）">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="企业证书签名的App启动慢（停在暗色图标N秒）">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="企业证书签名的App启动慢（停在暗色图标N秒）">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/2016/04/22/%E4%BC%81%E4%B8%9A%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%90%8D%E7%9A%84app%E5%90%AF%E5%8A%A8%E6%85%A2%E5%81%9C%E5%9C%A8%E6%9A%97%E8%89%B2%E5%9B%BE%E6%A0%87n%E7%A7%92/">
+	<meta name="og:site_name" content="企业证书签名的App启动慢（停在暗色图标N秒）">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div id="loadingMask" style="width: 100%; height: 100%; position: fixed; background: #fff;"></div>
+<script>
+function fadeOut(el) {
+  el.style.opacity = 1;
+
+  var last = +new Date();
+  var tick = function() {
+    el.style.opacity = +el.style.opacity - (new Date() - last) / 80;
+    last = +new Date();
+    
+
+    if (el.style.opacity > 0) {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    } else {
+    	el.style.display='none';
+    }
+  };
+
+  tick();
+}
+
+function ready(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+         el = document.getElementById('loadingMask');
+         fadeOut(el);
+        var elements = document.querySelectorAll("img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("alt")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("alt"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+window.onload = ready;
+</script>
+
+<div class="content">
+    <h1>企业证书签名的App启动慢（停在暗色图标N秒） <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#问题">问题</a></li>
+<li><a href="#尝试方法">尝试方法</a></li>
+<li><a href="#复现环境">复现环境</a></li>
+<li><a href="#影响范围">影响范围</a></li>
+<li><a href="#问题原因">问题原因</a></li>
+<li><a href="#解决办法">解决办法</a></li>
+<li><a href="#相关资料">相关资料</a></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<h1 id="问题">问题</h1>
+
+<p>最近1个月左右QA发现App经常出现启动慢的情况。且较容易复现。</p>
+
+<p>复现系统版本：iOS 9.3，且安装企业证书签名的App。</p>
+
+<p>App启动过程一般是这样的：App图标颜色会首先变暗，变暗后图标再出现放大效果进入LaunchScreen。</p>
+
+<p>问题是这样的：首次启动App不会出现卡顿，当切换到其他App一段时间后，再次点击App图标时，停在暗色图标这里3至10秒，每次时间不同。</p>
+
+<p>见右上角<code>51VV</code>的图标，下图是<code>暗色</code>的图标（也即是卡在这个界面3至10秒）：</p>
+
+<p><img src="https://everettjf.github.io/stuff/image/darkicon.PNG" alt="" /></p>
+
+<p>下图是<code>正常</code>的图标：</p>
+
+<p><img src="https://everettjf.github.io/stuff/image/darkicon0.PNG" alt="" /></p>
+
+<h1 id="尝试方法">尝试方法</h1>
+
+<p>这个问题主要是我同事尝试解决的，我进行了全程跟踪以及一些签名的支持。</p>
+
+<ul>
+<li>开始以为是AppDelegate里启动的代码太多，进行了很多优化。</li>
+<li>后来发现根本没有执行到这里的代码。</li>
+<li>后来以为是工程配置的问题，新创建了个工程，进行企业签名，没有出现此问题。</li>
+<li>再后来直接在开发机器上企业签名，没有出现此问题。（此时基本怀疑编译机的问题）</li>
+<li>（编译机，也就是配置的Jenkins持续集成，自动打包，自动企业签名，自动上传fir。以前的博客写过类似文章），也由于工作忙(懒）一直没有升级编译机。</li>
+<li>最后，升级编译机到最新的OS X系统（OS X 10.10)，Xcode也升级到最新（7.3），再次打包、企业签名。</li>
+<li>不会再出现此问题。</li>
+</ul>
+
+<h1 id="复现环境">复现环境</h1>
+
+<ul>
+<li>编译机 Xcode 7.1 + OS X 10.10</li>
+<li>开发机器 Xcode 7.3 + OS X 10.11</li>
+</ul>
+
+<h1 id="影响范围">影响范围</h1>
+
+<ul>
+<li>仅企业证书签名的App。（AppStore证书签名的App不会出现此问题）</li>
+</ul>
+
+<h1 id="问题原因">问题原因</h1>
+
+<ul>
+<li>可能原因1：老版本的Xcode在老版本系统上进行企业证书的签名，在App启动时验证App签名证书的代码上，没有做到iOS 9.3系统的完美兼容。或者说，应该是苹果的bug。</li>
+<li>可能原因2：老版本Xcode编译新版本的Xcode工程导致。</li>
+</ul>
+
+<p>当然，我觉得，原因1更加可能。</p>
+
+<h1 id="解决办法">解决办法</h1>
+
+<ul>
+<li>编译机与开发机环境保持一致。</li>
+<li>尽量保持最新版本的系统和开发环境。</li>
+</ul>
+
+<h1 id="相关资料">相关资料</h1>
+
+<p>stackoverflow 有问类似问题的，但问题原因不一样。</p>
+
+<p><a href="http://stackoverflow.com/questions/29589285/why-ios-apps-signed-with-development-or-enterprise-certificates-launch-slower">http://stackoverflow.com/questions/29589285/why-ios-apps-signed-with-development-or-enterprise-certificates-launch-slower</a></p>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written April 22, 2016. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%2320160422%25E4%25BC%2581%25E4%25B8%259A%25E8%25AF%2581%25E4%25B9%25A6%25E7%25AD%25BE%25E5%2590%258D%25E7%259A%2584app%25E5%2590%25AF%25E5%258A%25A8%25E6%2585%25A2%25E5%2581%259C%25E5%259C%25A8%25E6%259A%2597%25E8%2589%25B2%25E5%259B%25BE%25E6%25A0%2587n%25E7%25A7%2592%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/2016/04/20/apple-developer-%E7%99%BB%E5%BD%95%E9%94%99%E8%AF%AF400%E7%94%B5%E8%AF%9D%E8%A7%A3%E5%86%B3/">← Apple Developer 登录错误，400电话解决</a>&nbsp;
+	<a href="/2016/05/01/-euro-sign-in-cp936-and-gb18030/" style="float:right;">€ euro sign in cp936 and gb18030 →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>
