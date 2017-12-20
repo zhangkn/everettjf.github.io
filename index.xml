@@ -83,15 +83,6 @@ HookZz是jmpews开发的微型hook框架，使用起来十分灵活。详见 htt
     </item>
     
     <item>
-      <title>reserved1 and reserved2 in MachO Section</title>
-      <link>http://everettjf.com/2017/08/28/reserved1-and-reserved2-in-macho-section/</link>
-      <pubDate>Mon, 28 Aug 2017 00:00:01 +0800</pubDate>
-      
-      <guid>http://everettjf.com/2017/08/28/reserved1-and-reserved2-in-macho-section/</guid>
-      <description>//todo</description>
-    </item>
-    
-    <item>
       <title>Decrypting iOS applications using lldb</title>
       <link>http://everettjf.com/2017/05/14/decrypting-ios-applications-using-lldb/</link>
       <pubDate>Sun, 14 May 2017 00:00:01 +0800</pubDate>
