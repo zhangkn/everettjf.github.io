@@ -349,87 +349,571 @@ emacs的M-x很强大。</p>
 
 <p>简单整理下常用快捷键的对比，作为笔记。</p>
 
-<p>| star | vim            | emacs            | comment                                                   |
-|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-| *    | i              | &mdash;              | 插入模式                                                  |
-| *    | :              | &mdash;              | 命令模式                                                  |
-| *    | ESC            | &mdash;              | 普通模式                                                  |
-|      | h              | C-b              | 左                                                        |
-|      | l              | C-f              | 右                                                        |
-|      | j              | C-n              | 下                                                        |
-|      | k              | C-p              | 上                                                        |
-|      | :q             | C-x C-c          | 退出                                                      |
-|      | :q!            | C-x c-c n        | 强制退出                                                  |
-|      | x              | C-d              | 删除当前单词                                              |
-|      | w              | M-f              | 右单词                                                    |
-|      | b              | M-b              | 左单词                                                    |
-|      | o              |                  | 在光标下一行添加，并开始编辑                              |
-|      | O              |                  | 在光标上一行添加，并开始编辑                              |
-|      | ^              | C-a              | 移动光标到当前行第一个字符首                              |
-|      | $              | C-e              | 行尾                                                      |
-|      | 0              |                  | 行首                                                      |
-|      | :o             | C-x C-f          | 打开文件                                                  |
-|      | :w             | C-x C-s          | 保存文件                                                  |
-|      | :wq            |                  | 保存并退出                                                |
-|      | a              | &mdash;              | 在光标后开始编辑                                          |
-|      | A              |                  | 在行最后开始编辑                                          |
-|      | I              |                  | 在行首开始编辑                                            |
-|      | C-v            |                  | 垂直选择视图                                              |
-|      | C-V            |                  | 垂直选择行视图                                            |
-|      | p              |                  | 粘贴                                                      |
-|      | y              |                  | 复制                                                      |
-|      | dd             |                  | 删除当前行                                                |
-|      | dw             |                  | 删除当前单词                                              |
-|      | 2dd            |                  | 删除两行                                                  |
-|      | u              |                  | 撤销                                                      |
-|      | C-r            |                  | 重复                                                      |
-|      | d$             |                  | 删除光标到文件最后                                        |
-|      | r              |                  | 替换当前字符                                              |
-|      | cw             |                  | 删除光标开始的单词，并开始编辑                            |
-|      | c$             |                  | 删除到文件最后，并开始编辑                                |
-|      | G              | M-&gt;              | 最后一行                                                  |
-|      | gg             | M-&lt;              | 第一行                                                    |
-| *    | &ldquo;             |                  | 回到刚才的行                                              |
-|      | :400           |                  | 转到400行                                                 |
-|      | 400G           |                  | 转到400行                                                 |
-|      | %              |                  | 转到匹配的括号                                            |
-|      | :s/old/new/g   | M-x repl s &hellip;   | 文本替换                                                  |
-|      | :%s/old/new/g  | M-x repl s &hellip;   | 文本替换                                                  |
-|      | :%s/old/new/gc | M-x repl s &hellip;   | 文本替换                                                  |
-| *    |                | C-v              | 下一屏幕                                                  |
-| *    |                | M-v              | 上一屏幕                                                  |
-| *    |                | C-l              | 光标行置于屏幕中央                                        |
-| *    |                | M-a              | 句首                                                      |
-| *    |                | M-e              | 句尾                                                      |
-|      |                | C-u 数字 命令    | 重复N次命令（或输入）                                     |
-|      |                | C-g              | 终止当前命令输入                                          |
-| *    |                | Esc              | 辅助按下M键                                               |
-|      |                | C-d              | 删除光标后字符                                            |
-|      | db             | M-<DEL>          | 移除光标前单词                                            |
-|      | dw             | M-d              | 移除光标后单词                                            |
-|      | d$             | C-k              | 移除光标到行尾                                            |
-|      | dG             | M-k              | 移除光标到句尾                                            |
-|      |                | C-@ 之后 C-w     | 移除选定文字（C-<SPACE>）                                 |
-|      |                | C-y              | 召回最近一次“移除”的内容（例如 C-k C-k C-y）              |
-|      |                | M-y              | 不断召回上一次“移除”的内容                                |
-|      |                | C-/              | 撤销上次命令的影响（与 C-x u 或 C-_ 相同）                |
-|      |                | C-x s            | 保存多个缓冲区                                            |
-|      |                | C-x C-b          | 缓冲区列表                                                |
-|      |                | C-x b 缓冲区名称 | 切换到缓冲区                                              |
-|      |                | C-z              | 暂时离开emacs（shell中输入fg或者%emacs再次回来）          |
-|      |                | C-x C-c          | 直接退出                                                  |
-|      |                | C-s              | 向前搜索（C-g光标回到开始位置，<Return>光标定位到结果上） |
-|      |                | C-r              | 向后搜索                                                  |
-|      |                | C-x 1            | 保留当前窗口                                              |
-|      |                | C-x 2            | 垂直分割窗口                                              |
-|      |                | C-x 3            | 水平分割窗口                                              |
-|      |                | C-x o            | 移动光标到其他窗口（other）                               |
-|      |                | C-M-v            | 向下滚动其他窗口                                          |
-|      |                | C-M-<Shift>-v    | 向上滚动其他窗口                                          |
-|      |                | C-h c 命令       | 显示命令的简易帮助                                        |
-|      |                | C-h k 命令       | 显示命令的详细帮助                                        |
-|      |                | C-h i            | 手册                                                      |
-| *    |                | C-h b            | 显示所有函数绑定(describe bindings)                       |</p>
+<table>
+<thead>
+<tr>
+<th>star</th>
+<th>vim</th>
+<th>emacs</th>
+<th>comment</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>*</td>
+<td>i</td>
+<td>&mdash;</td>
+<td>插入模式</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td>:</td>
+<td>&mdash;</td>
+<td>命令模式</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td>ESC</td>
+<td>&mdash;</td>
+<td>普通模式</td>
+</tr>
+
+<tr>
+<td></td>
+<td>h</td>
+<td>C-b</td>
+<td>左</td>
+</tr>
+
+<tr>
+<td></td>
+<td>l</td>
+<td>C-f</td>
+<td>右</td>
+</tr>
+
+<tr>
+<td></td>
+<td>j</td>
+<td>C-n</td>
+<td>下</td>
+</tr>
+
+<tr>
+<td></td>
+<td>k</td>
+<td>C-p</td>
+<td>上</td>
+</tr>
+
+<tr>
+<td></td>
+<td>:q</td>
+<td>C-x C-c</td>
+<td>退出</td>
+</tr>
+
+<tr>
+<td></td>
+<td>:q!</td>
+<td>C-x c-c n</td>
+<td>强制退出</td>
+</tr>
+
+<tr>
+<td></td>
+<td>x</td>
+<td>C-d</td>
+<td>删除当前单词</td>
+</tr>
+
+<tr>
+<td></td>
+<td>w</td>
+<td>M-f</td>
+<td>右单词</td>
+</tr>
+
+<tr>
+<td></td>
+<td>b</td>
+<td>M-b</td>
+<td>左单词</td>
+</tr>
+
+<tr>
+<td></td>
+<td>o</td>
+<td></td>
+<td>在光标下一行添加，并开始编辑</td>
+</tr>
+
+<tr>
+<td></td>
+<td>O</td>
+<td></td>
+<td>在光标上一行添加，并开始编辑</td>
+</tr>
+
+<tr>
+<td></td>
+<td>^</td>
+<td>C-a</td>
+<td>移动光标到当前行第一个字符首</td>
+</tr>
+
+<tr>
+<td></td>
+<td>$</td>
+<td>C-e</td>
+<td>行尾</td>
+</tr>
+
+<tr>
+<td></td>
+<td>0</td>
+<td></td>
+<td>行首</td>
+</tr>
+
+<tr>
+<td></td>
+<td>:o</td>
+<td>C-x C-f</td>
+<td>打开文件</td>
+</tr>
+
+<tr>
+<td></td>
+<td>:w</td>
+<td>C-x C-s</td>
+<td>保存文件</td>
+</tr>
+
+<tr>
+<td></td>
+<td>:wq</td>
+<td></td>
+<td>保存并退出</td>
+</tr>
+
+<tr>
+<td></td>
+<td>a</td>
+<td>&mdash;</td>
+<td>在光标后开始编辑</td>
+</tr>
+
+<tr>
+<td></td>
+<td>A</td>
+<td></td>
+<td>在行最后开始编辑</td>
+</tr>
+
+<tr>
+<td></td>
+<td>I</td>
+<td></td>
+<td>在行首开始编辑</td>
+</tr>
+
+<tr>
+<td></td>
+<td>C-v</td>
+<td></td>
+<td>垂直选择视图</td>
+</tr>
+
+<tr>
+<td></td>
+<td>C-V</td>
+<td></td>
+<td>垂直选择行视图</td>
+</tr>
+
+<tr>
+<td></td>
+<td>p</td>
+<td></td>
+<td>粘贴</td>
+</tr>
+
+<tr>
+<td></td>
+<td>y</td>
+<td></td>
+<td>复制</td>
+</tr>
+
+<tr>
+<td></td>
+<td>dd</td>
+<td></td>
+<td>删除当前行</td>
+</tr>
+
+<tr>
+<td></td>
+<td>dw</td>
+<td></td>
+<td>删除当前单词</td>
+</tr>
+
+<tr>
+<td></td>
+<td>2dd</td>
+<td></td>
+<td>删除两行</td>
+</tr>
+
+<tr>
+<td></td>
+<td>u</td>
+<td></td>
+<td>撤销</td>
+</tr>
+
+<tr>
+<td></td>
+<td>C-r</td>
+<td></td>
+<td>重复</td>
+</tr>
+
+<tr>
+<td></td>
+<td>d$</td>
+<td></td>
+<td>删除光标到文件最后</td>
+</tr>
+
+<tr>
+<td></td>
+<td>r</td>
+<td></td>
+<td>替换当前字符</td>
+</tr>
+
+<tr>
+<td></td>
+<td>cw</td>
+<td></td>
+<td>删除光标开始的单词，并开始编辑</td>
+</tr>
+
+<tr>
+<td></td>
+<td>c$</td>
+<td></td>
+<td>删除到文件最后，并开始编辑</td>
+</tr>
+
+<tr>
+<td></td>
+<td>G</td>
+<td>M-&gt;</td>
+<td>最后一行</td>
+</tr>
+
+<tr>
+<td></td>
+<td>gg</td>
+<td>M-&lt;</td>
+<td>第一行</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td>&ldquo;</td>
+<td></td>
+<td>回到刚才的行</td>
+</tr>
+
+<tr>
+<td></td>
+<td>:400</td>
+<td></td>
+<td>转到400行</td>
+</tr>
+
+<tr>
+<td></td>
+<td>400G</td>
+<td></td>
+<td>转到400行</td>
+</tr>
+
+<tr>
+<td></td>
+<td>%</td>
+<td></td>
+<td>转到匹配的括号</td>
+</tr>
+
+<tr>
+<td></td>
+<td>:s/old/new/g</td>
+<td>M-x repl s &hellip;</td>
+<td>文本替换</td>
+</tr>
+
+<tr>
+<td></td>
+<td>:%s/old/new/g</td>
+<td>M-x repl s &hellip;</td>
+<td>文本替换</td>
+</tr>
+
+<tr>
+<td></td>
+<td>:%s/old/new/gc</td>
+<td>M-x repl s &hellip;</td>
+<td>文本替换</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td></td>
+<td>C-v</td>
+<td>下一屏幕</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td></td>
+<td>M-v</td>
+<td>上一屏幕</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td></td>
+<td>C-l</td>
+<td>光标行置于屏幕中央</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td></td>
+<td>M-a</td>
+<td>句首</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td></td>
+<td>M-e</td>
+<td>句尾</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-u 数字 命令</td>
+<td>重复N次命令（或输入）</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-g</td>
+<td>终止当前命令输入</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td></td>
+<td>Esc</td>
+<td>辅助按下M键</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-d</td>
+<td>删除光标后字符</td>
+</tr>
+
+<tr>
+<td></td>
+<td>db</td>
+<td>M-<DEL></td>
+<td>移除光标前单词</td>
+</tr>
+
+<tr>
+<td></td>
+<td>dw</td>
+<td>M-d</td>
+<td>移除光标后单词</td>
+</tr>
+
+<tr>
+<td></td>
+<td>d$</td>
+<td>C-k</td>
+<td>移除光标到行尾</td>
+</tr>
+
+<tr>
+<td></td>
+<td>dG</td>
+<td>M-k</td>
+<td>移除光标到句尾</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-@ 之后 C-w</td>
+<td>移除选定文字（C-<SPACE>）</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-y</td>
+<td>召回最近一次“移除”的内容（例如 C-k C-k C-y）</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>M-y</td>
+<td>不断召回上一次“移除”的内容</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-/</td>
+<td>撤销上次命令的影响（与 C-x u 或 C-_ 相同）</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-x s</td>
+<td>保存多个缓冲区</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-x C-b</td>
+<td>缓冲区列表</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-x b 缓冲区名称</td>
+<td>切换到缓冲区</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-z</td>
+<td>暂时离开emacs（shell中输入fg或者%emacs再次回来）</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-x C-c</td>
+<td>直接退出</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-s</td>
+<td>向前搜索（C-g光标回到开始位置，<Return>光标定位到结果上）</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-r</td>
+<td>向后搜索</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-x 1</td>
+<td>保留当前窗口</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-x 2</td>
+<td>垂直分割窗口</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-x 3</td>
+<td>水平分割窗口</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-x o</td>
+<td>移动光标到其他窗口（other）</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-M-v</td>
+<td>向下滚动其他窗口</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-M-<Shift>-v</td>
+<td>向上滚动其他窗口</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-h c 命令</td>
+<td>显示命令的简易帮助</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-h k 命令</td>
+<td>显示命令的详细帮助</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>C-h i</td>
+<td>手册</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td></td>
+<td>C-h b</td>
+<td>显示所有函数绑定(describe bindings)</td>
+</tr>
+</tbody>
+</table>
 
 
     
