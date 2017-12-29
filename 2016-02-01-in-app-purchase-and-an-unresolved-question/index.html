@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>In-App Purchase一个坑和一个未解答问题</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="In-App Purchase一个坑和一个未解答问题">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="In-App Purchase一个坑和一个未解答问题">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="In-App Purchase一个坑和一个未解答问题">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/2016-02-01-in-app-purchase-and-an-unresolved-question/">
+	<meta name="og:site_name" content="In-App Purchase一个坑和一个未解答问题">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div class="content">
+    <h1>In-App Purchase一个坑和一个未解答问题 <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#背景">背景</a></li>
+<li><a href="#坑">坑</a></li>
+<li><a href="#小经验">小经验</a></li>
+<li><a href="#还未找到明确解答的问题">还未找到明确解答的问题</a></li>
+<li><a href="#服务端小经验">服务端小经验</a></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<h1 id="背景">背景</h1>
+
+<p>产品类似QQ，有QQ币。必须集成In-App Purchase, 怎么解释都不行。</p>
+
+<h1 id="坑">坑</h1>
+
+<ul>
+<li>当创建的产品被拒绝时，SKProduct 的 localizeTitle是nil。这多数情况足够让程序崩溃。</li>
+</ul>
+
+<h1 id="小经验">小经验</h1>
+
+<ul>
+<li>产品的语言描述，不要出现价格（价格要从price中获取）。详细描述要写的详细一些，进入App后，从哪里点击能进入到购买页面，点击哪个按钮可以购买当前产品，购买后效果如何。</li>
+<li>苹果的产品审核与App审核是不同的人。</li>
+<li>苹果的电话通知与产品或App审核是不同的人。</li>
+<li>苹果的电话通知是用中文。</li>
+<li>苹果会拿iPad测试iPhone的App。</li>
+<li>由于产品被拒绝后，localizeTitle为nil导致程序崩溃，苹果审核人员是不知道这个原因的，他们只会说测试过很多设备，总是崩溃，崩溃的程序是不能通过审核的。</li>
+<li>提交审核的电话一定要正确，苹果是会打电话的。</li>
+</ul>
+
+<h1 id="还未找到明确解答的问题">还未找到明确解答的问题</h1>
+
+<p>多账号App的IAP支付失败的一种情况的处理。
+见这两个提问：</p>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/34872020/apple-in-app-purchase-how-to-detect-the-owner-of-the-payment-in-an-multi-user">http://stackoverflow.com/questions/34872020/apple-in-app-purchase-how-to-detect-the-owner-of-the-payment-in-an-multi-user</a></li>
+<li><a href="https://segmentfault.com/q/1010000004320362">https://segmentfault.com/q/1010000004320362</a></li>
+</ul>
+
+<p><em>有时间找到解决办法后，再补充到这里</em></p>
+
+<h1 id="服务端小经验">服务端小经验</h1>
+
+<ul>
+<li>Apple服务器验证凭据返回的信息是可靠的，可以从这里获取购买的产品ID、数量、价格等。</li>
+<li>如果为了更安全，可以与客户端上传的再比较一次。</li>
+<li>凭据中有可能包含多个产品。（可能上次有网络异常等问题，导致凭据中包含多个产品）。</li>
+<li>服务端要仔细看文档，验证凭据返回的json中有的字段是数组（array）。</li>
+</ul>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written February 1, 2016. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%232016-02-01-in-app-purchase-and-an-unresolved-question%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/2016-01-29-python27-subprocess-timeout/">← Python2.7 subprocess调用perl脚本增加timeout</a>&nbsp;
+	<a href="/2016-02-16-xsourcenote-dev/" style="float:right;">XSourceNote第一版完成（Xcode源码笔记插件） →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>

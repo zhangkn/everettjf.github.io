@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>First step towards LLVM clang plugin</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="First step towards LLVM clang plugin">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="First step towards LLVM clang plugin">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="First step towards LLVM clang plugin">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/2017-04-18-llvm-clang-plugin-first-step/">
+	<meta name="og:site_name" content="First step towards LLVM clang plugin">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div class="content">
+    <h1>First step towards LLVM clang plugin <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#step-0-obtain-clang">Step 0 : Obtain Clang</a></li>
+<li><a href="#step-1-obtain-ninja-and-build">Step 1 : Obtain ninja and build</a></li>
+<li><a href="#step-2-obtain-cmake-and-build">Step 2 : Obtain cmake and build</a></li>
+<li><a href="#step-3-build-clang">Step 3 : Build clang</a></li>
+<li><a href="#step-4-clang-tool">Step 4 : Clang tool</a></li>
+<li><a href="#end">End</a></li>
+<li><a href="#ref">Ref</a></li>
+<li><a href="#吐槽">吐槽</a></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<hr />
+
+<p>This article almost copy part of <a href="https://clang.llvm.org/docs/LibASTMatchersTutorial.html">the official article</a>, but fix many <code>bugs</code> that may impede <code>newbees</code> on the way to develop a clang plugin.</p>
+
+<p>Environment : macOS</p>
+
+<h1 id="step-0-obtain-clang">Step 0 : Obtain Clang</h1>
+
+<pre><code>mkdir ~/clang-llvm &amp;&amp; cd ~/clang-llvm
+git clone http://llvm.org/git/llvm.git
+cd llvm/tools
+git clone http://llvm.org/git/clang.git
+cd clang/tools
+git clone http://llvm.org/git/clang-tools-extra.git extra
+</code></pre>
+
+<h1 id="step-1-obtain-ninja-and-build">Step 1 : Obtain ninja and build</h1>
+
+<pre><code>cd ~/clang-llvm
+git clone https://github.com/martine/ninja.git
+cd ninja
+git checkout release
+./bootstrap.py
+sudo cp ninja /usr/local/bin/
+</code></pre>
+
+<h1 id="step-2-obtain-cmake-and-build">Step 2 : Obtain cmake and build</h1>
+
+<p>Your default cmake may not contain <code>ninja support</code>, so build cmake ourself.</p>
+
+<pre><code>cd ~/clang-llvm
+git clone https://gitlab.kitware.com/cmake/cmake.git
+cd cmake
+./bootstrap
+make
+sudo make install
+</code></pre>
+
+<h1 id="step-3-build-clang">Step 3 : Build clang</h1>
+
+<pre><code>cd ~/clang-llvm
+mkdir build &amp;&amp; cd build
+cmake -G Ninja ../llvm -DLLVM_BUILD_TESTS=ON  # Enable tests; default is off.
+ninja
+sudo ninja install
+</code></pre>
+
+<p>Of course , you should run the unittests before <code>ninja install</code>, but normally I run the unittest , always encounters some <code>not pass</code>. But just ignore these &lsquo;errors&rsquo;.</p>
+
+<pre><code>ninja check       # Test LLVM only.
+ninja clang-test  # Test Clang only.
+</code></pre>
+
+<h1 id="step-4-clang-tool">Step 4 : Clang tool</h1>
+
+<p>Just goto <a href="https://clang.llvm.org/docs/LibASTMatchersTutorial.html#step-1-create-a-clangtool">Create a ClangTool</a></p>
+
+<h1 id="end">End</h1>
+
+<p>will continue&hellip;</p>
+
+<h1 id="ref">Ref</h1>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=VqCkCDFLSsc">Introduction to the Clang AST</a> (youtube video)</li>
+<li><a href="https://clang.llvm.org/docs/LibASTMatchersTutorial.html">https://clang.llvm.org/docs/LibASTMatchersTutorial.html</a></li>
+<li><a href="https://clang.llvm.org/docs/ClangPlugins.html">https://clang.llvm.org/docs/ClangPlugins.html</a></li>
+<li><a href="https://clang.llvm.org/docs/RAVFrontendAction.html">https://clang.llvm.org/docs/RAVFrontendAction.html</a></li>
+<li><a href="http://clang.llvm.org/docs/ExternalClangExamples.html">http://clang.llvm.org/docs/ExternalClangExamples.html</a></li>
+</ul>
+
+<p>All came from :
+- <a href="https://clang.llvm.org/docs/index.html">https://clang.llvm.org/docs/index.html</a>
+- <a href="http://llvm.org/docs/index.html">http://llvm.org/docs/index.html</a></p>
+
+<h1 id="吐槽">吐槽</h1>
+
+<p>官方文档各种坑&hellip;</p>
+
+<p>应该是我太菜&hellip;的原因&hellip;</p>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written April 18, 2017. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%232017-04-18-llvm-clang-plugin-first-step%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/2017-03-17-generate-framework-dependency-graph-for-cocoapods/">← Generate framework dependency graph for CocoaPods</a>&nbsp;
+	<a href="/2017-05-08-ios10-jailbreak-dev-env-setup-tutorial/" style="float:right;">iOS10 jailbreak develop environment setup reference →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>

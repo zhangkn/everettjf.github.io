@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Tweak for saving voice in alipay</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="Tweak for saving voice in alipay">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Tweak for saving voice in alipay">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="Tweak for saving voice in alipay">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/2015-12-29-tweak-for-alipay-wallet-chat-voice-save/">
+	<meta name="og:site_name" content="Tweak for saving voice in alipay">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div class="content">
+    <h1>Tweak for saving voice in alipay <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#背景">背景</a></li>
+<li><a href="#环境">环境</a></li>
+<li><a href="#去掉保护">去掉保护</a>
+<ul>
+<li><a href="#获取-appbundleidentifier">获取 AppBundleIdentifier</a></li>
+<li><a href="#去掉-ptrace-和-restrict-section-两个保护">去掉 ptrace 和 __RESTRICT section 两个保护</a></li>
+</ul></li>
+<li><a href="#分析">分析</a>
+<ul>
+<li><a href="#砸壳">砸壳</a></li>
+<li><a href="#class-dump">class-dump</a></li>
+<li><a href="#找到语音对应的uitableviewcell">找到语音对应的UITableViewCell</a></li>
+<li><a href="#上lldb和ida">上lldb和IDA</a></li>
+<li><a href="#步骤总结">步骤总结</a></li>
+<li><a href="#如何获取语音的时间戳">如何获取语音的时间戳</a></li>
+</ul></li>
+<li><a href="#源码">源码</a></li>
+<li><a href="#补充">补充</a>
+<ul>
+<li><a href="#音频格式">音频格式</a></li>
+<li><a href="#wifi下自动下载语音">Wifi下自动下载语音</a></li>
+</ul></li>
+<li><a href="#总结">总结</a></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<h1 id="背景">背景</h1>
+
+<p>加入了MacTalk作者池院长的支付宝群“攻城狮之路”，已经有了三次分享（昨天第三次），分享是以语音形式进行。近期正好看完了《iOS应用逆向工程》这本书，想来可以试试写个tweak，保存聊天中的语音。</p>
+
+<h1 id="环境">环境</h1>
+
+<ol>
+<li>iPhone 5，iOS 8.3，越狱。</li>
+<li>支付宝9.3 。</li>
+</ol>
+
+<p>使用iPhone5主要是因为CPU是32位，32位arm汇编。IDA免费版不能反汇编64位程序。其次也是我初学，这本书中的例子也都是32位汇编，对我来说更简单点。</p>
+
+<h1 id="去掉保护">去掉保护</h1>
+
+<h2 id="获取-appbundleidentifier">获取 AppBundleIdentifier</h2>
+
+<p>进入 AlipayWallet.app 目录，</p>
+
+<pre><code>everettjfs-iPhone:/var/mobile/Containers/Bundle/Application/9DB7CE45-3B4C-42A3-9D4D-49A3A5122903/AlipayWallet.app root# cat Info.plist | grep com.
+    &lt;string&gt;com.alipay.iphoneclient&lt;/string&gt;
+</code></pre>
+
+<h2 id="去掉-ptrace-和-restrict-section-两个保护">去掉 ptrace 和 __RESTRICT section 两个保护</h2>
+
+<p>参见：<a href="https://everettjf.github.io/2015/12/28/simple-ios-antidebugging-and-antiantidebugging/">https://everettjf.github.io/2015/12/28/simple-ios-antidebugging-and-antiantidebugging/</a></p>
+
+<p>破掉保护后就可以使用cycript了。</p>
+
+<h1 id="分析">分析</h1>
+
+<h2 id="砸壳">砸壳</h2>
+
+<p>使用 dumpdecripted</p>
+
+<pre><code>everettjfs-iPhone:~ root# cycript -p AlipayWallet
+cy# [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]
+@[#&quot;file:///var/mobile/Containers/Data/Application/F3E3A318-3E42-40BB-B1AC-2DE3CD8ACB00/Documents/&quot;]
+
+</code></pre>
+
+<h2 id="class-dump">class-dump</h2>
+
+<pre><code>$ class-dump --list-arches AlipayWallet.decrypted
+$ class-dump -s -S -H --arch armv7 AlipayWallet.decrypted -o dumpAlipay
+</code></pre>
+
+<h2 id="找到语音对应的uitableviewcell">找到语音对应的UITableViewCell</h2>
+
+<p>打开支付宝，切换到聊天界面。保持聊天对话的对方有语音消息。</p>
+
+<pre><code>everettjfs-iPhone:~ root# cycript -p AlipayWallet
+cy# ?expand
+expand == true
+cy# [[UIApp keyWindow] recursiveDescription]
+@&quot;&lt;UIWindow: 0x2db3ae0; frame = (0 0; 320 568); gestureRecognizers = &lt;NSArray: 0x2db3f60&gt;; layer = &lt;UIWindowLayer: 0x2db3c30&gt;&gt;
+   | &lt;UILayoutContainerView: 0xb4662d0; frame ....
+   ......
+</code></pre>
+
+<p>可以把语音时长作为关键字，例如搜索<code>1''</code>，可以找到：</p>
+
+<pre><code>&lt;UILabel: 0xe2a1900; frame = (141 65.316; 15 14); text = '1'''; userInteractionEnabled = NO; layer = &lt;_UILabelLayer: 0xe2a19e0&gt;&gt;
+</code></pre>
+
+<p>进而可以找到对应的UITableViewCell：</p>
+
+<pre><code>&lt;CTMessageCell: 0x39ecc00; baseClass = UITableViewCell; frame = (0 285; 320 99); ......
+</code></pre>
+
+<p>于是，从class-dump的文件中找到CTMessageCell的头文件：
+这时就要火眼金睛啦。找到以下信息：</p>
+
+<pre><code>@property(retain, nonatomic) APChatMedia *voiceObj; // @synthesize voiceObj=_voiceObj;
+@property(copy, nonatomic) NSString *timeLine; // @synthesize timeLine=_timeLine;
+
+- (void)playAudio;
+</code></pre>
+
+<p>可以直接在cycript中调用来验证数据是不是要找的。</p>
+
+<p>这个APChatMedia，很有意思。看下头文件。</p>
+
+<pre><code>@interface APChatMedia : NSObject
+@property(retain, nonatomic) NSData *data; // @synthesize data=_data;
+@property(retain, nonatomic) NSString *url; // @synthesize url=_url;
+</code></pre>
+
+<p>url可以获取到一个字符串。开始看到url我还很高兴，难道就这么简单，难道这就是下载语音文件的url，可惜不是啊）</p>
+
+<pre><code>cy# [#0x3022400 voiceObj]
+#&quot;&lt;APChatMedia: 0xb226710&gt;&quot;
+cy# [#0xb226710 url]
+@&quot;ww4fd1rfRDShBo_4K6rqfwAAACMAAQED&quot;
+</code></pre>
+
+<p>又看到APChatMedia的data，难道这就是语音数据，可惜这个值总是nil。</p>
+
+<p>看来得找别的办法，看看playAudio这个方法吧。</p>
+
+<h2 id="上lldb和ida">上lldb和IDA</h2>
+
+<p>lldb中找到 CTMessageCell playAudio 的地址，下断点，点击一条语音，果然断下来。</p>
+
+<p>分析playAudio的代码，内部会调用 APPlayManager 的play:FinishCallback。</p>
+
+<p><img src="http://d.pr/i/1jTaR+" alt="playFinishCallback" /></p>
+
+<p>APChatMedia会作为第一个参数传进入。</p>
+
+<pre><code>(lldb) br s -a 0x00D3EFD6
+Breakpoint 1: where = AlipayWallet`___lldb_unnamed_function68838$$AlipayWallet + 118, address = 0x00d3efd6
+(lldb) c
+error: Process is running.  Use 'process interrupt' to pause execution.
+Process 6235 stopped
+* thread #1: tid = 0x58da9, 0x00d3efd6 AlipayWallet`___lldb_unnamed_function68838$$AlipayWallet + 118, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
+    frame #0: 0x00d3efd6 AlipayWallet`___lldb_unnamed_function68838$$AlipayWallet + 118
+AlipayWallet`___lldb_unnamed_function68838$$AlipayWallet:
+-&gt;  0xd3efd6 &lt;+118&gt;: blx    0xe0bb50                  ; ___lldb_unnamed_function73268$$AlipayWallet
+    0xd3efda &lt;+122&gt;: mov    r0, r6
+    0xd3efdc &lt;+124&gt;: blx    0xe0bb4c                  ; ___lldb_unnamed_function73267$$AlipayWallet
+    0xd3efe0 &lt;+128&gt;: mov    r0, r5
+(lldb) po $r0
+&lt;APPlayManager: 0xce984f0&gt;
+
+(lldb) p (char*)$r1
+(char *) $1 = 0x021535fd &quot;play:finishCallback:&quot;
+(lldb) po $r2
+&lt;APChatMedia: 0xc7e7b90&gt;
+</code></pre>
+
+<p>到APPlayManager的play:FinishCallback看下，发现会从VoiceCache中获取音频数据。</p>
+
+<pre><code>- (id)queryVoiceDataForKey:(id)arg1 formatType:(unsigned int)arg2;
+</code></pre>
+
+<pre><code>&gt; VoiceCache.queryVoiceDataForKey:formatType:
+lldb) p (char*)$r1
+(char *) $18 = 0x020f55b3 &quot;queryVoiceDataForKey:formatType:&quot;
+(lldb) po $r2
+9atdHG1cSFKJyb8yqntaaQAAACMAAQED
+
+(lldb) p $r3
+(unsigned int) $20 = 1
+</code></pre>
+
+<p><img src="http://d.pr/i/13z9A+" alt="VoiceCache" /></p>
+
+<p>其实到这里，queryVoiceDataForKey 返回的 NSData 就是要获取的音频数据了。保存下来，拿到电脑上就行啦。</p>
+
+<h2 id="步骤总结">步骤总结</h2>
+
+<ol>
+<li>CTMessageCell.playAudio</li>
+<li>APPlayManager.playFinishCallback  (param : [CTMessageCell voiceObj])</li>
+<li>APVoiceManager.playAudioWithCloudId:resumeActive:downLoadHandler:playHandler:</li>
+<li>VoiceCache.queryVoiceDataForKey:formatType:</li>
+</ol>
+
+<h2 id="如何获取语音的时间戳">如何获取语音的时间戳</h2>
+
+<p>有了语音数据，如何保存个合适的名字。因为分享会有很多语音，需要区分出语音的先后（支付宝的收藏又是体验很差）。</p>
+
+<p>于是看CTMessageCell的头文件，再看父类PKCell，可以看到有聊天对方的信息，</p>
+
+<pre><code>@property(retain, nonatomic) APContactInfo *contactInfo; // @synthesize contactInfo=_contactInfo;
+</code></pre>
+
+<p>再看父类PKBaseCell，会发现有个</p>
+
+<pre><code>@property(retain, nonatomic) NSDictionary *chatDataSource; // @synthesize chatDataSource=_chatDataSource;
+</code></pre>
+
+<p>cycript打印出来：</p>
+
+<pre><code>chatDataSource
+cy# [#0x319c400 chatDataSource]
+@{&quot;alignmentType&quot;:0,&quot;templateData&quot;:@{&quot;l&quot;:12,&quot;v&quot;:&quot;FGAegsGqTTaAB3n80shI_gAAACMAAQED&quot;},&quot;id&quot;:&quot;12&quot;,&quot;originId&quot;:&quot;12&quot;,&quot;data&quot;:@{&quot;displayName&quot;:&quot;everettjf&quot;,&quot;sessionId&quot;:&quot;2088002664597371&quot;,&quot;bizImage&quot;:&quot;Local_Image_CHAT.left&quot;,&quot;hintName&quot;:&quot;everettjf&quot;,&quot;timeLine&quot;:#&quot;2015-12-24 15:56:27 +0000&quot;,&quot;HeadIcon&quot;:&quot;http://tfs.alipayobjects.com/images/partner/T1IJphXc4XXXXXXXXX_160X160&quot;,&quot;action&quot;:&quot;0&quot;,&quot;seed&quot;:&quot;2088002664597371@145097258940385&quot;,&quot;cellSelected&quot;:&quot;0&quot;,&quot;userType&quot;:&quot;1&quot;,&quot;userID&quot;:&quot;2088122631212590&quot;,&quot;v&quot;:&quot;FGAegsGqTTaAB3n80shI_gAAACMAAQED&quot;,&quot;bizMemo&quot;:&quot;[\xe8\xaf\xad\xe9\x9f\xb3]&quot;,&quot;fromUId&quot;:&quot;2088002664597371&quot;,&quot;l&quot;:12,&quot;fromLoginId&quot;:&quot;eve***@outlook.com&quot;,&quot;bizType&quot;:&quot;CHAT&quot;,&quot;bizRemind&quot;:&quot;&quot;,&quot;toUId&quot;:&quot;2088122631212590&quot;,&quot;clientMsgID&quot;:&quot;2088002664597371@145097258940385&quot;,&quot;link&quot;:&quot;&quot;,&quot;msgID&quot;:151224235627370001,&quot;toLoginId&quot;:&quot;&quot;,&quot;localId&quot;:6},&quot;headerText&quot;:&quot;Thursday 11:56 PM&quot;,&quot;msgType&quot;:0}
+</code></pre>
+
+<p>可以看到 <code>timeLine</code> 就是这条信息的时间戳。</p>
+
+<h1 id="源码">源码</h1>
+
+<p>好了，大功告成，写个tweak吧。</p>
+
+<p>把保存的代码放到了收藏按钮中。hook 收藏的方法 <code>- (void)collectMenu:(id)arg1</code>。</p>
+
+<p>参见代码：</p>
+
+<p><a href="https://github.com/everettjf/Yolobroccoli/AlipayWalletChatVoiceSaver">https://github.com/everettjf/Yolobroccoli/AlipayWalletChatVoiceSaver</a></p>
+
+<h1 id="补充">补充</h1>
+
+<h2 id="音频格式">音频格式</h2>
+
+<p>语音格式，把语音复制出来后，用二进制编辑工具iHex打开，可以看到是wav格式。</p>
+
+<h2 id="wifi下自动下载语音">Wifi下自动下载语音</h2>
+
+<p>上面我们每次都从VoiceCache中获取音频数据，应该是因为在Wifi下，语音会自动下载，下载后自动就放到了VoiceCache中。</p>
+
+<p>通过可以在 APVoiceManager 的下面方法增加断点，就可以发现每次都自动下载，具体就不分析了。</p>
+
+<pre><code>- (void)downLoadAudioWithCloudId:(id)arg1 downLoadHandler:(CDUnknownBlockType)arg2;
+</code></pre>
+
+<h1 id="总结">总结</h1>
+
+<p>虽然远没有《iOS应用逆向工程》最后一章的例子复杂，但也作为自己看完这本书的小小的句号吧，既是句号，也是新的起点。这本书的内容也只是引导自己走进了iOS逆向的大门，入门而已。</p>
+
+<p>期待未来……</p>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written December 29, 2015. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%232015-12-29-tweak-for-alipay-wallet-chat-voice-save%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/2015-12-28-simple-ios-antidebugging-and-antiantidebugging/">← Simple antidebugging and antiantidebugging</a>&nbsp;
+	<a href="/2016-01-01-2015-summary/" style="float:right;">2015 summary , 2016 plan →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>

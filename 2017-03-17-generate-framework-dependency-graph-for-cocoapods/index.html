@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Generate framework dependency graph for CocoaPods</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="Generate framework dependency graph for CocoaPods">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Generate framework dependency graph for CocoaPods">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="Generate framework dependency graph for CocoaPods">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/2017-03-17-generate-framework-dependency-graph-for-cocoapods/">
+	<meta name="og:site_name" content="Generate framework dependency graph for CocoaPods">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div class="content">
+    <h1>Generate framework dependency graph for CocoaPods <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#根据podspec生成framework的依赖关系graph">根据podspec生成framework的依赖关系graph</a></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<h1 id="根据podspec生成framework的依赖关系graph">根据podspec生成framework的依赖关系graph</h1>
+
+<p>代码：</p>
+
+<p><a href="https://github.com/everettjf/Yolo/tree/master/PodspecDependencyGraph">https://github.com/everettjf/Yolo/tree/master/PodspecDependencyGraph</a></p>
+
+<p>步骤：</p>
+
+<ol>
+<li><p>sh prepare.sh  或者 brew install graphviz</p></li>
+
+<li><p>用到一些es6的语法，可能需要node最新版本（我是7.8.0）。</p></li>
+
+<li><p>用法</p></li>
+</ol>
+
+<pre><code>sh gen.sh &lt;起始framework名称&gt; &lt;podspec目录&gt;
+</code></pre>
+
+<ol>
+<li>例子</li>
+</ol>
+
+<pre><code>sh gen.sh TomatoRead /Users/everettjf/specsdev
+</code></pre>
+
+<p>用chrome打开 目录下的tred.dot.svg文件就可以看到整棵树了。</p>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written March 17, 2017. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%232017-03-17-generate-framework-dependency-graph-for-cocoapods%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/2017-03-11-spacemacs-tutorial/">← Spacemacs tutorial</a>&nbsp;
+	<a href="/2017-04-18-llvm-clang-plugin-first-step/" style="float:right;">First step towards LLVM clang plugin →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>

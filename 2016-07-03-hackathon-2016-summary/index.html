@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Summary for segmentfault hackathon 2016</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="Summary for segmentfault hackathon 2016">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Summary for segmentfault hackathon 2016">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="Summary for segmentfault hackathon 2016">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/2016-07-03-hackathon-2016-summary/">
+	<meta name="og:site_name" content="Summary for segmentfault hackathon 2016">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div class="content">
+    <h1>Summary for segmentfault hackathon 2016 <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#背景">背景</a></li>
+<li><a href="#老想法">老想法</a></li>
+<li><a href="#开始了">开始了</a></li>
+<li><a href="#还原算法">还原算法</a></li>
+<li><a href="#总结">总结</a></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<h1 id="背景">背景</h1>
+
+<p>上周末两天与朋友（两个人组队）参加了segmentfault与angelhack举办的hackathon，北京站。主题是“文艺复兴”。</p>
+
+<p>周六经过简单开场，以及简单的API宣讲（太简单）。下午2点正式开始了构思。提供的sdk有：agoria的视频通话sdk 与 wacom的WILL sdk。</p>
+
+<p>在这个基础上我们有了个想法：</p>
+
+<ul>
+<li>视频绘画教学。agoria提供视频功能，wacom提供绘图板功能。由于两个sdk都有demo，应该能很快组装起来。</li>
+<li>匿名视频。随机与打开App的另一方建立连接。</li>
+<li>匿名兴趣视频。选择App中内置的兴趣，可以与所有进入这个兴趣的用户视频。</li>
+</ul>
+
+<p>然而，我们总觉得这些想法“没有创意”。视频sdk号称30分钟集成，WILL sdk也应该容易使用。岂不是所有人都做这个视频功能？简单的视频通话会不会没有创意？</p>
+
+<h1 id="老想法">老想法</h1>
+
+<p>然而，此时一个”老想法“又来了。前段时间看了”最强大脑“后自己也学习起魔方。想来做一个辅助还原魔方的App会更有创意。</p>
+
+<p>做这个App的想法在这次hackathon之前就有，也做了一些调查，当然重点是想使用AR来辅助还原魔方。AR自然想到了Vuforia，然而Vuforia只能识别marker，对于魔方这种每个面的颜色组成会变化，且需要识别出颜色来，Vuforia做不到（或者我没找到办法）。于是OpenCV登场。找到了这个 <a href="https://github.com/AndroidSteve/Rubik-Cube-Wizard">https://github.com/AndroidSteve/Rubik-Cube-Wizard</a> ，这个App主要用在 Google Glass上，且作者没有计划移植到手机上（<a href="https://github.com/AndroidSteve/Rubik-Cube-Wizard/tree/master/Rubik%20Solver/docs）。">https://github.com/AndroidSteve/Rubik-Cube-Wizard/tree/master/Rubik%20Solver/docs）。</a></p>
+
+<p>想来我可以做。但发现大量OpenCV的使用。后来投入较多时间去学习OpenCV。照着 Rubik-Cube-Wizard 的Java代码翻译……</p>
+
+<p>当然还没有完成，hackathon 就来了。</p>
+
+<h1 id="开始了">开始了</h1>
+
+<p>想来这个更独特，几乎不可能有人做。（当时感觉这个更有特色，但后来发现不对）</p>
+
+<p>使用OpenCV识别魔方，想来这两天很难做到。就放弃了。</p>
+
+<p>于是，使用UIView配合transform模拟了个立体的魔方。（当天也调查了openGL和metal，对这两个都不熟悉，就使用UIView组合了）。</p>
+
+<p>最主要的就是魔方每个面信息的输入，想了三个快速输入的方式：</p>
+
+<ul>
+<li>按钮</li>
+<li>语音</li>
+<li>拍照</li>
+<li>视频</li>
+<li>AR</li>
+</ul>
+
+<hr />
+
+<ul>
+<li><p>按钮如下图：
+<img src="https://everettjf.github.io/stuff/rubiks/app.jpg" alt="" /></p></li>
+
+<li><p>语音，可以使用讯飞识别。</p></li>
+
+<li><p>拍照，也就是每个面都拍照。识别出固定位置的颜色。</p></li>
+
+<li><p>视频，类似这个 <a href="https://github.com/bluquar/cubr。">https://github.com/bluquar/cubr。</a></p></li>
+
+<li><p>AR，就是Rubik-Cube-Wizard这个了。</p></li>
+</ul>
+
+<h1 id="还原算法">还原算法</h1>
+
+<p><a href="https://github.com/muodov/kociemba">https://github.com/muodov/kociemba</a></p>
+
+<p>最后，做出来使用按钮、语音的方式。代码在这里。<a href="https://github.com/xfteam/xfrubiks">https://github.com/xfteam/xfrubiks</a></p>
+
+<hr />
+
+<h1 id="总结">总结</h1>
+
+<ul>
+<li>最后熬夜做出了这个App，但只使用了按钮、语音，且演示阶段配合不好，导致效果不好。</li>
+<li>活动赞助商提供了sdk，当然最好还是要用啦。用自然会加分啦。（当然这个活动目的不能纯粹为了获奖，做自己想做的才是最重要的）</li>
+<li>演示阶段，自己还需要锻炼。发现自己虽然年近30，但有些小场合还是会紧张。表达的不够自然。且演示阶段还是尽量能简单排练下。与朋友的配合不够默契。本来设计的小笑话，由于表达与配合问题，成了鸡肋。</li>
+<li>今年活动的场所在鸟巢附近的一家孵化器办公场所，环境很好，沙发很多。</li>
+<li>没落实的这几个想法，视频绘画教学等，如果做出来其实还是很不错的。放弃的太过草率。</li>
+<li>想想我们技术是有的，但还有更多其他因素。解决问题的思路，想法的商业价值。单纯的玩具意义并不大。等等。</li>
+<li>比赛虽然很累，但还是很享受这个过程。（尤其是做出了这个辅助还原魔方的App。虽然使用时有些细节需要注意。哈）</li>
+</ul>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written July 3, 2016. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%232016-07-03-hackathon-2016-summary%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/2016-06-26-ios-dev-one-year-summary/">← Summary for C&#43;&#43; transfer to iOS developer for one year</a>&nbsp;
+	<a href="/2016-07-04-plan-for-the-next-half-year/" style="float:right;">Plan for the next half year (2016) on iOS →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>

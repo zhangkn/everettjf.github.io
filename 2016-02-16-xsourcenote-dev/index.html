@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>XSourceNote第一版完成（Xcode源码笔记插件）</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="XSourceNote第一版完成（Xcode源码笔记插件）">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="XSourceNote第一版完成（Xcode源码笔记插件）">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="XSourceNote第一版完成（Xcode源码笔记插件）">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/2016-02-16-xsourcenote-dev/">
+	<meta name="og:site_name" content="XSourceNote第一版完成（Xcode源码笔记插件）">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div class="content">
+    <h1>XSourceNote第一版完成（Xcode源码笔记插件） <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#背景">背景</a></li>
+<li><a href="#源码">源码</a></li>
+<li><a href="#效果">效果</a></li>
+<li><a href="#安装">安装</a></li>
+<li><a href="#使用">使用</a>
+<ul>
+<li><a href="#0-菜单">0. 菜单</a></li>
+<li><a href="#1-配置">1. 配置</a></li>
+<li><a href="#2-工程笔记">2. 工程笔记</a></li>
+<li><a href="#3-总结">3. 总结</a></li>
+<li><a href="#4-工具">4. 工具</a></li>
+<li><a href="#5-代码行的笔记">5. 代码行的笔记</a>
+<ul>
+<li><a href="#1-添加笔记">1) 添加笔记</a></li>
+<li><a href="#2-查看笔记">2）查看笔记</a></li>
+<li><a href="#3-导出笔记">3)导出笔记</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#总结">总结</a></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<p>PS: 此想法意义不大，不再开发和维护。</p>
+
+<h1 id="背景">背景</h1>
+
+<p>今年计划多学习一些源码，说好的源码学习呢。1月份主要学习了SDWebImage和YYCache的源码，一行一行的看的，发现不少好东西。开始想边学习边记录，分享出来，但总觉得麻烦。</p>
+
+<p>去年做了个XBookmark，Xcode的书签插件。想想，可以做个对源码做笔记的插件。功能如下：</p>
+
+<ol>
+<li>对工程做笔记。</li>
+<li>对文件做笔记。</li>
+<li>对某一个文件的一行或多行做笔记。</li>
+<li>可以导出为markdown格式。</li>
+</ol>
+
+<p>导出为markdown格式就可以直接放到博客当文章了。
+（头脑风暴下，如果每个人都分享到一个网站上，都可以对某一行代码进行讨论呢…… ）
+（先一步一步来，想法太多，也好也坏。为了学习源码，还要做出个插件来……也好也坏）</p>
+
+<p>对SDWebImage和YYCache或者其他源码的学习笔记，到时候一起放出来吧……</p>
+
+<p><em>&mdash;以下2016年3月21日补充&ndash;</em></p>
+
+<h1 id="源码">源码</h1>
+
+<p><a href="https://github.com/everettjf/XSourceNote">https://github.com/everettjf/XSourceNote</a></p>
+
+<h1 id="效果">效果</h1>
+
+<p>经过这1个月断断续续的开发及不断的使用修改，终于可以发布第一个版本啦。</p>
+
+<p>效果如下：</p>
+
+<p><img src="https://everettjf.github.io/stuff/xsourcenote/project_whole.png" alt="XSourceNote" /></p>
+
+<h1 id="安装">安装</h1>
+
+<p>在 <a href="http://alcatraz.io">Alcatraz</a> 中搜索“XSourceNote”安装即可。</p>
+
+<h1 id="使用">使用</h1>
+
+<h2 id="0-菜单">0. 菜单</h2>
+
+<p><code>Xcode-&gt;Edit-&gt;XSourceNote</code></p>
+
+<p>或按对应的快捷键。（快捷键在Tool中可修改)</p>
+
+<h2 id="1-配置">1. 配置</h2>
+
+<p>例如：</p>
+
+<ul>
+<li>使用Xcode打开位于 /Users/everettjf/GitHub/XSourceNote 路径下的工程文件。</li>
+<li>按快捷键 Shift+F4 打开“笔记列表窗口”，如下图：</li>
+</ul>
+
+<p><img src="https://everettjf.github.io/stuff/xsourcenote/project_basic.png" alt="XSourceNote" /></p>
+
+<ul>
+<li>Root Path（必填）: 选择工程文件所在的本地文件夹。（为了添加笔记时把文件全路径转换为相对路径。这里可优化为查找.git目录自动配置）</li>
+<li>Project Name : 工程名字</li>
+<li>Official Site : 官方网站名字</li>
+<li>Repo : 代码仓库地址</li>
+<li>Revision : 当前修订版本 （这里是为了唯一表示当前学习的源代码的版本）</li>
+<li>Description : 简介。</li>
+</ul>
+
+<h2 id="2-工程笔记">2. 工程笔记</h2>
+
+<p>就是整体做个笔记</p>
+
+<h2 id="3-总结">3. 总结</h2>
+
+<p>总结会在最后导出Markdown笔记时，放在内容最后面。</p>
+
+<h2 id="4-工具">4. 工具</h2>
+
+<p>可配置Markdown笔记内容的前缀。很多基于Markdown的博客系统（例如Jekyll，Hexo）都需要一些元数据的配置。</p>
+
+<p><strong>左下角按钮</strong>可以导出Markdown笔记。</p>
+
+<h2 id="5-代码行的笔记">5. 代码行的笔记</h2>
+
+<h3 id="1-添加笔记">1) 添加笔记</h3>
+
+<p>在代码编辑器中按快捷键 Command+F4 可添加笔记。XSouceNote会自动记录<strong>光标所在行（单行笔记）、或当前选中区域的行（多行笔记）</strong>。
+这个窗口中可输入笔记。（关闭后自动保存）。添加后，会在编辑器对应行的左侧边栏中添加一个绿色的标记。</p>
+
+<p><img src="https://everettjf.github.io/stuff/xsourcenote/quick_note.png" alt="XSourceNote" /></p>
+
+<p><img src="https://everettjf.github.io/stuff/xsourcenote/sidebar.png" alt="XSourceNote" /></p>
+
+<h3 id="2-查看笔记">2）查看笔记</h3>
+
+<p>仍然是 Shift+F4打开的窗口，左侧对代码行的笔记会追加到列表下面。</p>
+
+<p><img src="https://everettjf.github.io/stuff/xsourcenote/line_note.png" alt="XSourceNote" /></p>
+
+<p>右侧最上面是 文件的相对路径（如果无法找到RootPath，则会是完整路径）。之后是笔记所在行的代码。</p>
+
+<p>最下面可以编辑笔记。（笔记会每隔10s保存，或点击左侧列表时保存，或关闭窗口时保存）</p>
+
+<h3 id="3-导出笔记">3)导出笔记</h3>
+
+<p>点击左侧列表“Tool“，右侧下面一行按钮。可导出到选择的文件。</p>
+
+<p>格式参考：<a href="https://everettjf.github.io/2016/03/17/yycache-learn">格式参考</a></p>
+
+<h1 id="总结">总结</h1>
+
+<p>功能比较简单，不过基本满足我学习源码时笔记的需求了。</p>
+
+<p>还有一些可优化的地方：</p>
+
+<ul>
+<li>笔记的排序。</li>
+<li>代码区域的着色。</li>
+<li>笔记区域的Markdown格式预览。</li>
+<li>自动查找RootPath。</li>
+</ul>
+
+<p>以后使用过程中慢慢优化。</p>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written February 16, 2016. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%232016-02-16-xsourcenote-dev%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/2016-02-01-in-app-purchase-and-an-unresolved-question/">← In-App Purchase一个坑和一个未解答问题</a>&nbsp;
+	<a href="/2016-02-24-iosblog-cc-dev-memory/" style="float:right;">iOS博客精选 来源、使命及反思 →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>iOS Debug Cheatsheet</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="iOS Debug Cheatsheet">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="iOS Debug Cheatsheet">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="iOS Debug Cheatsheet">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/2016-05-25-my-ios-debug-cheatsheet/">
+	<meta name="og:site_name" content="iOS Debug Cheatsheet">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div class="content">
+    <h1>iOS Debug Cheatsheet <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#common">common</a></li>
+<li><a href="#lldb">lldb</a></li>
+<li><a href="#cycript">cycript</a></li>
+<li><a href="#linker">linker</a></li>
+<li><a href="#anti">Anti</a></li>
+<li><a href="#info-plist">Info.plist</a></li>
+<li><a href="#dumpdecrypted">dumpdecrypted</a></li>
+<li><a href="#theos">theos</a></li>
+<li><a href="#chisel">chisel</a></li>
+<li><a href="#usbmuxd">usbmuxd</a></li>
+</ul></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<p>逆向过程中命令太多记不住，就整理了这个速查表，分享给大家。我只是看完了小黄书《iOS应用逆向工程》，这几个月没有再深入研究逆向。最近又想逆向几个app学习下怎么实现，发现很多命令都忘记了。于是整理了这个表。copy and paste就可以愉快的学习其他app的实现了。</p>
+
+<p>命令都很基础、简单、常用，主要是我也只学了这么多哈。</p>
+
+<hr />
+
+<h2 id="common">common</h2>
+
+<p>查找进程：</p>
+
+<pre><code>ps aux | grep /App
+ps -e | grep /Applications
+</code></pre>
+
+<p>查找文件：</p>
+
+<pre><code>grep -r ToBeFind /System/Library/
+</code></pre>
+
+<p>分离fat binary</p>
+
+<pre><code>lipo -thin armv7 WeChat.decrypted -output WeChat_armv7.decrypted
+lipo -thin armv64 xxx.decrypted -output xxx_arm64.decrypted
+</code></pre>
+
+<p>class dump</p>
+
+<pre><code>class-dump --list-arches AlipayWallet.decrypted
+
+class-dump -S -s -H WeChat_armv7.decrypted -o dumparmv7
+class-dump -s -S -H --arch armv7 AlipayWallet.decrypted -o dumpAlipay
+</code></pre>
+
+<h2 id="lldb">lldb</h2>
+
+<p>参考</p>
+
+<ul>
+<li><a href="https://github.com/iosre/iOSAppReverseEngineering">https://github.com/iosre/iOSAppReverseEngineering</a></li>
+<li><a href="http://objccn.io/issue-19-2/">http://objccn.io/issue-19-2/</a></li>
+</ul>
+
+<p>帮助</p>
+
+<pre><code>help frame
+</code></pre>
+
+<p>打印UI结构</p>
+
+<pre><code>po [[[UIWindow keyWindow] rootViewController] _printHierarchy]    (iOS 8)
+po [[UIWindow keyWindow] recursiveDescription]
+</code></pre>
+
+<p>栈信息</p>
+
+<pre><code>bt (backtrace)
+bt all (all threads)
+</code></pre>
+
+<p>objc_msgSend 参数打印</p>
+
+<pre><code>po $r0
+p (char*)$r1
+p (SEL)$r1
+</code></pre>
+
+<p>返回地址</p>
+
+<pre><code>p/x $lr
+</code></pre>
+
+<p>断点</p>
+
+<pre><code>br s -a 0x0023234f
+breakpoint set -F &quot;-[NSArray objectAtIndex:]&quot;
+
+br s -a 0x02107730+0x000ab000 -c '(BOOL)[(NSString *)$r2 isEqualToString:@&quot;snakeninny&quot;]'
+
+b ptrace
+</code></pre>
+
+<p>列举模块</p>
+
+<pre><code>image -o -f
+</code></pre>
+
+<p>lldb基础命令</p>
+
+<pre><code>c
+n
+s
+frame info
+expr
+
+thread return
+breakpoint command add 1
+</code></pre>
+
+<p>远程调试</p>
+
+<pre><code>debugserver *:1234 -a AlipayWallet
+debugserver -x backboard *:1234 /var/mobile/Containers/Bundle/Application/9DB7CE45-3B4C-42A3-9D4D-49A3A5122903/AlipayWallet.app/AlipayWallet
+</code></pre>
+
+<p>lldb连接远程调试</p>
+
+<pre><code>(lldb) process connect connect://192.168.199.164:1234
+</code></pre>
+
+<p>lldb expr例子</p>
+
+<pre><code>(lldb) expr char *$str = (char *)malloc(8)
+(lldb) expr (void)strcpy($str, &quot;munkeys&quot;)
+(lldb) expr $str[1] = 'o'
+(char) $0 = 'o'
+(lldb) p $str
+(char *) $str = 0x00007fd04a900040 &quot;monkeys&quot;
+
+(lldb) x/4c $str
+(lldb) x/1w `$str + 3`
+(lldb) expr (void)free($str)
+
+(lldb) expr id $myView = (id)0x7f82b1d01fd0
+(lldb) expr (void)[$myView setBackgroundColor:[UIColor blueColor]]
+(lldb) expr (void)[CATransaction flush]
+
+(lldb) po [$myButton allTargets]
+
+(lldb) p (ptrdiff_t)ivar_getOffset((struct Ivar *)class_getInstanceVariable([MyView class], &quot;_layer&quot;))
+
+</code></pre>
+
+<p>观察点</p>
+
+<pre><code>(lldb) watchpoint set expression -- (int *)$myView + 8
+
+</code></pre>
+
+<p>arm64</p>
+
+<pre><code>param1 $x0
+param2 $x1
+
+po $x0
+p (char*)$x1
+</code></pre>
+
+<h2 id="cycript">cycript</h2>
+
+<p>参考： <a href="http://www.cycript.org/manual/">http://www.cycript.org/manual/</a></p>
+
+<p>开始</p>
+
+<pre><code>cycript -p BinaryName
+</code></pre>
+
+<p>打印UI结构</p>
+
+<pre><code>[[UIWindow keyWindow] recursiveDescription].toString()
+[[[UIWindow keyWindow] rootViewController] _printHierarchy].toString()
+</code></pre>
+
+<p>打印沙盒Documents路径</p>
+
+<pre><code>[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]
+</code></pre>
+
+<p>基本使用</p>
+
+<pre><code>cy# [#0xb226710 url]
+@&quot;ww4fd1rfRDShBo_4K6rqfwAAACMAAQED&quot;
+
+cy# c = #0x1752d8c0
+cy#&quot;&lt;FavAudioPlayerController: 0x1752d8c0; frame = (0 0; 290 60); autoresize = W; layer = &lt;CALayer: 0x172dc2b0&gt;&gt;&quot;
+cy# c-&gt;m_audioInfo
+cy#&quot;&lt;FavAudioInfo: 0x172b2a30&gt;&quot;
+cy# c-&gt;m_audioInfo.m_nsAudioPath
+</code></pre>
+
+<h2 id="linker">linker</h2>
+
+<pre><code>-Wl,-sectcreate,__RESTRICT,__restrict,/dev/null
+into Other link flag
+</code></pre>
+
+<h2 id="anti">Anti</h2>
+
+<pre><code>iHex replace RESTRICT , restrict
+ldid -S AppName
+AppSync
+</code></pre>
+
+<h2 id="info-plist">Info.plist</h2>
+
+<p>输出bundle id</p>
+
+<pre><code>/var/mobile/Containers/Bundle/Application/9DB7CE45-3B4C-42A3-9D4D-49A3A5122903/AlipayWallet.app root# cat Info.plist | grep com.
+    &lt;string&gt;com.alipay.iphoneclient&lt;/string&gt;
+</code></pre>
+
+<h2 id="dumpdecrypted">dumpdecrypted</h2>
+
+<p><a href="https://github.com/stefanesser/dumpdecrypted">https://github.com/stefanesser/dumpdecrypted</a></p>
+
+<p>例子</p>
+
+<pre><code>scp -P 2222 Security/dumpdecrypted-master/dumpdecrypted.dylib root@localhost:/var/mobile/Containers/Data/Application/BA2644DB-450F-4DB0-A71F-A38F65488A48/Documents/
+
+scp ~/sec/dumpdecrypted-master/dumpdecrypted.dylib root@192.168.199.164:/var/mobile/Containers/Data/Application/72AB36DD-2E9B-47C0-9695-099235E40C3C/Documents/
+dumpdecrypted.dylib
+
+everettjfs-iPhone:/var/mobile/Containers/Data/Application/72AB36DD-2E9B-47C0-9695-099235E40C3C/Documents root# DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib /var/mobile/Containers/Bundle/Application/2DAD493D-6275-4CED-8242-BDEF27F36740/AlipayWallet.app/AlipayWallet
+</code></pre>
+
+<h2 id="theos">theos</h2>
+
+<p><a href="https://github.com/theos/theos">https://github.com/theos/theos</a></p>
+
+<p>开始</p>
+
+<pre><code>everettjf@e WeChatVoiceSaver (master)]$ ~/sec/theos/bin/nic.pl
+</code></pre>
+
+<h2 id="chisel">chisel</h2>
+
+<p>参考：<a href="https://github.com/facebook/chisel">https://github.com/facebook/chisel</a></p>
+
+<h2 id="usbmuxd">usbmuxd</h2>
+
+<ul>
+<li><a href="https://cgit.sukimashita.com/usbmuxd.git/snapshot/usbmuxd-1.0.8.tar.gz">https://cgit.sukimashita.com/usbmuxd.git/snapshot/usbmuxd-1.0.8.tar.gz</a></li>
+<li><a href="https://cgit.sukimashita.com/usbmuxd.git/">https://cgit.sukimashita.com/usbmuxd.git/</a></li>
+</ul>
+
+<p>First:</p>
+
+<pre><code>cd python-client
+python tcprelay.py -t 22:2222
+</code></pre>
+
+<p>Then:</p>
+
+<pre><code>ssh root@localhost -p 2222
+</code></pre>
+
+<hr />
+
+<p>PS：<a href="http://iosre.com/t/debug/3778">文章首次发布于iosre.com</a></p>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written May 25, 2016. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%232016-05-25-my-ios-debug-cheatsheet%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/2016-05-13-how-to-write-a-simple-feed-reader/">← How to write an RSS reader, along with readme for 番茄阅读</a>&nbsp;
+	<a href="/2016-06-18-little-chat-ui-bug-resolve/" style="float:right;">Little animation bug in chat UI when keyboard hide →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>
