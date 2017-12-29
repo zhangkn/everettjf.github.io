@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Xcode书签插件XBookmark开发笔记</title>
+	
+	<meta name="description" content="">
+	<meta name="image" content="favicon.ico">
+	
+	<meta itemprop="name" content="Xcode书签插件XBookmark开发笔记">
+	<meta itemprop="description" content="">
+	<meta itemprop="image" content="favicon.ico">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Xcode书签插件XBookmark开发笔记">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:site" content="@everettjf">
+	<meta name="twitter:creator" content="@everettjf">
+	<meta name="twitter:image:src" content="favicon.ico">
+	
+	
+	<meta name="og:title" content="Xcode书签插件XBookmark开发笔记">
+	<meta name="og:description" content="">
+	<meta name="og:image" content="http://everettjf.com/favicon.ico">
+	<meta name="og:url" content="http://everettjf.com/2015/10/04/2015-10-04-xbookmark-develop-note/">
+	<meta name="og:site_name" content="Xcode书签插件XBookmark开发笔记">
+	<meta name="og:type" content="article">
+	
+	<meta name="article:author" content="everettjf">
+	<meta name="article:tag" content="">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/caption.js"></script>
+
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">  
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111349332-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-111349332-1');
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<a href="/">/posts</a>
+	
+		
+		&nbsp;&nbsp;·&nbsp;<a href="/about/" style="color:black;">/about</a>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+
+</header>
+
+
+<div class="content">
+    <h1>Xcode书签插件XBookmark开发笔记 <aside></aside></h1>
+
+    <p>
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#效果">效果</a></li>
+<li><a href="#使用方法">使用方法</a></li>
+<li><a href="#背景">背景</a></li>
+<li><a href="#预习文章">预习文章</a></li>
+<li><a href="#开发步骤简要总结">开发步骤简要总结</a>
+<ul>
+<li><a href="#安装模板-创建工程">安装模板、创建工程</a></li>
+<li><a href="#增加菜单">增加菜单</a></li>
+<li><a href="#获取书签位置">获取书签位置</a></li>
+<li><a href="#增加书签列表">增加书签列表</a></li>
+<li><a href="#发布到-alcatraz">发布到 Alcatraz</a></li>
+</ul></li>
+<li><a href="#结语">结语</a></li>
+<li><a href="#2015年10月31日更新">2015年10月31日更新</a></li>
+<li><a href="#2017年1月24日更新">2017年1月24日更新</a></li>
+</ul>
+</nav>
+    </p>
+
+    <hr/>
+    <p>&nbsp;</p>
+
+    
+
+<p>代码：<a href="https://github.com/everettjf/XBookmark">https://github.com/everettjf/XBookmark</a></p>
+
+<h1 id="效果">效果</h1>
+
+<p><img src="https://everettjf.github.io/images/extern/xbookmark0.3.0.png" alt="menu" /></p>
+
+<h1 id="使用方法">使用方法</h1>
+
+<p>首先要安装插件管理器 <code>Alcatraz</code> ，搜索<code>XBookmark</code>并安装，重启Xcode后就可以在<code>Edit</code>菜单中找到以下功能啦。</p>
+
+<pre><code>- 对应代码行，按F3可增加、删除书签
+- Shift+F3，可显示书签列表
+- Command+F3，下一个书签
+- Shift+Ctrl+F3，上一个书签
+</code></pre>
+
+<h1 id="背景">背景</h1>
+
+<p>初入iOS开发，发现自己以前在Visual Studio中常用的书签功能，Xcode中竟然没有。网上找了一阵子，大概有以下替代方法：</p>
+
+<pre><code>- 使用断点（Disabled Breakpoint)
+- 使用插件XToDo，增加标签BOOKMARK，并在想加书签的代码行增加注释 BOOKMARK
+- 使用插件XcodeBookmark（不是本文说的XBookmark），但此插件貌似不支持Xcode7，而且原理仍然是辅助增加断点。
+</code></pre>
+
+<p>目前找到了这3种方法，但感觉都不理想。没法快速进行上一个书签、下一个书签切换，没法增加书签注释。
+于是，想自己开发一个，就叫做 <code>XBookmark</code> 吧。</p>
+
+<h1 id="预习文章">预习文章</h1>
+
+<p>开发中大概看了以下几篇文章。</p>
+
+<p>Xcode插件的文章：</p>
+
+<p><a href="http://studentdeng.github.io/blog/2014/02/21/xcode-plugin-fun/">http://studentdeng.github.io/blog/2014/02/21/xcode-plugin-fun/</a>
+<a href="http://www.poboke.com/study/write-a-xcode-plugin-to-auto-select-all-targets.html">http://www.poboke.com/study/write-a-xcode-plugin-to-auto-select-all-targets.html</a>
+<a href="http://www.onevcat.com/2013/02/xcode-plugin/">http://www.onevcat.com/2013/02/xcode-plugin/</a></p>
+
+<p>Mac开发的文章：</p>
+
+<p><a href="http://www.raywenderlich.com/17811/how-to-make-a-simple-mac-app-on-os-x-10-7-tutorial-part-13">http://www.raywenderlich.com/17811/how-to-make-a-simple-mac-app-on-os-x-10-7-tutorial-part-13</a></p>
+
+<p>还看了几个插件的源码。</p>
+
+<h1 id="开发步骤简要总结">开发步骤简要总结</h1>
+
+<h2 id="安装模板-创建工程">安装模板、创建工程</h2>
+
+<pre><code>在 Alcatraz 中的 Templates 中搜索 Xcode Plugin。安装后从此模板创建工程。
+</code></pre>
+
+<p><img src="https://everettjf.github.io/images/extern/xbookmarkdev1.png" alt="XcodePluginTemplate" />
+<img src="https://everettjf.github.io/images/extern/xbookmarkdev2.png" alt="XcodePluginCreate" /></p>
+
+<h2 id="增加菜单">增加菜单</h2>
+
+<pre><code>NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@&quot;Edit&quot;];
+if (menuItem) {
+    [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
+    
+    {
+        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@&quot;Toggle Bookmark&quot; action:@selector(toggleBookmark) keyEquivalent:f3];
+        [actionMenuItem setKeyEquivalentModifierMask:0];
+        [actionMenuItem setTarget:self];
+        [[menuItem submenu] addItem:actionMenuItem];
+    }
+    //...
+</code></pre>
+
+<h2 id="获取书签位置">获取书签位置</h2>
+
+<pre><code>IDESourceCodeEditor* editor = [XcodeUtil currentEditor];
+NSTextView* textView = editor.textView;
+if (nil == textView)
+    return;
+
+NSRange range = [textView.selectedRanges[0] rangeValue];
+NSUInteger lineNumber = [[[textView string]substringToIndex:range.location]componentsSeparatedByString:@&quot;\n&quot;].count;
+
+// length of &quot;file://&quot; is 7
+NSString *sourcePath = [[editor.sourceCodeDocument.fileURL absoluteString] substringFromIndex:7];
+
+XBookmarkEntity *bookmark = [[XBookmarkEntity alloc]initWithSourcePath:sourcePath withLineNumber:lineNumber];
+[[XBookmarkModel sharedModel]toggleBookmark:bookmark];
+
+//...
+</code></pre>
+
+<h2 id="增加书签列表">增加书签列表</h2>
+
+<p><img src="https://everettjf.github.io/images/extern/xbookmarkdev3.png" alt="XBookmarkList" /></p>
+
+<h2 id="发布到-alcatraz">发布到 Alcatraz</h2>
+
+<p>挺简单，修改配置文件，创建一个 Pull Request 就可以。
+见 <a href="https://github.com/supermarin/alcatraz-packages">https://github.com/supermarin/alcatraz-packages</a> 的README。</p>
+
+<h1 id="结语">结语</h1>
+
+<p>目前仅是完成了基本功能，还有几个需要优化和完善的地方。</p>
+
+<ul>
+<li>定位代码行。（代码来自XToDo的代码，但有些情况下定位速度慢。需要查找原因解决）</li>
+<li>书签标识。代码行前面显示书签符号，对号之类的。</li>
+<li>注释功能。（增加书签注释功能）</li>
+<li>Mnemonic 书签。（模仿 IntelliJ 系列）</li>
+</ul>
+
+<hr />
+
+<h1 id="2015年10月31日更新">2015年10月31日更新</h1>
+
+<p>感谢网友提供了JumpMarks这个插件（当时如果知道了这个插件，或许就不会开发这个XBookmark了），这个插件实现了快速定位代码行，以及在代码行签名增加标记。但没有提供一个标签列表（还好XBookmark有点区别）。</p>
+
+<p>经过学习JumpMarks的代码，XBookmark近期发布了两个版本（0.2与0.3），感谢JumpMarks作者。
+- 0.2版，实现了快速定位代码行。
+- 0.3版，增加了快捷键自定义，以及代码行前面的标识。</p>
+
+<p>开发XBookmark的过程很开心，第一次Merge PullRequest（感谢<a href="https://github.com/langyapojun">https://github.com/langyapojun</a> 解决了Xcode7支持问题），以前没有开发过公开的工具（闷头开发，5年眨眼过去），今年尝试改变，为开源贡献点代码。</p>
+
+<p>关于Xcode7支持的问题，我还挺纳闷，自己开发一直都是Xcode7（Xcode6升级到的Xcode7），为什么没有那个id也可以正常用呢。我得研究研究去……</p>
+
+<hr />
+
+<h1 id="2017年1月24日更新">2017年1月24日更新</h1>
+
+<p>现在已经支持Xcode8了。模仿的XVim的安装方式（重签名Xcode后，make）。</p>
+
+
+    
+</div>
+
+
+
+	<p><small><em>Written October 4, 2015. </em>
+		 
+		Send feedback to <a  href="https://twitter.com/intent/tweet?text=%40everettjf%20%23201510042015-10-04-xbookmark-develop-note%20">@everettjf</a>.
+		
+    </small></p>
+
+	<p>
+	<a href="/2015/09/26/2015-09-26-simple-tab-page-scroll-view-publish/">← 简单的iOS TabPageScrollView开发笔记</a>&nbsp;
+	<a href="/2015/11/01/2015-11-01-hackathon-segmentfault/" style="float:right;">参与SegmentFault Hackathon 2015 北京站 总结 →</a>
+	</p>
+
+
+
+<section id="disqus_thread"></section>
+
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'everettjf';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+     
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<footer>
+	<hr/>
+	<p>https://creativecommons.org/licenses/by-nc-sa/2.5/</p>
+	<p>This site was made with <a href="https://github.com/gohugoio/hugo">Hugo</a> using theme <a href="https://github.com/schollz/onetwothree">onetwothree</a>.</p>
+</footer>
+</body>
+</html>
