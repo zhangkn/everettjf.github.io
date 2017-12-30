@@ -7,9 +7,6 @@ comments: true
 ---
 
 
-
-
-
 # Devices
 
 1. iPhone5S

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AppleTrace - Performance Analysis Tool"
+title: "AppleTrace Performance Analysis Tool"
 excerpt: Trace tool similar to systrace for Android
 categories:
   - Dev
