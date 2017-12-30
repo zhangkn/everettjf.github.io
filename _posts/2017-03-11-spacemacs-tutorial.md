@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Spacemacs tutorial
 categories: Skill
 excerpt: "emacs and vim"
@@ -6,7 +7,7 @@ comments: true
 ---
 
 
-{% include toc %}
+
 
 # 背景
 

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "AppleTrace dance with MonkeyDev"
 excerpt: tracing any apps
 categories:
@@ -8,7 +9,7 @@ tags:
 comments: true
 ---
 
-{% include toc %}
+
 
 (关联文章：http://everettjf.com/2017/09/21/appletrace/ )
 

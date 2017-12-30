@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Azeria Labs Challenges Stack1-5"
 excerpt: Summary for the challenges
 categories:
@@ -8,8 +9,6 @@ tags:
   - AzeriaLabs
 comments: true
 ---
-
-{% include toc %}
 
 # 背景
 

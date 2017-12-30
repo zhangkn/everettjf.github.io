@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Generate framework dependency graph for CocoaPods"
 excerpt: podspec required
 categories:
@@ -11,7 +12,7 @@ tags:
 comments: true
 ---
 
-{% include toc %}
+
 
 # 根据podspec生成framework的依赖关系graph
 

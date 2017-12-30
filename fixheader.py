@@ -17,18 +17,21 @@ for f in glob.glob("_posts/*.md"):
     # datestr = dateparts[0] + "-" + dateparts[1] + "-" + dateparts[2]+"T00:00:01+08:00"
     # print(datestr)
 
-    # d = open(f, 'r').read()
+    d = open(f, 'r').read()
+    lines = d.split('\n')
 
-    # titleline = d.split('---')[1].strip().split('\n')[0]
+    # print lines[0]
+    # print "layout: post"
+    # print "\n".join(lines[1:])
 
-    # idx = d.find('---',4)
-    # content = d[idx + 3:] + '\n'
+    if lines[1].startswith('layout'):
+        continue
 
-    # with open(f, 'w') as g:
-    #     g.write("---\n")
-    #     g.write(titleline+"\n")
-    #     g.write("date: " + datestr + "\n")
-    #     g.write("---\n\n")
-    #     g.write(content)
-    #     g.write("\n")
+    with open(f, 'w') as g:
+        g.write("---\n")
+        g.write("layout: post\n")
+        g.write("\n".join(lines[1:]))
+
+
+print("Done")
     

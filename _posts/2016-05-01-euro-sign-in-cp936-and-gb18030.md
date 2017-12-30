@@ -1,11 +1,12 @@
 ---
+layout: post
 title:  € euro sign in cp936 and gb18030
 excerpt: "99.99%的App应该不会遇到这个问题"
 categories: Skill
 comments: true
 ---
 
-{% include toc %}
+
 
 
 

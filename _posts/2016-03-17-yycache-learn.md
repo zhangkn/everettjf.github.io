@@ -1,4 +1,5 @@
 ---
+layout: post
 title: YYCache note
 excerpt: 使用XSourceNote做的笔记
 categories: Skill
@@ -6,7 +7,7 @@ comments: true
 ---
 
 
-{% include toc %}
+
 
 
 

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: In-App Purchase一个坑和一个未解答问题
 excerpt: "被localizeTitle坑了一把"
 categories: Skill
@@ -7,7 +8,7 @@ comments: true
 
 
 
-{% include toc %}
+
 
 
 # 背景

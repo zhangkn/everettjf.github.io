@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Tweak for saving voice in alipay
 excerpt: "作为学习《iOS应用逆向工程》的小作品"
 categories: Skill
@@ -6,7 +7,7 @@ comments: true
 ---
 
 
-{% include toc %}
+
 
 
 # 背景

@@ -1,11 +1,12 @@
 ---
+layout: post
 title: Apple Developer 登录错误，400电话解决
 excerpt: "可以解决，但原因不告诉我"
 categories: Skill
 comments: true
 ---
 
-{% include toc %}
+
 
 前端时间发现自己的Apple Developer账号不能在 https://developer.apple.com 登录了。
 

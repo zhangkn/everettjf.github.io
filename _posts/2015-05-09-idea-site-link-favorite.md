@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "idea-网址管理及分享"
 excerpt: "分享网址，未来的mostlike.link"
 categories: Essay
@@ -6,7 +7,7 @@ comments: true
 ---
 
 
-{% include toc %}
+
 
 
 

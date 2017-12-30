@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Summary for C++ transfer to iOS develop for the past 5 months
 excerpt: "iOS入门的同学可参考此文"
 categories: Skill
@@ -7,7 +8,7 @@ comments: true
 
 
 
-{% include toc %}
+
 
 
 # 啰嗦

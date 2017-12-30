@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Explore facebook iOS client - section FBInjectable
 excerpt: "配置选择器"
 categories: Skill
@@ -6,7 +7,7 @@ comments: true
 ---
  
 
-{% include toc %}
+
 
 ---
  

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "redis使用方式总结"
 excerpt: "据说互联网公司都用，我就来了解了解"
 categories: Skill
@@ -6,7 +7,7 @@ comments: true
 ---
 
 
-{% include toc %}
+
 
 
 

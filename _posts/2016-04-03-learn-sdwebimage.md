@@ -1,4 +1,5 @@
 ---
+layout: post
 title: SDWebImage note
 excerpt: 浏览SDWebImage源码笔记
 categories: Skill
@@ -6,7 +7,7 @@ comments: true
 ---
 
 
-{% include toc %}
+
 
 
 # Basic Information

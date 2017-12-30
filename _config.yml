@@ -1,6 +1,6 @@
 name: everettjf
-description: everettjf's blog , focus on performance and security
-meta_description: "everettjf's blog , focus on performance and security"
+description: iOS/macOS/Windows Developer | Interested in Reverse Engineering
+meta_description: "iOS/macOS/Windows Developer | Interested in Reverse Engineering"
 
 markdown: kramdown
 highlighter: pygments
@@ -8,8 +8,8 @@ logo: false
 paginate: 15
 baseurl: /
 domain_name: 'http://everettjf.com'
-google_analytics: 'UA-XXXXXXXX-X'
-gems: [jekyll-paginate]
+google_analytics: 'UA-111349332-1'
+plugins: [jekyll-paginate]
 
 # Details for the RSS feed generator
 url:            'http://everettjf.com'

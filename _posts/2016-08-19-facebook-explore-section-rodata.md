@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Explore Facebook iOS Client - Section RODATA
 excerpt: "Facebook 瘦身"
 categories: Skill
@@ -7,7 +8,7 @@ comments: true
  
 
 
-{% include toc %}
+
 
 # 现象
 

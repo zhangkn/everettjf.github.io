@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "AppleTrace - Performance Analysis Tool"
 excerpt: Trace tool similar to systrace for Android
 categories:
@@ -9,7 +10,7 @@ tags:
 comments: true
 ---
 
-{% include toc %}
+
 
 (关联文章：http://everettjf.com/2017/10/12/appletrace-dancewith-monkeydev/ )
 

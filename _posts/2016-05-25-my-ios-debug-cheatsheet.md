@@ -1,11 +1,12 @@
 ---
+layout: post
 title: iOS Debug Cheatsheet
 excerpt: "Cheatsheet"
 categories: Skill
 comments: true
 ---
 
-{% include toc %}
+
 
 
 逆向过程中命令太多记不住，就整理了这个速查表，分享给大家。我只是看完了小黄书《iOS应用逆向工程》，这几个月没有再深入研究逆向。最近又想逆向几个app学习下怎么实现，发现很多命令都忘记了。于是整理了这个表。copy and paste就可以愉快的学习其他app的实现了。

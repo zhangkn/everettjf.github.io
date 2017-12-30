@@ -1,11 +1,12 @@
 ---
+layout: post
 title: 我的机器学习之路，第零篇，横冲直撞
 excerpt: "到底还是个程序员，只知道用现成的库，这些基础还是没有掌握，耗去的时间都只是满足自己虚荣的好奇心"
 categories: Essay
 comments: true
 ---
 
-{% include toc %}
+
 
 
 

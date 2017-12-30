@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "A method of hook static initializers"
 excerpt: "hooking C++ static initializers and C/C++ __attribute__(constructor) functions"
 categories:
@@ -9,7 +10,7 @@ tags:
 comments: true
 ---
 
-{% include toc %}
+
 
 先补充：标题中 static initializers 其实应该叫做 `C++ static initializers and C/C++ __attribute__(constructor) functions`。
 

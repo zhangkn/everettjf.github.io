@@ -1,11 +1,12 @@
 ---
+layout: post
 title: "vim emacs 常用快捷键对比"
 excerpt: "对比下两个神器的快捷键吧，不要再折腾啦"
 categories: Skill
 comments: true
 ---
 
-{% include toc %}
+
 
 习惯了vim快捷键，又了解下emacs。
 vim使用spf，emacs使用prelude，体验了两位“大神”。（写多了，这篇文章与这两个没有直接关系，写出了作为笔记）

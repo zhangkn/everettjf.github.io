@@ -31,6 +31,7 @@ task :post do
   puts "Creating new post: #{filename}"
   open(filename, 'w') do |post|
     post.puts "---"
+    post.puts "layout: post"
     post.puts "title: \"#{title.gsub(/-/,' ')}\""
     post.puts "excerpt: "
     post.puts "categories:"
@@ -40,7 +41,6 @@ task :post do
     post.puts "comments: true"
     post.puts "---"
     post.puts ""
-    post.puts "{% include toc %}"
     post.puts ""
   end
 end # task :post

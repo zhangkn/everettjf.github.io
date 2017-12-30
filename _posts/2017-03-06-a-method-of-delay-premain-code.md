@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "A method of delay premain code"
 excerpt: like FBInjectable in Facebook App
 categories:
@@ -9,7 +10,7 @@ tags:
 comments: true
 ---
 
-{% include toc %}
+
 
 
 下面三种方法可以让代码在main函数之前执行：

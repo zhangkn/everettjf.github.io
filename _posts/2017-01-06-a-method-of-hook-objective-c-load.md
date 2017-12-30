@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "A method of hook objective c +load"
 excerpt: "+load and CaptainHook"
 categories:
@@ -9,7 +10,7 @@ tags:
 comments: true
 ---
 
-{% include toc %}
+
 
 iOS有以下四种方法可方便的在premain阶段执行代码：
 

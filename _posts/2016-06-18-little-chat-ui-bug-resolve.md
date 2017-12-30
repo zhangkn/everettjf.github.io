@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Little animation bug in chat UI when keyboard hide
 excerpt: "little chat ui bug resolve"
 categories: Skill
@@ -6,7 +7,7 @@ comments: true
 ---
 
 
-{% include toc %}
+
 
 
 # 背景

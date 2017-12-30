@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Explore facebook iOS client - section fbsessiongks
 excerpt: "实验性功能的开关"
 categories: Skill
@@ -6,7 +7,7 @@ comments: true
 ---
  
 
-{% include toc %}
+
 
 ---
  

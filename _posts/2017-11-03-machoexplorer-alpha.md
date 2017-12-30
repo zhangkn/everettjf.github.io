@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "MachOExplorer Alpha Release"
 excerpt: Basic view with some features incomplete
 categories:
@@ -9,7 +10,7 @@ tags:
 comments: true
 ---
 
-{% include toc %}
+
 
 
 
