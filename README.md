@@ -1,0 +1,1 @@
+blog based on https://github.com/mmistakes/minimal-mistakes
