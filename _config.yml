@@ -1,6 +1,6 @@
-name: everettjf
-description: iOS/macOS/Windows Developer | Interested in Reverse Engineering
-meta_description: "iOS/macOS/Windows Developer | Interested in Reverse Engineering"
+name: Pale Blue Dot
+description: Reverse Engineering
+meta_description: "I am everettjf iOS/macOS/Windows Developer Interested in Reverse Engineering"
 
 markdown: kramdown
 highlighter: pygments
@@ -14,5 +14,7 @@ plugins: [jekyll-paginate]
 # Details for the RSS feed generator
 url:            'http://everettjf.com'
 author:         'everettjf'
+authorimage: /images/everettjf.png
 
 permalink: /:year/:month/:day/:title/
+location: 'Beijing, China'
