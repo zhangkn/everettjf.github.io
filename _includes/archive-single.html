@@ -35,10 +35,6 @@
         {% if post.date %}
           <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
         {% endif %}
-        {% if post.read_time %}
-          <i class="fa fa-clock-o" aria-hidden="true"></i> 
-          {% include read-time.html %}
-        {% endif %}
       </p>
     {% endif %}
     {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
