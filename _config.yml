@@ -1,5 +1,5 @@
 name: Pale Blue Dot
-description: Reverse Engineering
+description: Performance / Security
 meta_description: "I am everettjf iOS/macOS/Windows Developer Interested in Reverse Engineering"
 
 markdown: kramdown
@@ -9,7 +9,8 @@ paginate: 15
 baseurl: /
 domain_name: 'http://everettjf.com'
 google_analytics: 'UA-111349332-1'
-plugins: [jekyll-paginate]
+plugins:
+  - jekyll-paginate
 
 # Details for the RSS feed generator
 url:            'http://everettjf.com'
