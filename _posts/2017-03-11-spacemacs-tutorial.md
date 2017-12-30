@@ -259,6 +259,13 @@ https://github.com/adobe-fonts/source-code-pro
 
 ```
 
+## 主题
+
+http://spacemacs.org/layers/+themes/themes-megapack/README.html
+
+可选主题有：https://themegallery.robdor.com/
+
+
 # 参考资料
 
 - https://simpletutorials.com/c/2859/How+to+change+your+.spacemacs+configuration+file
