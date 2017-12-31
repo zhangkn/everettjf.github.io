@@ -1,7 +1,7 @@
 ---
 layout: post
 title: First step towards LLVM clang plugin
-excerpt: "The first keng"
+excerpt: "LLVM插件开发第一步"
 categories: Skill
 comments: true
 ---
@@ -96,3 +96,5 @@ All came from :
 官方文档各种坑...
 
 应该是我太菜...的原因...
+
+

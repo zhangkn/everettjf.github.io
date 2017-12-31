@@ -2,7 +2,7 @@
 layout: post
 title: Spacemacs tutorial
 categories: Skill
-excerpt: "emacs and vim"
+excerpt: "emacs and vim 二合一"
 comments: true
 ---
 

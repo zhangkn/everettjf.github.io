@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Generate framework dependency graph for CocoaPods"
-excerpt: podspec required
+excerpt: "生成CocoaPods的依赖图"
 categories:
   - Skill
 tags:

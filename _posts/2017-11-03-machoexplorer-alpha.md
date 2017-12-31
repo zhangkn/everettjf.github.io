@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "MachOExplorer Alpha Release"
-excerpt: 
+excerpt: 使用C++重新开发MachOView
 categories:
   - Tool
 tags:

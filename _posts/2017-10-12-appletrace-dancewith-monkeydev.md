@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AppleTrace dance with MonkeyDev"
-excerpt: 
+excerpt: "AppleTrace搭配MonkeyDev可实现Trace任意App"
 categories:
   - Tool
 tags:

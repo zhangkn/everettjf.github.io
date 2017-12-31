@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AppleTrace Performance Analysis Tool"
-excerpt: 实现 iOS 平台的 systrace 的工具
+excerpt: "实现 iOS 平台的 systrace 的工具"
 categories:
   - Dev
 tags:
