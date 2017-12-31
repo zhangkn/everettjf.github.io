@@ -161,4 +161,5 @@ comments: true
 
 详细思维导图：
 
-[传送门](/plan2017.png)(closed)
+[传送门](https://github.com/everettjf/everettjf.github.io/blob/master/stuff/plan/plan2017.png)~~(closed)~~(open 2017年12月31日打开)
+
