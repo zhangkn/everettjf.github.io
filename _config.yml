@@ -6,7 +6,7 @@ markdown: kramdown
 highlighter: pygments
 logo: false
 paginate: 15
-baseurl: /
+baseurl: 'http://everettjf.com'
 domain_name: 'http://everettjf.com'
 google_analytics: 'UA-111349332-1'
 plugins:
