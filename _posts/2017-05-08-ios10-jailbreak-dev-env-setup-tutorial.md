@@ -1,7 +1,7 @@
 ---
 layout: post
-title: iOS10 jailbreak develop environment setup reference
-excerpt: "For me, maybe for you"
+title: iOS10 Jailbreak Develop Environment Setup Reference
+excerpt: "iOS10越狱相关环境搭建"
 categories: Skill
 comments: true
 ---
@@ -53,3 +53,5 @@ https://www.reddit.com/r/jailbreak/comments/5r2mwr/tutorial_how_to_use_dropbear_
 6. Frida
 7. cycript
 8. lldb
+
+

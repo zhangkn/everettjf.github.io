@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AppleTrace dance with MonkeyDev"
-excerpt: tracing any apps
+excerpt: 
 categories:
   - Tool
 tags:
@@ -9,7 +9,7 @@ tags:
 comments: true
 ---
 
-
+AppleTrace搭配MonkeyDev可实现Trace任意App
 
 (关联文章：http://everettjf.com/2017/09/21/appletrace/ )
 

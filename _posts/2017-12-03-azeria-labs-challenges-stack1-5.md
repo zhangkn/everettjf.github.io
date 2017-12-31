@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Azeria Labs Challenges Stack1-5"
-excerpt: Summary for the challenges
+excerpt: 
 categories:
   - CTF
 tags:

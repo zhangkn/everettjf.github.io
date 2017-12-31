@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Decrypting iOS applications using lldb
-excerpt: "The hard way, but general"
+excerpt: 
 categories: Skill
 comments: true
 ---

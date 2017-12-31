@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AppleTrace Performance Analysis Tool"
-excerpt: Trace tool similar to systrace for Android
+excerpt: 实现 iOS 平台的 systrace 的工具
 categories:
   - Dev
 tags:
@@ -234,3 +234,5 @@ Hook objc_msgSend的方法，有的类可能并不关心。可以采用白名单
 这个工具本身的代码不多（写日志），主要是组合了catapult和HookZz，再次感谢catapult和HookZz。
 
 有任何问题欢迎随时 [issue](https://github.com/everettjf/AppleTrace/issues)，或者联系我的微信 everettjf。
+
+

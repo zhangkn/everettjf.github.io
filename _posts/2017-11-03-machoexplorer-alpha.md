@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "MachOExplorer Alpha Release"
-excerpt: Basic view with some features incomplete
+excerpt: 
 categories:
   - Tool
 tags:
@@ -50,3 +50,4 @@ http://iosre.com/t/machoview/5456
 # 讨论群
 
 [https://t.me/machoexplorer](https://t.me/machoexplorer) 或者 QQ群 259141165
+
